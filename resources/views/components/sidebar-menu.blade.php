@@ -1,4 +1,4 @@
-<nav x-data x-bind:class="!$store.sidebar.isActive ? '-translate-x-[400px] rounded-ee-full hide' : 'translate-x-0 show' " class="bg-white transition-all w-[90%] shadow-md fixed top-[56px] bottom-0 sm:w-72 sm:show sm:translate-x-0">
+<nav x-data x-bind:class="!$store.sidebar.isActive ? '-translate-x-[400px] rounded-ee-full hide' : 'translate-x-0 show' " class="bg-white transition-all w-[90%] shadow-md fixed top-[56px] bottom-0 sm:duration-100 sm:rounded-none sm:w-72 sm:show sm:translate-x-0">
     <div class="flex items-center gap-5 p-5">
         <div class="font-bold text-blue-700">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
