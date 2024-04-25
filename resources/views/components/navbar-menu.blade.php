@@ -1,7 +1,7 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.store('sidebar', {
-            isActive: true
+            isActive: false
         })
     })
 </script>
