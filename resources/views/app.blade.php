@@ -10,9 +10,12 @@
     </head>
 
     <body class="bg-blue-100">
+        @livewireScripts
         <header>
             <x-navbar-menu />
         </header>
+        <aside>
+            <x-sidebar-menu />
+        </aside>
     </body>
-
 </html>
