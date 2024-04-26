@@ -15,8 +15,20 @@ Route::get('/admin/schedules', function () {
     return view('admin.schedules');
 })->name("admin.schedules");
 
-// ppid
 
+// ppid
 Route::get('/ppid', function () {
     return view('ppid.request');
 })->name("ppid.request");
+
+Route::get('/ppid/objection', function () {
+    return view('ppid.objection');
+})->name("ppid.objection");
+
+Route::get('/ppid/complaint', function () {
+    return view('ppid.complaint');
+})->name("ppid.complaint");
+
+Route::get('/ppid/survey', function () {
+    return view('ppid.survey');
+})->name("ppid.survey");
