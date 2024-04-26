@@ -15,13 +15,15 @@
         <header>
             <x-navbar-menu />
         </header>
-        <aside>
+        <aside x-data="{ path: location.pathname.split('/')[1] }">
             <x-sidebar-menu>
-                @if (request()->routeIs("/admin"))
+                <template x-if="path === 'admin'">
                     @include('admin.components.admin-navigations')
-                @else
-                    @include('admin.components.admin-navigations')
-                @endif
+                </template>
+
+                <template x-if="path === 'ppid'">
+                    @include('ppid.components.ppid-navigations')
+                </template>
             </x-sidebar-menu>
         </aside>
         <main>
