@@ -1,6 +1,10 @@
-@props(['link' => "/", 'nameLink' => "Link"])
+@props(["link" => "", "nameLink" => "Link"])
 
-<a wire:navigate href="{{ $link }}" class="flex items-center gap-5 p-5 border-l-[5px] border-blue-700">
+@php
+    $classes = (request()->routeIs($link)) ? "flex items-center gap-5 p-5 border-l-[6px] border-blue-500" : "flex items-center gap-5 p-5"
+@endphp
+
+<a wire:navigate href="{{ route($link) }}" {{ $attributes->merge(['class' => $classes]) }}>
     <div class="font-bold text-blue-700">
         {{ $slot }}
     </div>
