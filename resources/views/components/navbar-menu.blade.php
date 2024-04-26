@@ -6,7 +6,7 @@
     })
 </script>
 
-<div x-data class="fixed top-0 left-0 right-0 min-w-[345px]">
+<div x-data class="fixed top-0 left-0 right-0 min-w-[300px]">
     <nav class="flex items-center justify-between h-14 bg-white p-5">
         <button @click="$store.sidebar.isActive = !$store.sidebar.isActive" class="md:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
