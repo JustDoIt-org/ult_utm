@@ -6,6 +6,10 @@
     })
 </script>
 
+@php
+    $pathName = request()->route()->getName()
+@endphp
+
 <div x-data class="fixed top-0 left-0 right-0 min-w-[300px]">
     <nav class="flex items-center justify-between h-14 bg-white p-5">
         <button @click="$store.sidebar.isActive = !$store.sidebar.isActive" class="md:hidden">
@@ -20,7 +24,7 @@
 
         <h1 class="text-left hidden md:block font-bold text-xl text-blue-700">Logo Company</h1>
 
-        <h1 class="font-semibold text-xl text-blue-950">Dashboard</h1>
+        <h1 class="font-semibold text-xl text-blue-950 capitalize font-inter">{{ explode('.', $pathName)[1] }}</h1>
         <div class="bg-blue-500 w-10 h-10 rounded-full flex justify-center items-center font-semibold text-white">A</div>
     </nav>
 </div>
