@@ -9,3 +9,7 @@ Route::get('/', function () {
 Route::get('/users', function () {
     return view('admin.users');
 });
+
+Route::get('/schedules', function () {
+    return view('admin.schedules');
+});
