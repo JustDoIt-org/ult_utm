@@ -9,13 +9,19 @@
         @vite('resources/css/app.css')
     </head>
 
-    <body class="bg-blue-100">
+    <body>
         @livewireScripts
+
         <header>
             <x-navbar-menu />
         </header>
         <aside>
-            <x-sidebar-menu />
+            <x-sidebar-menu>
+                <x-link-nav />
+            </x-sidebar-menu>
         </aside>
+        <main>
+            @yield('content')
+        </main>
     </body>
 </html>
