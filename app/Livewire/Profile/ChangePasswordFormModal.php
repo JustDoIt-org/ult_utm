@@ -3,10 +3,13 @@
 namespace App\Livewire\Profile;
 
 use App\Livewire\Module\BaseModal;
+use App\Livewire\Module\Trait\Notification;
 use Livewire\Attributes\Rule;
 
 class ChangePasswordFormModal extends BaseModal
 {
+    use Notification;
+
     #[Rule(['required', 'current_password'], as: 'Current Password')]
     public $current_password;
 
@@ -44,6 +47,10 @@ class ChangePasswordFormModal extends BaseModal
 
         if (!is_null($update)) {
             $this->dispatch('close-modal', name: $this->modal_name);
+            $this->toast(
+                message: 'Password Updated',
+                type: 'success'
+            );
         }
     }
 

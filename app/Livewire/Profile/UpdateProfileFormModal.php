@@ -3,11 +3,14 @@
 namespace App\Livewire\Profile;
 
 use App\Livewire\Module\BaseModal;
+use App\Livewire\Module\Trait\Notification;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 
 class UpdateProfileFormModal extends BaseModal
 {
+    use Notification;
+
     #[Validate('required')]
     public $profile = [];
 
@@ -63,6 +66,10 @@ class UpdateProfileFormModal extends BaseModal
         }
         $this->dispatch('close-modal', name: $this->modal_name);
         $this->dispatch('profile:update');
+        $this->toast(
+            message: 'Profile Updated',
+            type: 'success'
+        );
     }
 
     public function clear()

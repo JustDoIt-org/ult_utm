@@ -4,11 +4,14 @@ namespace App\Livewire\Role;
 
 use App\Livewire\Forms\RoleForm;
 use App\Livewire\Module\BaseModal;
+use App\Livewire\Module\Trait\Notification;
 use App\Models\Permission;
 use Livewire\Attributes\Computed;
 
 class RoleFormModal extends BaseModal
 {
+    use Notification;
+
     public RoleForm $form;
 
     /*
@@ -60,11 +63,16 @@ class RoleFormModal extends BaseModal
         if($this->form->post()) {
             $this->dispatch('close-modal', name: $this->modal_name);
             $this->dispatch('role-table:reload');
+            $this->toast(
+                message: $this->form->id == 0 ? 'Role Created' : 'Role Updated',
+                type: 'success'
+            );
         }
     }
 
     public function clear()
     {
         parent::clear();
+        $this->form->clear();
     }
 }

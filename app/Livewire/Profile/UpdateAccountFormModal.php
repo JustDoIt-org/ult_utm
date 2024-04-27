@@ -4,9 +4,12 @@ namespace App\Livewire\Profile;
 
 use App\Livewire\Forms\UpdateUserForm;
 use App\Livewire\Module\BaseModal;
+use App\Livewire\Module\Trait\Notification;
 
 class UpdateAccountFormModal extends BaseModal
 {
+    use Notification;
+    
     public UpdateUserForm $form;
 
     /*
@@ -47,6 +50,10 @@ class UpdateAccountFormModal extends BaseModal
         if (!is_null($this->form->post())) {
             $this->dispatch('close-modal', name: $this->modal_name);
             $this->dispatch('profile:update');
+            $this->toast(
+                message: 'Account Updated',
+                type: 'success'
+            );
         }
     }
 

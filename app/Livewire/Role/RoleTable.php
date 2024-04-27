@@ -36,7 +36,7 @@ class RoleTable extends BaseTable
     {
         return Role::search($this->search)
             ->orderBy($this->sort_by, $this->sort_direction)
-            ->paginate($this->perPage); 
+            ->paginate($this->perPage);
     }
 
     public function cols()
@@ -53,5 +53,9 @@ class RoleTable extends BaseTable
     public function delete($id)
     {
         parent::delete($id);
+        Role::destroy($id);
+        $this->toast(
+            message: "Role Removed",
+        );
     }
 }

@@ -71,6 +71,9 @@ class UserTable extends BaseTable
     {
         parent::delete($id);
         User::destroy($id);
+        $this->toast(
+            message: "User Removed",
+        );
     }
 
     public function exportXLSX()
