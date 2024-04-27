@@ -12,11 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_information', function (Blueprint $table) {
-            $table->id();
             $table->string('value');
             $table->foreignId('information_id');
             $table->foreignId('user_id');
-            $table->timestamps();
         });
     }
 

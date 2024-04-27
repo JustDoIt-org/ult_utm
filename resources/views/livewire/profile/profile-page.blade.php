@@ -89,7 +89,11 @@
                                         {{ $info->name }}
                                     </div>
                                     <div class="w-2/3 p-4 border-b dark:boder-b-gray-200 border-b-gray-700">
-                                        {{ $info->value }}
+                                        @if ($info->type == 'date')
+                                            {{ date('d M Y', strtotime($info->value)) }}
+                                        @else
+                                            {{ $info->value }}
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
@@ -120,7 +124,9 @@
             </div>
         </div>
     </div>
+
     <livewire:profile.update-account-form-modal />
+    <livewire:profile.update-profile-form-modal />
     <livewire:profile.confirm-user-deletion-modal />
     <livewire:profile.change-password-form-modal />
 </div>
