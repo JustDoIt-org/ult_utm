@@ -15,6 +15,11 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory, Notifiable, HasRoles;
 
     /**
+     * @var array<int, string>
+     */
+    protected $appends = ['profile_information', 'role_name'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -46,12 +51,36 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     #################################################################
+    #####                     Attributes                        #####
+    #################################################################
+
+    public function getProfileInformationAttribute()
+    {
+        return $this->roles
+            ->first()
+            ->information
+            ->map(function ($info) {
+                $profile = $this->profile->where('id', $info->id)->first();
+                $info->value = '-';
+                if (isset($profile)) {
+                    $info->value = $profile->pivot->value;
+                }
+                return $info;
+            });
+    }
+
+    public function getRoleNameAttribute()
+    {
+        return $this->roles->first()->name;
+    }
+
+    #################################################################
     #####                      Relations                        #####
     #################################################################
 
     public function profile()
     {
-        return $this->belongsToMany(Information::class)
+        return $this->belongsToMany(Information::class, 'user_information')
             ->withPivot('value');
     }
 

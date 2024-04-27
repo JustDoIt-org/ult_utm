@@ -2,33 +2,35 @@
 
 namespace App\Livewire\Profile;
 
-use App\Livewire\Forms\UserForm;
 use App\Livewire\Module\BaseModal;
 
 class UpdateProfileFormModal extends BaseModal
 {
-    public UserForm $form;
-
     /*
      * normal modal title
      * @var string
      */
-    protected static $title = "Normal Title";
+    protected static $title = "";
 
     /*
      * load modal title
      * @var string
      */
-    protected static $load_title = "Load Title";
+    protected static $load_title = "";
 
     /*
      * save or load permission
      * @var string|bool
      */
     protected $permission = [
-        'load' => true,
-        'save' => true
+        'load' => false,
+        'save' => false
     ];
+
+    public function mount()
+    {
+        $this->clear();
+    }
 
     public function render()
     {
@@ -38,21 +40,15 @@ class UpdateProfileFormModal extends BaseModal
     public function load($id)
     {
         parent::load($id);
-        $this->form->load($id);
     }
 
     public function save()
     {
         parent::save();
-        if (!is_null($this->form->post())) {
-            $this->dispatch('close-modal', name: $this->modal_name);
-            $this->dispatch('profile:update');
-        }
     }
 
     public function clear()
     {
         parent::clear();
-        $this->form->clear();
     }
 }
