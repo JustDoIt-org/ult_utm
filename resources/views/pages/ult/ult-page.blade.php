@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ULT | Universitas Trunojoyo Madura</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/8eec8f5ed5.js" crossorigin="anonymous"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+
+<body class="max-w-full overflow-x-hidden">
+  <x-element.navbar.navbar :$items />
+  <section class="h-screen w-screen relative -mt-[80px]" id="slider-images" x-data="{
+      activeSlide: 3,
+      contentSlides: [{
+              id: 1,
+              image: 'bg-[url(assets/img/hero-image-1.jpg)]',
+              btnText: 'Layanan Kunjungan Sekolah'
+          },
+          {
+              id: 2,
+              image: 'bg-[url(assets/img/hero-image-2.jpg)]',
+              btnText: 'Layanan Aspirasi & Pengaduan'
+          },
+          {
+              id: 3,
+              image: 'bg-[url(assets/img/hero-image-3.jpg)]',
+              btnText: 'Layanan Kemahasiswaan'
+          },
+          {
+              id: 4,
+              image: 'bg-[url(assets/img/hero-image-4.jpg)]',
+              btnText: 'Layanan Masyarakat'
+          },
+          {
+              id: 5,
+              image: 'bg-[url(assets/img/hero-image-5.jpg)]',
+              btnText: 'Layanan Kunjungan Tamu'
+          }
+      ],
+      loop() {
+          setInterval(() => {
+              this.activeSlide = this.activeSlide === this.contentSlides.length ? 1 : this.activeSlide + 1
+          }, 4000);
+      }
+  }" x-init="loop">
+    <template x-for="slide in contentSlides" :key="slide.id">
+      <div x-show="activeSlide === slide.id" x-bind:class="slide.image"
+        class="h-full w-full bg-cover bg-center bg-no-repeat relative">
+        <div class="w-full h-full bg-gradient-to-b from-slate-50/0 from-55% to-slate-50/55 absolute top-0 left-0">
+        </div>
+        <a href="#"
+          class="min-w-72 px-10 py-3 bg-amber-300 rounded-lg shadow-lg font-medium text-lg text-center text-slate-800 absolute bottom-24 left-1/2 -translate-x-1/2 hover:bg-amber-400 hover:scale-105 transition duration-300"
+          x-text="slide.btnText"></a>
+      </div>
+    </template>
+    <div class="flex w-full px-6 justify-between absolute top-1/2 left-0 lg:px-20">
+      <button x-on:click="activeSlide = activeSlide === 1 ? 5 : activeSlide - 1"
+        class="p-3 w-14 h-14 bg-slate-300/60 rounded-full shadow-lg backdrop-blur-sm relative hover:scale-125 transition duration-500"><i
+          class="fa-solid fa-angle-left fa-2xl absolute top-1/2 left-1/2 -translate-x-1/2"></i></button>
+      <button x-on:click="activeSlide = activeSlide === contentSlides.length ? 1 : activeSlide + 1"
+        class="p-3 w-14 h-14 bg-slate-300/60 rounded-full shadow-lg backdrop-blur-sm relative hover:scale-125 transition duration-500"><i
+          class="fa-solid fa-angle-right fa-2xl absolute top-1/2 left-1/2 -translate-x-1/2"></i></button>
+    </div>
+    <div class="w-fit p-1 bg-slate-200 flex gap-1 absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full"
+      x-transition>
+      <template x-for="slide in contentSlides" :key="slide.id">
+        <button class="inline-block w-3 h-3 hover:bg-slate-600 rounded-full"
+          x-bind:class="{ 'bg-sky-400': activeSlide === slide.id, 'bg-slate-300': activeSlide !== slide.id }"
+          x-on:click="activeSlide = slide.id"></button>
+      </template>
+    </div>
+  </section>
+  <section class="h-screen w-screen py-6 px-6 lg:px-20 bg-slate-200 flex flex-col lg:flex-row items-center gap-5"
+    id="tentang-ult-section">
+    <div class="w-full lg:w-1/2 h-[636px] flex gap-5 order-last lg:order-first" id="galery">
+      <div class="w-1/2 flex flex-col gap-5">
+        <div class="h-1/2 w-full bg-cover bg-center bg-no-repeat rounded-xl shadow-xl"
+          style="background-image: url({{ asset('assets/img/hero-image-4.jpg') }})"></div>
+        <div class="h-1/2 w-full bg-cover bg-center bg-no-repeat rounded-xl shadow-xl"
+          style="background-image: url({{ asset('assets/img/hero-image-5.jpg') }})"></div>
+      </div>
+      <div class="w-1/2 bg-cover bg-center bg-no-repeat rounded-xl shadow-xl"
+        style="background-image: url(assets/img/hero-image-2.jpg)"></div>
+    </div>
+    <div class="w-full lg:w-1/2 justify-self-end" id="tentang-ult">
+      <h2 class="text-2xl text-center lg:text-left font-bold">Tentang ULT</h2>
+      <p class="hidden text-justify lg:block">Unit Layanan Terpadu (ULT) Universitas Trunojoyo Madura memberikan
+        manfaat yang signifikan dalam mempermudah kepengurusan layanan mahasiswa dan masyarakat dengan
+        mengintegrasikan layanan publik di Kantor Manajemen Universitas Trunojoyo Madura. Melalui ULT, proses
+        pemantauan dokumen yang diajukan pemohon menjadi lebih efisien, sementara perolehan informasi publik dan
+        proses layanan kepada mahasiswa/masyarakat menjadi lebih cepat dan akurat. ULT hadir untuk memberikan
+        solusi terhadap kebutuhan informasi masyarakat dengan menyediakan layanan baik secara langsung di kantor
+        ULT maupun daring melalui akses internet, sesuai dengan ketentuan yang berlaku dan komitmen untuk
+        meningkatkan efisiensi, efektivitas, serta integritas dalam pelayanan publik.</p>
+      <p class="text-justify lg:hidden">Unit Layanan Terpadu (ULT) Universitas Trunojoyo Madura memberikan manfaat
+        yang signifikan dalam mempermudah kepengurusan layanan mahasiswa dan masyarakat dengan mengintegrasikan
+        layanan publik di Kantor Manajemen Universitas Trunojoyo Madura. Melalui ULT, proses pemantauan dokumen
+        yang diajukan pemohon menjadi lebih efisien, sementara perolehan informasi publik dan proses layanan
+        kepada mahasiswa/masyarakat menjadi lebih cepat dan... <small class="text-sky-500">Selengkapnya</small>
+      </p>
+    </div>
+  </section>
+  <section
+    class="h-fit w-screen py-6 px-6 lg:px-20 lg:py-20 bg-slate-100 flex flex-col justify-center items-center gap-5"
+    id="FAQs">
+    <h2 class="text-2xl text-center font-bold">Pertanyaan yang sering diajukan (FAQs)</h2>
+    <div class="accordion-content w-full md:w-3/4" x-data="{ selectedAccordion: 1 }">
+      <div class="accordion mb-2 shadow-lg">
+        <div class="accordion-header bg-slate-400 px-5 py-4 flex justify-between items-center rounded-t-lg"
+          @click="selectedAccordion !== 1 ? selectedAccordion = 1 : selectedAccordion = null"
+          x-bind:class="{ 'rounded-b-lg': selectedAccordion !== 1 }">
+          <h3 class="accordion-title text-lg font-semibold">Question 1?</h3>
+          <i class="fa-solid transition-all duration-500"
+            x-bind:class="{ 'fa-plus': selectedAccordion !== 1, 'fa-minus': selectedAccordion === 1 }"></i>
+        </div>
+        <div
+          class="accordion-item bg-slate-300 relative overflow-hidden max-h-0 rounded-b-lg transition-all duration-500"
+          x-ref="accordionItem"
+          x-bind:style="selectedAccordion === 1 ? 'max-height: ' + $refs.accordionItem.scrollHeight + 'px' : ''">
+          <p class="accordion-answer px-5 py-4 text-justify hidden lg:block">Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. At cum vero alias nesciunt quo. Voluptas, non deserunt. Recusandae
+            dolore cumque quidem qui, provident, corporis itaque maxime eligendi nihil quisquam odio eveniet
+            eaque alias aliquid fuga, reprehenderit accusamus eos perferendis est porro? Accusantium
+            praesentium officia quisquam hic minima voluptates, nihil necessitatibus mollitia, facilis
+            laudantium cumque ab in quis repellendus delectus odit. Beatae velit sequi vitae, minima
+            reprehenderit illum autem facere dicta, mollitia ad deserunt porro ipsum in inventore optio
+            cumque sint molestias enim quis? Tempora quia, ex facilis nesciunt quidem doloremque
+            reprehenderit nemo culpa, excepturi, nam totam exercitationem voluptatum amet cupiditate?</p>
+          <p class="text-justify px-5 py-4 lg:hidden">Unit Layanan Terpadu (ULT) Universitas Trunojoyo Madura
+            memberikan manfaat yang signifikan dalam mempermudah kepengurusan layanan mahasiswa dan
+            masyarakat dengan mengintegrasikan layanan publik di Kantor Manajemen Universitas Trunojoyo
+            Madura. Melalui ULT, proses pemantauan dokumen yang diajukan pemohon menjadi lebih efisien,
+            sementara perolehan informasi publik dan proses layanan kepada mahasiswa/masyarakat menjadi
+            lebih cepat dan... <small class="text-sky-500">Selengkapnya</small></p>
+        </div>
+      </div>
+      <div class="accordion mb-2 shadow-lg">
+        <div class="accordion-header bg-slate-400 px-5 py-4 flex justify-between items-center rounded-t-lg"
+          @click="selectedAccordion !== 2 ? selectedAccordion = 2 : selectedAccordion = null"
+          x-bind:class="{ 'rounded-b-lg': selectedAccordion !== 2 }">
+          <h3 class="accordion-title text-lg font-semibold">Question 2?</h3>
+          <i class="fa-solid transition-all duration-500"
+            x-bind:class="{ 'fa-plus': selectedAccordion !== 2, 'fa-minus': selectedAccordion === 2 }"></i>
+        </div>
+        <div
+          class="accordion-item bg-slate-300 relative overflow-hidden max-h-0 rounded-b-lg transition-all duration-500"
+          x-ref="accordionItem"
+          x-bind:style="selectedAccordion === 2 ? 'max-height: ' + $refs.accordionItem.scrollHeight + 'px' : ''">
+          <p class="accordion-answer px-5 py-4 text-justify hidden lg:block">Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. At cum vero alias nesciunt quo. Voluptas, non deserunt. Recusandae
+            dolore cumque quidem qui, provident, corporis itaque maxime eligendi nihil quisquam odio eveniet
+            eaque alias aliquid fuga, reprehenderit accusamus eos perferendis est porro? Accusantium
+            praesentium officia quisquam hic minima voluptates, nihil necessitatibus mollitia, facilis
+            laudantium cumque ab in quis repellendus delectus odit. Beatae velit sequi vitae, minima
+            reprehenderit illum autem facere dicta, mollitia ad deserunt porro ipsum in inventore optio
+            cumque sint molestias enim quis? Tempora quia, ex facilis nesciunt quidem doloremque
+            reprehenderit nemo culpa, excepturi, nam totam exercitationem voluptatum amet cupiditate?</p>
+          <p class="text-justify px-5 py-4 lg:hidden">Unit Layanan Terpadu (ULT) Universitas Trunojoyo Madura
+            memberikan manfaat yang signifikan dalam mempermudah kepengurusan layanan mahasiswa dan
+            masyarakat dengan mengintegrasikan layanan publik di Kantor Manajemen Universitas Trunojoyo
+            Madura. Melalui ULT, proses pemantauan dokumen yang diajukan pemohon menjadi lebih efisien,
+            sementara perolehan informasi publik dan proses layanan kepada mahasiswa/masyarakat menjadi
+            lebih cepat dan... <small class="text-sky-500">Selengkapnya</small></p>
+        </div>
+      </div>
+      <div class="accordion mb-2 shadow-lg">
+        <div class="accordion-header bg-slate-400 px-5 py-4 flex justify-between items-center rounded-t-lg"
+          @click="selectedAccordion !== 3 ? selectedAccordion = 3 : selectedAccordion = null"
+          x-bind:class="{ 'rounded-b-lg': selectedAccordion !== 3 }">
+          <h3 class="accordion-title text-lg font-semibold">Question 3?</h3>
+          <i class="fa-solid transition-all duration-500"
+            x-bind:class="{ 'fa-plus': selectedAccordion !== 3, 'fa-minus': selectedAccordion === 3 }"></i>
+        </div>
+        <div
+          class="accordion-item bg-slate-300 relative overflow-hidden max-h-0 rounded-b-lg transition-all duration-500"
+          x-ref="accordionItem"
+          x-bind:style="selectedAccordion === 3 ? 'max-height: ' + $refs.accordionItem.scrollHeight + 'px' : ''">
+          <p class="accordion-answer px-5 py-4 text-justify hidden lg:block">Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. At cum vero alias nesciunt quo. Voluptas, non deserunt. Recusandae
+            dolore cumque quidem qui, provident, corporis itaque maxime eligendi nihil quisquam odio eveniet
+            eaque alias aliquid fuga, reprehenderit accusamus eos perferendis est porro? Accusantium
+            praesentium officia quisquam hic minima voluptates, nihil necessitatibus mollitia, facilis
+            laudantium cumque ab in quis repellendus delectus odit. Beatae velit sequi vitae, minima
+            reprehenderit illum autem facere dicta, mollitia ad deserunt porro ipsum in inventore optio
+            cumque sint molestias enim quis? Tempora quia, ex facilis nesciunt quidem doloremque
+            reprehenderit nemo culpa, excepturi, nam totam exercitationem voluptatum amet cupiditate?</p>
+          <p class="text-justify px-5 py-4 lg:hidden">Unit Layanan Terpadu (ULT) Universitas Trunojoyo Madura
+            memberikan manfaat yang signifikan dalam mempermudah kepengurusan layanan mahasiswa dan
+            masyarakat dengan mengintegrasikan layanan publik di Kantor Manajemen Universitas Trunojoyo
+            Madura. Melalui ULT, proses pemantauan dokumen yang diajukan pemohon menjadi lebih efisien,
+            sementara perolehan informasi publik dan proses layanan kepada mahasiswa/masyarakat menjadi
+            lebih cepat dan... <small class="text-sky-500">Selengkapnya</small></p>
+        </div>
+      </div>
+      <div class="accordion mb-2 shadow-lg">
+        <div class="accordion-header bg-slate-400 px-5 py-4 flex justify-between items-center rounded-t-lg"
+          @click="selectedAccordion !== 4 ? selectedAccordion = 4 : selectedAccordion = null"
+          x-bind:class="{ 'rounded-b-lg': selectedAccordion !== 4 }">
+          <h3 class="accordion-title text-lg font-semibold">Question 4?</h3>
+          <i class="fa-solid transition-all duration-500"
+            x-bind:class="{ 'fa-plus': selectedAccordion !== 4, 'fa-minus': selectedAccordion === 4 }"></i>
+        </div>
+        <div
+          class="accordion-item bg-slate-300 relative overflow-hidden max-h-0 rounded-b-lg transition-all duration-500"
+          x-ref="accordionItem"
+          x-bind:style="selectedAccordion === 4 ? 'max-height: ' + $refs.accordionItem.scrollHeight + 'px' : ''">
+          <p class="accordion-answer px-5 py-4 text-justify hidden lg:block">Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. At cum vero alias nesciunt quo. Voluptas, non deserunt. Recusandae
+            dolore cumque quidem qui, provident, corporis itaque maxime eligendi nihil quisquam odio eveniet
+            eaque alias aliquid fuga, reprehenderit accusamus eos perferendis est porro? Accusantium
+            praesentium officia quisquam hic minima voluptates, nihil necessitatibus mollitia, facilis
+            laudantium cumque ab in quis repellendus delectus odit. Beatae velit sequi vitae, minima
+            reprehenderit illum autem facere dicta, mollitia ad deserunt porro ipsum in inventore optio
+            cumque sint molestias enim quis? Tempora quia, ex facilis nesciunt quidem doloremque
+            reprehenderit nemo culpa, excepturi, nam totam exercitationem voluptatum amet cupiditate?</p>
+          <p class="text-justify px-5 py-4 lg:hidden">Unit Layanan Terpadu (ULT) Universitas Trunojoyo Madura
+            memberikan manfaat yang signifikan dalam mempermudah kepengurusan layanan mahasiswa dan
+            masyarakat dengan mengintegrasikan layanan publik di Kantor Manajemen Universitas Trunojoyo
+            Madura. Melalui ULT, proses pemantauan dokumen yang diajukan pemohon menjadi lebih efisien,
+            sementara perolehan informasi publik dan proses layanan kepada mahasiswa/masyarakat menjadi
+            lebih cepat dan... <small class="text-sky-500">Selengkapnya</small></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="h-screen w-screen py-6 px-6 lg:px-20 bg-slate-300 flex justify-center items-center gap-5"
+    id="hubungi-kami">
+    <div class="w-full h-full md:h-fit flex flex-col md:flex-row p-4 bg-slate-100 rounded-lg shadow-sm gap-4">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.9848403210267!2d112.72050577592411!3d-7.127749469907419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd803dd886bbff5%3A0x9777ca139b28195d!2sUniversity%20of%20Trunojoyo%20Madura!5e0!3m2!1sen!2sid!4v1708654540836!5m2!1sen!2sid"
+        class="w-full md:w-1/2 h-1/2 md:h-[616px] bg-slate-200 rounded-lg shadow-md border-0" allowfullscreen=""
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="w-full md:w-1/2 h-1/2 md:h-[616px] flex flex-col justify-center items-center gap-7">
+        <h2 class="text-2xl font-bold">Tanyakan pada Kami</h2>
+        <form action="#" class="w-full flex flex-col items-center gap-4">
+          <div class="w-full flex flex-col gap-3 items-center">
+            <div class="form-input flex flex-col w-full lg:w-3/4 gap-1">
+              <label for="name" class="inline-block font-medium">Nama</label>
+              <input type="text" name="name" class="inline-block py-1 px-2 rounded-md shadow-sm"
+                id="name">
+            </div>
+            <div class="form-input flex flex-col w-full lg:w-3/4 gap-1">
+              <label for="question" class="inline-block font-medium">Pertanyaan</label>
+              <textarea name="question" cols="30" rows="5" class="inline-block py-1 px-2 rounded-md shadow-sm"
+                id="question"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="bg-sky-400 px-5 py-1 rounded-md shadow-sm lg:w-1/2">Kirim <i
+              class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <footer class="w-screen rounded-t-lg -mt-1">
+    <div class="w-full bg-slate-400 rounded-t-lg flex flex-col lg:flex-row">
+      <div class="w-full lg:w-1/2 py-6 px-6 lg:px-20 flex flex-col items-center lg:items-start gap-3">
+        <img src="assets/img/logo-ult-utm.png" class="w-[199px]" alt="Logo ULT UTM">
+        <div class="w-full lg:w-2/3 flex flex-col justify-between gap-1">
+          <h4 class="font-bold text-base">ULT | Universitas Trunojoyo Madura</h4>
+          <p class="text-sm text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et
+            massa at nulla pulvinar convallis quis nec neque. Sed accumsan sed ex sed tincidunt. Vivamus
+            tortor tellus, accumsan quis ipsum... <small class="font-semibold text-sky-900">Selengkapnya</small></p>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/2 flex justify-between lg:justify-start py-6 px-6 lg:pe-20 lg:gap-10">
+        <div>
+          <h5 class="font-bold text-base">Navigasi</h5>
+          <div class="mt-2 flex flex-col gap-1">
+            <a href="#" class="text-sm">Home</a>
+            <a href="#" class="text-sm">Tentang ULT</a>
+            <a href="#" class="text-sm">Aspirasi & Pengaduan</a>
+            <a href="#" class="text-sm">Kontak</a>
+          </div>
+        </div>
+        <div class="">
+          <h5 class="font-bold text-base">Layanan</h5>
+          <div class="mt-2 flex flex-col gap-1">
+            <a href="#" class="text-sm">Kunjungan Sekolah</a>
+            <a href="#" class="text-sm">Kunjungan Tamu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full bg-slate-600 flex justify-center lg:justify-between py-4 px-6 lg:px-20">
+      <a href="#" class="hidden text-slate-200 text-xs lg:block">Kebijakan Pribadi</a>
+      <span class="block text-slate-200 text-xs">Copyright © 2024 | Universitas Trunojoy Madura</span>
+    </div>
+  </footer>
+</body>
+
+</html>
