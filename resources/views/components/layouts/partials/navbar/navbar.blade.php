@@ -5,7 +5,7 @@
   <nav class="flex items-center">
     <a href="#"><img src="./assets/img/logo-ult-utm.png" class="h-14" alt="Logo Unit Layanan Terpadu UTM"></a>
     <div class="ms-auto hidden lg:flex items-center">
-      <x-element.navbar.list-link :$items />
+      <x-layouts.partials.navbar.list-link :$items />
       <a href="#"
         class="ms-5 bg-amber-200 py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-amber-300 hover:scale-105 transition">Sign-In</a>
     </div>
@@ -24,7 +24,7 @@
             class="fa-solid fa-xmark fa-sm absolute top-1/2 left-1/2 -translate-x-1/2"></i></button>
       </div>
       <hr class="border-slate-300 mt-5">
-      <x-element.navbar.list-link :$items ::type="mobile" />
+      <x-layouts.partials.navbar.list-link :$items ::type="mobile" />
     </div>
   </nav>
 </header>

@@ -5,6 +5,9 @@
 
 <ul {{ $attributes->merge(['class' => $classes]) }}>
   @foreach ($items as $item)
-    <x-element.navbar.link :name="$item['name']" :link="$item['link']" />
+    <li>
+      <a href="{{ $item['link'] }}"
+        class="border-transparent hover:border-b-4 hover:pb-1 hover:border-b-slate-700 transition duration-700">{{ $item['name'] }}</a>
+    </li>
   @endforeach
 </ul>
