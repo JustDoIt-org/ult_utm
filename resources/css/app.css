@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+  .hide{
+    @apply opacity-0 pointer-events-none duration-100;
+  }
+
+  .show{
+      @apply opacity-100 pointer-events-auto;
+  }
+}

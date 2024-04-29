@@ -1,0 +1,5 @@
+@extends('components.layouts.multiple')
+
+@section('content')
+    <h1>Dashboard</h1>
+@endsection
