@@ -2,27 +2,28 @@
     activeSlide: 3,
     contentSlides: [{
             id: 1,
-            image: 'bg-[url(assets/img/hero-image-1.jpg)]',
+            image: 'bg-[url({{ asset('assets/img/hero-image-1.jpg') }})]',
             btnText: 'Layanan Kunjungan Sekolah'
         },
         {
             id: 2,
-            image: 'bg-[url(assets/img/hero-image-2.jpg)]',
+            image: 'bg-[url({{ asset('assets/img/hero-image-2.jpg') }})]',
             btnText: 'Layanan Aspirasi & Pengaduan'
         },
         {
             id: 3,
-            image: 'bg-[url(assets/img/hero-image-3.jpg)]',
+            image: 'bg-[url({{ asset('assets/img/hero-image-3.jpg') }})]',
             btnText: 'Layanan Kemahasiswaan'
         },
         {
             id: 4,
-            image: 'bg-[url(assets/img/hero-image-4.jpg)]',
+            image: 'bg-[url({{ asset('assets/img/hero-image-4.jpg') }})]',
             btnText: 'Layanan Masyarakat'
         },
         {
             id: 5,
-            image: 'bg-[url(assets/img/hero-image-5.jpg)]',
+            {{-- image: 'bg-[url({{ asset('assets/img/hero-image-5.jpg') }})]', --}}
+            image: 'bg-[url({{ asset('assets/img/hero-image-5.jpg') }})]',
             btnText: 'Layanan Kunjungan Tamu'
         }
     ],

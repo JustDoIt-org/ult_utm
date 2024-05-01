@@ -1,9 +1,6 @@
-@props(['items' => null, 'type' => 'desktop'])
-@php
-  $classes = $type === 'desktop' ? 'flex items-center' : 'flex flex-col gap-y-4 mt-5';
-@endphp
+@props(['items' => null])
 
-<ul {{ $attributes->merge(['class' => $classes]) }}>
+<ul class="flex gap-x-4">
   @foreach ($items as $item)
     <li>
       <a href="{{ $item['link'] }}"
