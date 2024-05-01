@@ -9,7 +9,7 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 /**
  * Upload File
  *
- * @param Livewire\TemporaryUploadedFile $file
+ * @param TemporaryUploadedFile $file
  * @param string $collection
  *
  * @return string
