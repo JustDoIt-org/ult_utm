@@ -33,6 +33,10 @@
             @if ($path = explode('.', Route::currentRouteName())[0] == "visit")
                 <x-section.visit.visit-navigation />
             @endif
+
+            @if ($path = explode('.', Route::currentRouteName())[0] == "ppid")
+                <x-section.ppid.ppid-navigation />
+            @endif
         </x-layouts.partials.sidebar.sidebar>
     </aside>
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Ppid\RequestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ultController;
 use App\Http\Controllers\Visit\ScheduleController;
@@ -27,8 +28,11 @@ Route::get('/dashboard/user', [UserController::class, 'index'])->name('admin.use
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
 // Visit
-Route::get('/visit', [ScheduleController::class,'index'])->name('visit.schedules');
-Route::get('/visit/submissions', [SubmissionController::class,'index'])->name('visit.submissions');
+Route::get('/visit', [ScheduleController::class, 'index'])->name('visit.schedules');
+Route::get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
+
+// Ppid
+Route::get('/ppid', [RequestController::class, 'index'])->name('ppid.request');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', \App\Livewire\Profile\ProfilePage::class)->name('profile.edit');
