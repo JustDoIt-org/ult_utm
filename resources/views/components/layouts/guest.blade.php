@@ -17,9 +17,13 @@
     <livewire:styles />
 </head>
 
-<body class="bg-yellow-50 px-10 min-w-[388px] md:min-w-[920px]">
+<body class="bg-yellow-50 px-10 min-w-[388px] md:min-w-[835px]">
     <section class="flex justify-center items-center h-screen">
         <div class="min-w-[350px] w-[400px] md:w-auto md:px-14 bg-white rounded-lg shadow-lg px-5 py-5 md:py-10">
+            {{-- Logo Utm --}}
+            <a wire:navigate href="{{ route('home') }}" class="hidden md:flex md:justify-end">
+                <img src="{{ url(asset('assets/img/logo-ult-utm.png')) }}" alt="Logo Ult Utm" class="w-44 pb-3">
+            </a>
             {{ $slot }}
         </div>
     </section>
