@@ -32,7 +32,7 @@
                 {{ Auth::user()->name[0] }}
             </div>
 
-            <div class="flex items-center">
+            <div class="hidden md:flex md:items-center">
                 <div class="font-semibold text-sm">{{ Auth::user()->name }}</div>
 
                 <div class="ml-1 text-slate-400">
