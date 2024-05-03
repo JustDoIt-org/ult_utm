@@ -21,7 +21,7 @@ class LoginForm extends Form
         if (!auth()->attempt($this->only(['email', 'password']), $this->remember)) {
             $this->addError('password', 'incorrect email or password');
         } else {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         }
     }
 }

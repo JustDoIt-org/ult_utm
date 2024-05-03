@@ -26,4 +26,11 @@
 
   {{-- Avatar Dropdown --}}
   <div class="flex justify-center items-center font-semibold text-white bg-yellow-600 w-11 h-11 rounded-full">A</div>
+  <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <x-element.dropdown.link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+            {{ __('Log Out') }}
+        </x-element.dropdown.link>
+    </form>
 </nav>

@@ -10,7 +10,7 @@ class ProfilePage extends Component
 
     public function render()
     {
-        return view('livewire.profile.profile-page');
+        return view('pages.profile.profile-page');
     }
 
     public function verifyEmail()
