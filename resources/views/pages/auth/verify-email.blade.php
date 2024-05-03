@@ -1,6 +1,5 @@
 <x-layouts.guest>
-    <div class="flex flex-col gap-10 max-w-[400px]">
-
+    <div class="flex flex-col gap-10 md:w-[450px]">
         <div class="flex flex-col gap-3">
             <div class="flex justify-center items-center rounded-full p-3 w-24 h-24 border-4 border-yellow-600 text-yellow-600 m-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20">
