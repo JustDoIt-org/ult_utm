@@ -46,7 +46,7 @@
     </x-slot:trigger>
 
     <x-slot:content>
-        <div class="text-sm px-1 py-2">
+        <div class="text-sm px-1 py-2 mb-2 border-b-2">
             <h1 class="font-semibold">{{ Auth::user()->name }}</h1>
             <h4 class="text-slate-400">{{ Auth::user()->email }}</h4>
         </div>
