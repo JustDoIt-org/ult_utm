@@ -20,12 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ultController::class, 'index']);
+Route::get('/', [ultController::class, 'index'])->name('home');
 
 // Admin
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-Route::get('/dashboard/user', [UserController::class, 'index'])->name('admin.user');
-// ->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard/user', [UserController::class, 'index'])->name('admin.user');
+});
 
 // Visit
 Route::get('/visit', [ScheduleController::class, 'index'])->name('visit.schedules');

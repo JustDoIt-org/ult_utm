@@ -7,8 +7,13 @@
     <div class="ms-auto hidden lg:flex items-center">
 
       <x-layouts.partials.navbar.list-link :$items />
-      <a href="#"
-        class="ms-5 bg-amber-200 py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-amber-300 hover:scale-105 transition">Sign-In</a>
+
+      @if (Auth::check())
+        <a href="{{route('admin.dashboard')}}" class="ms-5 bg-amber-200 py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-amber-300 hover:scale-105 transition">dashboard</a>
+      @else
+        <a wire:navigate href="{{route('login')}}"
+            class="ms-5 bg-amber-200 py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-amber-300 hover:scale-105 transition">Sign-In</a>
+      @endif
     </div>
     <button class="ms-auto w-10 h-10 bg-slate-300 rounded-full shadow-lg relative lg:hidden"
       @click="mobileNav = !mobileNav"><i
@@ -28,12 +33,17 @@
       <ul class="flex flex-col gap-y-4 mt-5">
         @foreach ($items as $item)
           <li>
-            <a href="{{ $item['link'] }}"
+            <a wire:navigate href="{{ $item['link'] }}"
               class="border-transparent hover:border-b-4 hover:pb-1 hover:border-b-slate-700 transition duration-700">{{ $item['name'] }}</a>
           </li>
         @endforeach
-        <li class="list-none"><a href="#"
-            class="flex items-center justify-center bg-amber-200 py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-amber-300 hover:scale-105 transition">Sign-In</a>
+        <li class="list-none">
+            @if (Auth::check())
+                <a href="{{route('admin.dashboard')}}" class="ms-5 bg-amber-200 py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-amber-300 hover:scale-105 transition">dashboard</a>
+            @else
+                <a wire:navigate href="{{route('login')}}"
+                    class="ms-5 bg-amber-200 py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-amber-300 hover:scale-105 transition">Sign-In</a>
+            @endif
         </li>
       </ul>
       {{-- <x-layouts.partials.navbar.list-link :$items :$type="mobile" /> --}}

@@ -1,7 +1,7 @@
 @props([
     'align' => 'right',
     'width' => '48',
-    'contentClasses' => 'py-1 bg-white dark:bg-gray-700',
+    'contentClasses' => 'py-1 bg-white',
 ])
 
 @php
@@ -35,7 +35,7 @@
         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
         class="{{ $width }} {{ $alignmentClasses }} absolute z-50 mt-2 rounded-md shadow-lg"
         style="display: none;" @click="open = false">
-        <div class="{{ $contentClasses }} rounded-md ring-1 ring-black ring-opacity-5">
+        <div class="{{ $contentClasses }} rounded-md ring-1 ring-black ring-opacity-5 px-2">
             {{ $content }}
         </div>
     </div>

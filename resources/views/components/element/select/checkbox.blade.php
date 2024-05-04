@@ -1,4 +1,4 @@
-@props(['name' => null, 'required' => false, 'disabled' => false, 'label' => null])
+@props(['name' => null, 'required' => false, 'disabled' => false, 'label' => null, 'style' => 'rounded bg-white border-gray-300 text-yellow-700 shadow-sm focus:ring-indigo-500'])
 
 @php($name = $name ?? $attributes->wire('model')->value)
 
@@ -9,10 +9,9 @@
             'name' => $name,
             'required' => $required,
             'disabled' => $disabled,
-            'class' =>
-                'rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800',
+            'class' => $style,
         ]) }} />
     @isset($label)
-        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __($label) }}</span>
+        <span class="ml-2 text-sm">{{ __($label) }}</span>
     @endisset
 </label>
