@@ -40,8 +40,8 @@
         </x-layouts.partials.sidebar.sidebar>
     </aside>
 
-    <main>
-      <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="sm:pl-64 pt-16 sm:pointer-events-auto">
+    <main class="md:min-w-[1136px]">
+      <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="md:pl-64 pt-16 md:pointer-events-auto">
         @yield('content')
       </div>
     </main>
