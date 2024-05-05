@@ -191,7 +191,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot class="font-bold border-t-2 border-b-2 border-gray-200">
+                        {{-- <tfoot class="font-bold border-t-2 border-b-2 border-gray-200">
                             <tr>
                                 <th scope="col" class="px-6 py-4">#</th>
                                 @foreach ($cols as $col)
@@ -225,7 +225,7 @@
                                 @endforeach
                                 <th scope="col" class="px-6 py-4"></th>
                             </tr>
-                        </tfoot>
+                        </tfoot> --}}
                     </table>
                 </div>
             </div>
