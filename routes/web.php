@@ -25,7 +25,7 @@ Route::get('/', [ultController::class, 'index'])->name('home');
 // Admin
 Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/dashboard/user', [UserController::class, 'index'])->can('user index')->name('admin.user');
+    Route::get('/users', [UserController::class, 'index'])->can('user index')->name('admin.users');
 });
 
 // Visit
