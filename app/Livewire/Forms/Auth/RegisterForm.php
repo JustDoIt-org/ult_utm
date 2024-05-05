@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Forms\Auth;
 
+use App\Models\Role;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
@@ -35,10 +35,9 @@ class RegisterForm extends Form
             'name' => $this->name,
             'email' => $this->email,
             'password' => bcrypt($this->password),
-        ]);
+        ])->syncRoles(Role::GUEST);
 
         event(new Registered($user));
-
         auth()->login($user);
 
         return redirect()->route('home');

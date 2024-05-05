@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Laravel\Socialite\Facades\Socialite;
@@ -18,16 +19,16 @@ class GoogleController extends Controller
         $registeredUser = User::where('email', $googleUser->email)->first();
 
         if(!$registeredUser){
-            $user = User::create([
+            $user = User::updateOrCreate([
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
                 'password' => $googleUser->email,
-                // 'google_token' => $googleUser->token,
-                // 'google_refresh_token' => $googleUser->refreshToken,
             ]);
+            $user->markEmailAsVerified();
+            $user->syncRoles(Role::GUEST);
 
-            auth()->login($user);
             event(new Registered($user));
+            auth()->login($user);
 
             return redirect()->route('home');
         }
