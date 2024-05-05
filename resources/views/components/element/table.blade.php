@@ -181,7 +181,7 @@
                                             @endif
                                             @if (isset($permissions['delete']) && $permissions['delete'])
                                                 <x-element.button.flat wire:offline.attr="disabled"
-                                                    x-on:click="$dispatch('ask', {message: 'Are You Sure want to delete {{ $row['name'] }}?', dispatch: 'delete', id: {{ $row['id'] }} })"
+                                                    x-on:click="$dispatch('ask', {message: 'Are you sure want to delete ?', dispatch: 'delete', id: {{ $row['id'] }} })"
                                                     class="p-1 bg-red-700 rounded-none disabled:bg-red-500">
                                                     <x-heroicon-s-trash width="16" class="pointer-events-none" />
                                                 </x-element.button.flat>
