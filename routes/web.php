@@ -23,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ultController::class, 'index'])->name('home');
 
 // Admin
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/dashboard/user', [UserController::class, 'index'])->name('admin.user');
+    Route::get('/dashboard/user', [UserController::class, 'index'])->can('user index')->name('admin.user');
 });
 
 // Visit
@@ -40,8 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/users', \App\Livewire\User\UserTable::class)->can('user index')->name('user.index');
-    Route::get('/roles', \App\Livewire\Role\RoleTable::class)->can('role index')->name('role.index');
+    // Route::get('/users', \App\Livewire\User\UserTable::class)->can('user index')->name('user.index');
+    // Route::get('/roles', \App\Livewire\Role\RoleTable::class)->can('role index')->name('role.index');
 });
 
 require __DIR__ . '/auth.php';

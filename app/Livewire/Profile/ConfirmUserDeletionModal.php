@@ -22,7 +22,7 @@ class ConfirmUserDeletionModal extends BaseModal
 
     public function render()
     {
-        return view("livewire.profile.confirm-user-deletion-modal");
+        return view("pages.profile.confirm-user-deletion-modal");
     }
 
     public function load($id)

@@ -11,7 +11,7 @@ class ChangePasswordFormModal extends BaseModal
     use Notification;
 
     #[Rule(['required', 'current_password'], as: 'Current Password')]
-    public $current_password;
+    public $current_password_modal;
 
     #[Rule(['required', 'confirmed'], as: 'New Password')]
     public $new_password;
@@ -33,7 +33,7 @@ class ChangePasswordFormModal extends BaseModal
 
     public function render()
     {
-        return view("livewire.profile.change-password-form-modal");
+        return view("pages.profile.change-password-form-modal");
     }
 
     public function save()
@@ -57,7 +57,7 @@ class ChangePasswordFormModal extends BaseModal
     public function clear()
     {
         parent::clear();
-        $this->current_password = "";
+        $this->current_password_modal = "";
         $this->new_password = "";
         $this->new_password_confirmation = "";
     }

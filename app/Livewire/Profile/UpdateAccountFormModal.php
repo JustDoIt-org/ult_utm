@@ -9,7 +9,7 @@ use App\Livewire\Module\Trait\Notification;
 class UpdateAccountFormModal extends BaseModal
 {
     use Notification;
-    
+
     public UpdateUserForm $form;
 
     /*
@@ -35,7 +35,7 @@ class UpdateAccountFormModal extends BaseModal
 
     public function render()
     {
-        return view("livewire.profile.update-account-form-modal");
+        return view("pages.profile.update-account-form-modal");
     }
 
     public function load($id)

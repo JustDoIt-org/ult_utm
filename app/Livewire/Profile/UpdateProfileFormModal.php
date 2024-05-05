@@ -42,7 +42,7 @@ class UpdateProfileFormModal extends BaseModal
 
     public function render()
     {
-        return view("livewire.profile.update-profile-form-modal");
+        return view("pages.profile.update-profile-form-modal");
     }
 
     #[Computed]

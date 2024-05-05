@@ -1,4 +1,4 @@
-<x-container.modal :name="$this->modal_name" :title="$this->title" method="save">
+<x-section.modal :name="$this->modal_name" :title="$this->title" method="save">
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
         {{ __('Are you sure you want to delete your account?') }}
     </h2>
@@ -12,8 +12,8 @@
             <x-element.input.line wire:model="current_password" />
         </x-element.layout.vertical>
     </div>
-    
+
     <x-slot:button>
         <x-element.button.danger type="submit">Delete</x-element.button.danger>
     </x-slot:button>
-</x-container.modal>
+</x-section.modal>

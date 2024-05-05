@@ -5,25 +5,25 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('dashboard') }}">
-                        <x-layouts.partials.application-logo class="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
+                    <a href="{{ route('admin.dashboard') }}">
+                        Logo
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-layouts.partials.nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <a href="{{route('admin.dashboard')}}">
                         {{ __('Dashboard') }}
-                    </x-layouts.partials.nav-link>
+                    </a>
                     @can('user index')
-                        <x-layouts.partials.nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                        <a href="{{route('user.index')}}">
                             {{ __('Users') }}
-                        </x-layouts.partials.nav-link>
+                        </a>
                     @endcan
                     @can('role index')
-                        <x-layouts.partials.nav-link :href="route('role.index')" :active="request()->routeIs('role.index')">
+                        <a href="{{route('role.index')}}">
                             {{ __('Roles') }}
-                        </x-layouts.partials.nav-link>
+                        </a>
                     @endcan
                 </div>
             </div>
@@ -85,15 +85,15 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-layouts.partials.responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <a href="{{route('admin.dashboard')}}">
                 {{ __('Dashboard') }}
-            </x-layouts.partials.responsive-nav-link>
-            <x-layouts.partials.responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+            </a>
+            <a href="{{route('user.index')}}">
                 {{ __('Users') }}
-            </x-layouts.partials.responsive-nav-link>
-            <x-layouts.partials.responsive-nav-link :href="route('role.index')" :active="request()->routeIs('role.index')">
+            </a>
+            <a href="{{route('role.index')}}">
                 {{ __('Roles') }}
-            </x-layouts.partials.responsive-nav-link>
+            </a>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -104,19 +104,19 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-layouts.partials.responsive-nav-link :href="route('profile.edit')">
+                <a href="{{route('profile.edit')}}">
                     {{ __('Profile') }}
-                </x-layouts.partials.responsive-nav-link>
+                </a>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-layouts.partials.responsive-nav-link :href="route('logout')"
+                    <a href="{{route('logout')}}"
                         onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                            this.closest('form').submit();">
                         {{ __('Log Out') }}
-                    </x-layouts.partials.responsive-nav-link>
+                    </a>
                 </form>
             </div>
         </div>
