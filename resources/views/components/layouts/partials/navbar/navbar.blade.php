@@ -37,8 +37,7 @@
                             <h4 class="text-slate-400">{{ Auth::user()->email }}</h4>
                         </div>
 
-                        @if (auth()->user()->roles->first()->name == App\Models\Role::ADMIN)
-
+                        @can('dashboard index')
                             <x-element.dropdown.link :href="route('admin.dashboard')">
                                 <div class="flex items-center gap-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -47,8 +46,7 @@
                                     {{ __('Dashboard') }}
                                 </div>
                             </x-element.dropdown.link>
-
-                        @endif
+                        @endcan
 
                         <x-element.dropdown.link :href="route('profile.edit')">
                             <div class="flex items-center gap-3">
