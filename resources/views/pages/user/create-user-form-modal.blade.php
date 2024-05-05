@@ -11,6 +11,6 @@
     </x-element.layout.vertical>
 
     <x-slot:button>
-        <x-element.button.primary wire:loading.attr="disabled" type="submit">Save</x-element.button.primary>
+        <button wire:loading.attr="disabled" type="submit" class="w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-yellow-600 hover:scale-95">Save</button>
     </x-slot:button>
 </x-section.modal>
