@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Ppid\RequestController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,7 @@ Route::get('/', [ultController::class, 'index'])->name('home');
 Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->can('user index')->name('admin.users');
+    Route::get('/roles', [RoleController::class, 'index'])->can('role index')->name('admin.roles');
 });
 
 // Visit
