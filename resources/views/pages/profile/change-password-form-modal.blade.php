@@ -1,6 +1,6 @@
 <x-section.modal maxWidth="md" :name="$this->modal_name" :title="$this->title" method="save">
 
-    <x-element.layout.vertical name="current_password1" label="Password">
+    <x-element.layout.vertical name="current_password_modal" label="Password">
         <x-element.input.line type="password" wire:model="current_password_modal" />
     </x-element.layout.vertical>
     <x-element.layout.vertical name="new_password" label="New Password">
