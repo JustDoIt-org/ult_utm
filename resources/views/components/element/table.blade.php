@@ -70,7 +70,7 @@
             text: $event.detail.message,
             showCancelButton: true,
             customClass: {
-                popup: 'bg-gray-300 text-gray-800'
+                popup: 'bg-yellow-300 text-gray-800'
             }
         }).then((e) => {e.isConfirmed && $wire[$event.detail.dispatch]($event.detail.id)})" @endif>
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -230,8 +230,10 @@
                 </div>
             </div>
         </div>
-        @if ($rows instanceof \Illuminate\Pagination\LengthAwarePaginator)
-            {{ $rows->links() }}
-        @endif
+        <div class="overflow-x-auto">
+            @if ($rows instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                {{ $rows->links() }}
+            @endif
+        </div>
     </div>
 </div>
