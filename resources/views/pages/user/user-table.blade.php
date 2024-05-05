@@ -1,4 +1,4 @@
-<x-container.card :$title :permission="$permissions['create']" :modal="$modals['create']" :$search>
+<x-section.card :$title :permission="$permissions['create']" :modal="$modals['create']" :$search>
     <x-element.table :$cols :rows="$this->users" :$sort_direction :$sort_by :$permissions :$modals :$import :$export />
 
     <livewire:user.create-user-form-modal />
@@ -6,4 +6,4 @@
 
     <x-placeholder.offline-states />
     <x-placeholder.loading-states />
-</x-container.card>
+</x-section.card>
