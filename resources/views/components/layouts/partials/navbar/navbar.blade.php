@@ -83,7 +83,7 @@
         class="fa-solid fa-bars fa-sm absolute top-1/2 left-1/2 -translate-x-1/2"></i></button>
   </nav>
   <!-- Mobile NavBar -->
-  <nav class="fixed top-0 bottom-0 left-0 right-0 backdrop-blur-sm z-10" :hidden="!mobileNav">
+  <nav class="fixed lg:hidden top-0 bottom-0 left-0 right-0 backdrop-blur-sm z-10" :hidden="!mobileNav">
     <div class="flex pt-3 pb-5 px-6 flex-col bg-slate-100 rounded-2xl shadow-lg">
       <div class="flex justify-between items-center">
         <a href="#"><img src="./assets/img/logo-ult-utm.png" class="h-14"
@@ -109,7 +109,7 @@
             @endif
         </li>
       </ul>
-      {{-- <x-layouts.partials.navbar.list-link :$items :$type="mobile" /> --}}
+      <x-layouts.partials.navbar.list-link :$items :$type="mobile" />
     </div>
   </nav>
 </header>
