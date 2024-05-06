@@ -38,7 +38,7 @@ class ResetPasswordPage extends Component
     #[Layout("components.layouts.guest")]
     public function render()
     {
-        return view('livewire.auth.reset-password-page');
+        return view('pages.auth.reset-password-page');
     }
 
     public function store()
@@ -64,7 +64,7 @@ class ResetPasswordPage extends Component
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         if ($status == Password::PASSWORD_RESET) {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         } else {
             $this->addError('email', __($status));
         }

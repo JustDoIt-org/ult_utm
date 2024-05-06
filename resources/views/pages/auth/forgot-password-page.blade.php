@@ -4,13 +4,15 @@
     </div>
 
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="$status" />
+    @if ($status)
+        <span class="text-sm text-white font-semibold bg-green-600 px-2 py-1 rounded-full">{{ $status }}</span>
+    @endif
 
     <form wire:submit="send_reset">
         @csrf
         <!-- Email Address -->
-        <x-element.layout.vertical name="form.email" label="Email">
-            <x-element.input.line wire:model="form.email" />
+        <x-element.layout.vertical name="email" label="Email">
+            <x-element.input.line wire:model="email" />
         </x-element.layout.vertical>
 
         <div class="flex items-center justify-end mt-4">
