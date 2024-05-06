@@ -17,7 +17,7 @@ class UserTable extends BaseTable
     use Notification;
 
     #[Locked]
-    public $title = "User Table";
+    public $title = "Users Table";
 
     #[Url('q', history: true)]
     public $search = "";
@@ -40,7 +40,7 @@ class UserTable extends BaseTable
 
     public function render()
     {
-        return view("livewire.user.user-table", $this->getData());
+        return view("pages.user.user-table", $this->getData());
     }
 
     #[Computed]
@@ -48,7 +48,7 @@ class UserTable extends BaseTable
     {
         return User::search($this->search)
             ->orderBy($this->sort_by, $this->sort_direction)
-            ->paginate($this->perPage)->onEachSide(4);
+            ->paginate($this->perPage)->onEachSide(1);
     }
 
     public function cols()

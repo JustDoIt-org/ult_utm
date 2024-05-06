@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
-    public function index(){
-        return view('pages.user.user');
+    public function index() {
+        return view('pages.role.role');
     }
 }
