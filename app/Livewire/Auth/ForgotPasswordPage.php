@@ -17,7 +17,7 @@ class ForgotPasswordPage extends Component
     #[Layout("components.layouts.guest")]
     public function render()
     {
-        return view('livewire.auth.forgot-password-page');
+        return view('pages.auth.forgot-password-page');
     }
 
     public function send_reset()
