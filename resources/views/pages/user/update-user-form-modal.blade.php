@@ -6,6 +6,14 @@
     <x-element.layout.vertical name="form.email" label="Email">
         <x-element.input.line wire:model="form.email" />
     </x-element.layout.vertical>
+    <div>
+        <label for="form.roles">Roles</label>
+        <select name="form.roles" id="form.roles" wire:model.change="form.roles">
+            @foreach (App\Models\Role::all() as $role)
+                <option value="{{$role['id']}}">{{ $role["name"] }}</option>
+            @endforeach
+        </select>
+    </div>
 
     <x-slot:button>
         <button wire:loading.attr="disabled" type="submit" class="w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-yellow-600 hover:scale-95">Save</button>
