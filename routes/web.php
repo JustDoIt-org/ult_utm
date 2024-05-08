@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ultController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Ppid\FormKeberatanController;
+use App\Http\Controllers\Ppid\SurveyController;
 use App\Http\Controllers\Ppid\RequestController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ultController;
 use App\Http\Controllers\Visit\ScheduleController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Visit\SubmissionController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Ppid\FormKeberatanController;
+use App\Http\Controllers\Ppid\AspirasiPengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +38,12 @@ Route::get('/visit', [ScheduleController::class, 'index'])->name('visit.schedule
 Route::get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
 
 // Ppid
-Route::get('/ppid', [RequestController::class, 'index'])->name('ppid.request');
-Route::get('/form_keberatan', [FormKeberatanController::class, 'index'])->name('ppid.keberatan');
+Route::prefix('ppid')->group(function () {
+    Route::get('/', [RequestController::class, 'index'])->name('ppid.request');
+    Route::get('/form_keberatan', [FormKeberatanController::class, 'index'])->name('ppid.keberatan');
+    Route::get('/aspirasi_pengaduan', [AspirasiPengaduanController::class, 'index'])->name('ppid.aspirasi-pengaduan');
+    Route::get('/survey', [SurveyController::class, 'index'])->name('ppid.survey');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', \App\Livewire\Profile\ProfilePage::class)->name('profile.edit');

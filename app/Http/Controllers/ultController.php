@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 class ultController extends Controller
 {
     public $items = [
-        ["name" => "Home", "link" => '#'],
-        ["name" => "Tentang", "link" => '#'],
-        ["name" => "Aspirasi", "link" => '#'],
-        ["name" => "Kontak", "link" => '#'],
+        ["name" => "PPID", "link" => '/ppid'],
+        ["name" => "Visit", "link" => '/visit'],
     ];
     public function index()
     {
