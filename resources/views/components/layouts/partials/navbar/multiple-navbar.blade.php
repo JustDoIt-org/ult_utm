@@ -12,7 +12,7 @@
     $path = explode('.', Route::currentRouteName())
 @endphp
 
-<nav x-data class="flex items-center justify-between z-10 fixed left-0 right-0 top-0 bg-white py-2 px-3">
+<nav x-data class="flex items-center justify-between z-20 shadow-md fixed left-0 right-0 top-0 bg-white py-2 px-3 box-border">
     {{-- Hamburger Menu --}}
     @if ($path[0] != 'profile')
         <button @click="$store.sidebarState.handleSidebarActivation()" class="text-yellow-900 hover:rounded-full hover:bg-slate-200 p-2 md:hidden">

@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Full Calendar -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <livewire:styles />
@@ -40,8 +43,8 @@
         </x-layouts.partials.sidebar.sidebar>
     </aside>
 
-    <main class="md:min-w-[926px]">
-      <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="md:pl-64 pt-16 md:pointer-events-auto">
+    <main class="min-w-[395px] md:min-w-[926px] box-border">
+      <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="md:pl-60 pt-16 md:pointer-events-auto overflow-x-hidden">
         @yield('content')
       </div>
     </main>
