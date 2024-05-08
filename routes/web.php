@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Ppid\FormKeberatanController;
 use App\Http\Controllers\Ppid\RequestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ultController;
@@ -36,6 +37,7 @@ Route::get('/visit/submissions', [SubmissionController::class, 'index'])->name('
 
 // Ppid
 Route::get('/ppid', [RequestController::class, 'index'])->name('ppid.request');
+Route::get('/form_keberatan', [FormKeberatanController::class, 'index'])->name('ppid.keberatan');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', \App\Livewire\Profile\ProfilePage::class)->name('profile.edit');
