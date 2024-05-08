@@ -16,7 +16,7 @@
 
 <body class="max-w-full overflow-x-hidden">
   @livewireScripts
-  <x-layouts.partials.navbar.navbar :$items /> 
+  <x-layouts.partials.navbar.navbar :$items />
   {{ $slot }}
 
   <x-layouts.partials.footer.footer-ult :$items />
