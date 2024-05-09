@@ -6,13 +6,13 @@
     <x-element.layout.vertical name="form.email" label="Email">
         <x-element.input.line wire:model="form.email" />
     </x-element.layout.vertical>
-    <div>
+    <div class="flex flex-col">
         <label for="form.roles">Roles</label>
-        <select name="form.roles" id="form.roles" wire:model.change="form.roles">
+        <x-element.select.dropdown wire:model.change="form.roles">
             @foreach (App\Models\Role::all() as $role)
                 <option value="{{$role['id']}}">{{ $role["name"] }}</option>
             @endforeach
-        </select>
+        </x-element.select.dropdown>
     </div>
 
     <x-slot:button>
