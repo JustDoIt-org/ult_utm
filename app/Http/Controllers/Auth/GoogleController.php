@@ -18,12 +18,17 @@ class GoogleController extends Controller
         $googleUser = Socialite::driver('google')->stateless()->user();
         $registeredUser = User::where('email', $googleUser->email)->first();
 
+        $newPicture = resizePictureFromGoogle($googleUser->getAvatar());
+
+
         if(!$registeredUser){
-            $user = User::updateOrCreate([
+            $user = User::create([
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
                 'password' => $googleUser->email,
             ]);
+
+            $user->picture = $newPicture;
             $user->markEmailAsVerified();
             $user->syncRoles(Role::GUEST);
 

@@ -5,7 +5,9 @@
         {{-- Account Information --}}
         <div class="flex flex-col md:flex-row bg-white shadow rounded-lg">
             <div class="w-full md:w-1/2 lg:w-2/4">
-                <div class="flex justify-center items-center h-60 sm:h-80 md:h-full bg-yellow-500 font-bold text-white text-8xl rounded-t-lg md:rounded-s-lg uppercase">{{ Auth::user()->name[0] }}</div>
+                <div class="flex justify-center items-center md:h-full font-bold text-white text-8xl rounded-t-lg md:rounded-s-lg uppercase">
+                    <img src="{{ Auth::user()->picture }}" alt="{{ Auth::user()->name }}" class="rounded-t-lg md:rounded-s-lg object-fill">
+                </div>
             </div>
 
             <section class="p-4 sm:p-8 md:w-1/2 lg:w-3/4">

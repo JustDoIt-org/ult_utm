@@ -3,7 +3,7 @@
     <x-slot:trigger>
         <button class="flex items-center gap-3">
             <div class="flex justify-center items-center font-semibold text-white bg-yellow-600 w-9 h-9 rounded-full uppercase">
-                {{ Auth::user()->name[0] }}
+                <img src="{{ Auth::user()->picture ? Auth::user()->picture : 'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg' }}" alt="{{ Auth::user()->name }}" class="rounded-full">
             </div>
 
             <div class="hidden md:flex md:items-center">
