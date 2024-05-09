@@ -133,3 +133,8 @@ function asset_default($asset, $default = "")
 
     return $default;
 }
+
+function resizePictureFromGoogle($linkPicture){
+    $splitLinkPicture = explode('=', $linkPicture)[0];
+    return "$splitLinkPicture=s1000-c";
+}

@@ -32,6 +32,7 @@ class RegisterForm extends Form
     {
         $this->validate();
         $user = User::create([
+            'picture' => 'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg',
             'name' => $this->name,
             'email' => $this->email,
             'password' => bcrypt($this->password),

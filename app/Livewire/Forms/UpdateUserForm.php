@@ -21,6 +21,8 @@ class UpdateUserForm extends Form
     #[Validate('min:5', as: 'Name')]
     public $name;
 
+    public $roles;
+
     protected function rules()
     {
         return [
@@ -35,6 +37,7 @@ class UpdateUserForm extends Form
         $this->id = $user->id;
         $this->email = $user->email;
         $this->name = $user->name;
+        $this->roles = $user->roles->first()->id;
     }
 
     public function clear()
@@ -48,10 +51,12 @@ class UpdateUserForm extends Form
     {
         $this->validate();
         $user = User::findOrNew($this->id);
+
         $update['name'] = $this->name;
         $update['email'] = $this->email;
+        $user->roles()->sync([$this->roles]);
         $user->fill($update);
-        
+
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
