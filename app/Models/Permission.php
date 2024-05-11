@@ -23,15 +23,15 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN],
                 ],
                 "create" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat membuat data user",
                     "role" => [Role::ADMIN],
                 ],
                 "edit" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat mengedit data user",
                     "role" => [Role::ADMIN],
                 ],
                 "delete" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat menghapus data user",
                     "role" => [Role::ADMIN],
                 ],
             ],
@@ -41,15 +41,33 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN],
                 ],
                 "create" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat membuat data role",
                     "role" => [Role::ADMIN],
                 ],
                 "edit" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat mengedit data role",
                     "role" => [Role::ADMIN],
                 ],
                 "delete" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat menghapus data role",
+                    "role" => [Role::ADMIN],
+                ],
+            ],
+            "carousel" => [
+                "index" => [
+                    "description" => "Dapat mengakses data carousel",
+                    "role" => [Role::ADMIN],
+                ],
+                "create" => [
+                    "description" => "Dapat membuat data carousel",
+                    "role" => [Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data carousel",
+                    "role" => [Role::ADMIN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data carousel",
                     "role" => [Role::ADMIN],
                 ],
             ],

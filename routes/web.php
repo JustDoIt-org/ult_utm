@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ULTInformationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ultController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->can('user index')->name('admin.users');
     Route::get('/roles', [RoleController::class, 'index'])->can('role index')->name('admin.roles');
+    Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->name('admin.ult-informations');
 });
 
 // Visit
@@ -49,9 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', \App\Livewire\Profile\ProfilePage::class)->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Route::get('/users', \App\Livewire\User\UserTable::class)->can('user index')->name('user.index');
-    // Route::get('/roles', \App\Livewire\Role\RoleTable::class)->can('role index')->name('role.index');
 });
 
 require __DIR__ . '/auth.php';
