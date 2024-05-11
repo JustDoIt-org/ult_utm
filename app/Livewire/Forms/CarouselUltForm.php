@@ -35,6 +35,6 @@ class CarouselUltForm extends Form
     public function post()
     {
         $this->validate();
-        return \App\Models\CarouselUlt::updateOrCreate($this->all());
+        return \App\Models\Carousel::updateOrCreate($this->all());
     }
 }
