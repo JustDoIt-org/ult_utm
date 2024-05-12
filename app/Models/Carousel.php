@@ -14,4 +14,9 @@ class Carousel extends Model
         'linkButton',
         'nameButton',
     ];
+
+    // public function scopeSearch($query, $search)
+    // {
+    //     return $query->orWhere("nameButton", "like", "%{$search}%");
+    // }
 }
