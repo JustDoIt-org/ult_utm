@@ -53,21 +53,13 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN],
                 ],
             ],
-            "carousel" => [
+            "ult-informations" => [
                 "index" => [
-                    "description" => "Dapat mengakses data carousel",
-                    "role" => [Role::ADMIN],
-                ],
-                "create" => [
-                    "description" => "Dapat membuat data carousel",
+                    "description" => "Dapat mengakses data ult informations",
                     "role" => [Role::ADMIN],
                 ],
                 "edit" => [
-                    "description" => "Dapat mengedit data carousel",
-                    "role" => [Role::ADMIN],
-                ],
-                "delete" => [
-                    "description" => "Dapat menghapus data carousel",
+                    "description" => "Dapat mengedit data ult informations",
                     "role" => [Role::ADMIN],
                 ],
             ],
