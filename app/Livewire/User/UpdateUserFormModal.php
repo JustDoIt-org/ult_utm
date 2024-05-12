@@ -47,7 +47,6 @@ class UpdateUserFormModal extends BaseModal
     {
         parent::load($id);
         $this->form->load($id);
-
     }
 
     public function save()
