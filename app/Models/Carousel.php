@@ -10,13 +10,9 @@ class Carousel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'linkImage',
-        'linkButton',
-        'nameButton',
+        'photo',
+        'link-button',
+        'name-button',
     ];
 
-    // public function scopeSearch($query, $search)
-    // {
-    //     return $query->orWhere("nameButton", "like", "%{$search}%");
-    // }
 }
