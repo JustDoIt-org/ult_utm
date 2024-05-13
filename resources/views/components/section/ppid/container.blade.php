@@ -6,7 +6,8 @@
     <h2 class=" mx-3 mt-3"> <span class="text-xl">PPID UTM</span> <span class="hidden md:inline">{{ $subTitle }}</span>
     </h2>
     <hr class="bg-black w-[98%] mx-auto h-[2px] mt-3">
-
-    {{ $slot }}
+    <div class="ml-4 h-full mb-12">
+      {{ $slot }}
+    </div>
   </div>
 </div>
