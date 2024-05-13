@@ -43,7 +43,7 @@
         </x-layouts.partials.sidebar.sidebar>
     </aside>
 
-    <main class="min-w-[395px] md:min-w-[926px] box-border">
+    <main class="box-border">
       <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="md:pl-60 pt-16 md:pointer-events-auto overflow-x-hidden">
         @yield('content')
       </div>
