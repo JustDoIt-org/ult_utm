@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('carousels', function (Blueprint $table) {
             $table->id();
             $table->string('photo');
-            $table->string('link-button');
-            $table->string('name-button');
+            $table->string('linkButton');
+            $table->string('nameButton');
             $table->timestamps();
         });
     }

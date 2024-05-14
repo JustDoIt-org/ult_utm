@@ -11,8 +11,8 @@ class Carousel extends Model
 
     protected $fillable = [
         'photo',
-        'link-button',
-        'name-button',
+        'linkButton',
+        'nameButton',
     ];
 
 }

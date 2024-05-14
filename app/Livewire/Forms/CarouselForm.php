@@ -38,13 +38,12 @@ class CarouselForm extends Component
         $this->validate();
 
         if(Carousel::all()->count() < 5) {
-
             $fileName = $this->photo->store('carousel', 'public');
 
             Carousel::create([
-                'name-button' => $this->nameButton,
-                'link-button' => $this->linkButton,
-                'photo' => $fileName
+                'nameButton' => $this->nameButton,
+                'linkButton' => $this->linkButton,
+                'photo' => $fileName,
             ]);
 
             $this->clear();

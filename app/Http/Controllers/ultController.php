@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 
 class ultController extends Controller
@@ -13,6 +14,10 @@ class ultController extends Controller
     ];
     public function index()
     {
-        return view('pages.ult.ult-page', ['items' => $this->items, 'about' => About::first()]);
+        return view('pages.ult.ult-page', [
+            'items' => $this->items,
+            'about' => About::first(),
+            'carousel' => Carousel::all()
+        ]);
     }
 }
