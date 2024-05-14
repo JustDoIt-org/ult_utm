@@ -23,15 +23,15 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN],
                 ],
                 "create" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat membuat data user",
                     "role" => [Role::ADMIN],
                 ],
                 "edit" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat mengedit data user",
                     "role" => [Role::ADMIN],
                 ],
                 "delete" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat menghapus data user",
                     "role" => [Role::ADMIN],
                 ],
             ],
@@ -41,15 +41,25 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN],
                 ],
                 "create" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat membuat data role",
                     "role" => [Role::ADMIN],
                 ],
                 "edit" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat mengedit data role",
                     "role" => [Role::ADMIN],
                 ],
                 "delete" => [
-                    "description" => "Dapat mengakses data role",
+                    "description" => "Dapat menghapus data role",
+                    "role" => [Role::ADMIN],
+                ],
+            ],
+            "ult-informations" => [
+                "index" => [
+                    "description" => "Dapat mengakses data ult informations",
+                    "role" => [Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data ult informations",
                     "role" => [Role::ADMIN],
                 ],
             ],
