@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carousell_ult', function (Blueprint $table) {
+        Schema::create('carousels', function (Blueprint $table) {
             $table->id();
-            $table->string('link-image');
-            $table->string('link-button');
-            $table->string('name-button');
+            $table->string('photo');
+            $table->string('linkButton');
+            $table->string('nameButton');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carousell_ult');
+        Schema::dropIfExists('carousels');
     }
 };
