@@ -1,14 +1,16 @@
 <section>
-    <div x-data class="flex gap-5 w-full my-5 flex-nowrap overflow-auto">
+    <section class="flex justify-center items-center gap-5 w-full flex-nowrap overflow-x-auto">
         @if (count($photos) != 0)
             @foreach ($photos as $item)
-            <div class="flex flex-col gap-3">
-                <img src="{{ asset("storage") }}/{{ $item->photo }}" alt="{{ $item->nameButton }}" class="w-24">
-                <button wire:click="delete({{ $item->id }})" wire:loading.attr="disabled" class="w-full bg-red-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-red-600 hover:scale-95">Delete</button>
-            </div>
+                <div class="flex flex-col gap-3 justify-between items-center">
+                    <div class="h-[100px] w-[150px] bg-yellow-500">
+                        <img src="{{ asset("storage") }}/{{ $item->photo }}" alt="{{ $item->nameButton }}" class="h-full w-full object-cover">
+                    </div>
+                    <button wire:click="delete({{ $item->id }})" wire:loading.attr="disabled" class="w-full bg-red-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-red-600 hover:scale-95">Delete</button>
+                </div>
             @endforeach
         @endif
-    </div>
+    </section>
 
     <form wire:submit="save">
         <x-element.layout.vertical name="nameButton" label="Name Button">
