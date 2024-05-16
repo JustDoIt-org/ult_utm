@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ULTInformationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ultController;
@@ -32,6 +33,7 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->can('user index')->name('admin.users');
     Route::get('/roles', [RoleController::class, 'index'])->can('role index')->name('admin.roles');
+    Route::get('/faqs', [FaqController::class, 'index'])->can('faq index')->name('admin.faqs');
     Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->can('ult-informations index')->name('admin.ult-informations');
 });
 

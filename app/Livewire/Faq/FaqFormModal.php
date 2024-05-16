@@ -31,8 +31,8 @@ class FaqFormModal extends BaseModal
      * @var string|bool
      */
     protected $permission = [
-        'load' => 'ult-informations edit',
-        'save' => 'ult-informations create'
+        'load' => 'faq edit',
+        'save' => 'faq create'
     ];
 
     public function mount()
@@ -42,7 +42,7 @@ class FaqFormModal extends BaseModal
 
     public function render()
     {
-        return view('pages.ult-informations.faq-ult.faq-form-modal');
+        return view('pages.faq.faq-form-modal');
     }
 
     #[Computed(persist: true)]

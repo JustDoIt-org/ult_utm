@@ -16,20 +16,19 @@ class FaqTable extends BaseTable
     public $title = "Faq Table";
 
     protected array $permissions = [
-        'create' => 'ult-informations create',
-        'edit' => 'ult-informations edit',
-        'delete' => 'ult-informations delete',
+        'create' => 'faq create',
+        'edit' => 'faq edit',
+        'delete' => 'faq delete',
     ];
 
     protected array $modals = [
         'create' => 'faq-form-modal',
         'edit' => 'faq-form-modal',
-        'delete' => 'faq-form-modal',
     ];
 
     public function render()
     {
-        return view('pages.ult-informations.faq-ult.faq-table', $this->getData());
+        return view('pages.faq.faq-table', $this->getData());
     }
 
     #[Computed]

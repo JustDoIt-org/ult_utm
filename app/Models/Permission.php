@@ -55,22 +55,40 @@ class Permission extends \Spatie\Permission\Models\Permission
             ],
             "ult-informations" => [
                 "index" => [
-                    "description" => "Dapat mengakses data ult informations",
+                    "description" => "Dapat mengakses data ult-informations",
                     "role" => [Role::ADMIN],
                 ],
                 "create" => [
-                    "description" => "Dapat membuat data ult informations",
+                    "description" => "Dapat membuat data ult-informations",
                     "role" => [Role::ADMIN],
                 ],
                 "edit" => [
-                    "description" => "Dapat mengedit data ult informations",
+                    "description" => "Dapat mengedit data ult-informations",
                     "role" => [Role::ADMIN],
                 ],
                 "delete" => [
-                    "description" => "Dapat menghapus data ult informations",
+                    "description" => "Dapat menghapus data ult-informations",
                     "role" => [Role::ADMIN],
                 ],
             ],
+            "faq" => [
+                "index" => [
+                    "description" => "Dapat mengakses data faq",
+                    "role" => [Role::ADMIN],
+                ],
+                "create" => [
+                    "description" => "Dapat membuat data faq",
+                    "role" => [Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data faq",
+                    "role" => [Role::ADMIN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data faq",
+                    "role" => [Role::ADMIN],
+                ],
+            ]
         ];
     }
 }

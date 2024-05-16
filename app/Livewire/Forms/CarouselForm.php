@@ -4,13 +4,16 @@ namespace App\Livewire\Forms;
 
 use App\Livewire\Module\Trait\Notification;
 use App\Models\Carousel;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
-use Livewire\Component;
+use Livewire\Form;
 use Livewire\WithFileUploads;
 
-class CarouselForm extends Component
+class CarouselForm extends Form
 {
-    use WithFileUploads, Notification;
+
+    #[Locked]
+    public $id;
 
     #[Validate('required')]
     public $nameButton;
@@ -21,55 +24,37 @@ class CarouselForm extends Component
     #[Validate('image|max:2048')]
     public $photo;
 
-    public function render()
+    public function load(int $id)
     {
-        return view('pages.ult-informations.carousel-ult.carousel-form', ["photos" => Carousel::all()]);
+        $carousel = Carousel::find($id);
+        $this->id = $carousel->id;
+        $this->photo = $carousel->photo;
+        $this->nameButton = $carousel->nameButton;
+        $this->linkButton = $carousel->linkButton;
     }
 
     public function clear()
     {
+        $this->id = 0;
+        $this->photo = null;
         $this->nameButton = '';
         $this->linkButton = '';
-        $this->photo = null;
     }
 
-    public function save()
+    public function post()
     {
         $this->validate();
+        $fileName = $this->photo->store('carousel', 'public');
 
-        if(Carousel::all()->count() < 5) {
-            $fileName = $this->photo->store('carousel', 'public');
-
-            Carousel::create([
-                'nameButton' => $this->nameButton,
-                'linkButton' => $this->linkButton,
-                'photo' => $fileName,
-            ]);
-
-            $this->clear();
-
-            return $this->toast(
-                message: 'Uploaded',
-                type: 'success'
-            );
-        }else{
-            $this->clear();
-
-            return $this->toast(
-                message: 'Failed to Upload',
-                type:'error'
-            );
+        if($this->id != 0){
+            $carousel = Carousel::find($this->id);
+            unlink(public_path('storage/'.$carousel->photo));
         }
-    }
 
-    public function delete($id)
-    {
-        $item = Carousel::where('id', $id)->first();
-        unlink(public_path('storage/'.$item->photo));
-        $item->delete();
-
-        $this->toast(
-            message: "User Removed",
-        );
+        return Carousel::updateOrCreate(['id' => $this->id], [
+            'nameButton' => $this->nameButton,
+            'linkButton' => $this->linkButton,
+            'photo' => $fileName,
+        ]);
     }
 }

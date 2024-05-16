@@ -129,7 +129,22 @@
                                         @if (isset($column['type']) && !is_string($column['type']))
                                             <td class="px-6 py-4 whitespace-nowrap">{!! $column['type']($dt) !!}</td>
                                         @else
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ __($dt) }}</td>
+                                            @switch($col['query'])
+                                                @case('photo')
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="w-20 h-12">
+                                                            <img src="storage/{{$dt}}" alt="" class="object-cover">
+                                                        </div>
+                                                    </td>
+                                                    @break
+                                                @case('answer')
+                                                    <td class="px-6 py-4 whitespace-nowrap w-full">
+                                                        <p class="w-[300px] md:w-[700px] truncate">{{ __($dt) }}</p>
+                                                    </td>
+                                                    @break
+                                                @default
+                                                    <td class="px-6 py-4 whitespace-nowrap">{{ __($dt) }}</td>
+                                            @endswitch
                                         @endif
                                     @endforeach
                                     <td class="flex items-center justify-center px-6 py-4 whitespace-nowrap">

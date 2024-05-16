@@ -6,17 +6,12 @@
 
         <div>
             <h2 class="font-semibold text-xl">Carousel</h2>
-            <livewire:forms.carousel-form />
+            <livewire:carousel.carousel-table />
         </div>
 
         <div>
             <h2 class="font-semibold text-xl">About</h2>
             <livewire:forms.about-form />
-        </div>
-
-        <div>
-            <h2 class="font-semibold text-xl">FAQ</h2>
-            <livewire:faq.faq-table />
         </div>
     </section>
 @endsection
