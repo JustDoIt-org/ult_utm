@@ -32,7 +32,7 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->can('user index')->name('admin.users');
     Route::get('/roles', [RoleController::class, 'index'])->can('role index')->name('admin.roles');
-    Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->name('admin.ult-informations');
+    Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->can('ult-informations index')->name('admin.ult-informations');
 });
 
 // Visit
