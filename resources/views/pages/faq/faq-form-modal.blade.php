@@ -3,9 +3,6 @@
     <x-element.layout.vertical name="form.question" label="Question">
         <x-element.input.line wire:model="form.question" />
     </x-element.layout.vertical>
-    {{-- <x-element.layout.vertical name="form.answer" label="Answer">
-        <x-element.input.line wire:model="form.answer" />
-    </x-element.layout.vertical> --}}
 
     <div class="flex flex-col gap-1 mb-10">
         <label for="form.answer" class="text-slate-600">Answer</label>
