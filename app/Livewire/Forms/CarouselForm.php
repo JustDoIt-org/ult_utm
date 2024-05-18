@@ -2,12 +2,10 @@
 
 namespace App\Livewire\Forms;
 
-use App\Livewire\Module\Trait\Notification;
 use App\Models\Carousel;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
-use Livewire\WithFileUploads;
 
 class CarouselForm extends Form
 {
@@ -21,7 +19,7 @@ class CarouselForm extends Form
     #[Validate('required')]
     public $linkButton;
 
-    #[Validate('image|max:2048')]
+    #[Validate('max:2048|mimes:png,jpg,jpeg')]
     public $photo;
 
     public function load(int $id)
@@ -56,5 +54,6 @@ class CarouselForm extends Form
             'linkButton' => $this->linkButton,
             'photo' => $fileName,
         ]);
+
     }
 }

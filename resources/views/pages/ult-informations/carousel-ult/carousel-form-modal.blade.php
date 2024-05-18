@@ -7,7 +7,7 @@
         <x-element.input.line wire:model="form.linkButton" />
     </x-element.layout.vertical>
     <x-element.layout.vertical name="form.photo" label="Photo">
-        <x-element.input.line type="file" wire:model="form.photo" />
+        <input id="form.photo" type="file" accept=".png, .jpg, .jpeg" wire:model="form.photo" />
     </x-element.layout.vertical>
 
     <x-slot:button>
