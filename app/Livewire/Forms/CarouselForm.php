@@ -42,7 +42,7 @@ class CarouselForm extends Form
     public function post()
     {
         $this->validate();
-        $fileName = $this->photo->store('carousel', 'public');
+        $fileName = '/'.$this->photo->store('carousel', 'public');
 
         if($this->id != 0){
             $carousel = Carousel::find($this->id);
