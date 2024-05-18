@@ -15,31 +15,31 @@ class CarouselsSeeder extends Seeder
         \App\Models\Carousel::create([
             'nameButton' => 'Layanan Kunjungan Sekolah',
             'linkButton' => '#',
-            'photo' => 'carousel/hero-image-1.jpg'
+            'photo' => '/carousel/hero-image-1.jpg'
         ]);
 
         \App\Models\Carousel::create([
             'nameButton' => 'Layanan Aspirasi & Pengaduan',
             'linkButton' => '#',
-            'photo' => 'carousel/hero-image-2.jpg'
+            'photo' => '/carousel/hero-image-2.jpg'
         ]);
 
         \App\Models\Carousel::create([
             'nameButton' => 'Layanan Kemahasiswaan',
             'linkButton' => '#',
-            'photo' => 'carousel/hero-image-3.jpg'
+            'photo' => '/carousel/hero-image-3.jpg'
         ]);
 
         \App\Models\Carousel::create([
             'nameButton' => 'Layanan Masyarakat',
             'linkButton' => '#',
-            'photo' => 'carousel/hero-image-4.jpg'
+            'photo' => '/carousel/hero-image-4.jpg'
         ]);
 
         \App\Models\Carousel::create([
             'nameButton' => 'Layanan Kunjungan Tamu',
             'linkButton' => '#',
-            'photo' => 'carousel/hero-image-5.jpg'
+            'photo' => '/carousel/hero-image-5.jpg'
         ]);
     }
 }
