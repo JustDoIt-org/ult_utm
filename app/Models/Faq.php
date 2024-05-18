@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Carousel extends Model
+class Faq extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'photo',
-        'linkButton',
-        'nameButton',
+        'question',
+        'answer'
     ];
 
     public function scopeSearch($query, $search)
     {
-        return $query->orWhere("nameButton", "like", "%{$search}%");
+        return $query->orWhere("question", "like", "%{$search}%");
     }
 }
