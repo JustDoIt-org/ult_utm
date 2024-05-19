@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AboutSeeder::class);
         $this->call(CarouselsSeeder::class);
         $this->call(SurveyPpidSeeder::class);
+        $this->call(FaqSeeder::class);
     }
 }
