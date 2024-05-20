@@ -57,7 +57,7 @@ class FaqTable extends BaseTable
 
     public function delete($id)
     {
-        if(count(Faq::all()) > 5){
+        if(count(Faq::all()) > 4){
             parent::delete($id);
             Faq::destroy($id);
             $this->toast(
