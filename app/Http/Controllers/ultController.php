@@ -18,7 +18,7 @@ class ultController extends Controller
             'items' => $this->items,
             'about' => About::first(),
             'carousel' => Carousel::all(),
-            'faq' => Faq::orderBy('created_at','desc')->limit(5)->get(),
+            'faq' => Faq::orderBy('created_at','desc')->limit(4)->get(),
         ]);
     }
 }
