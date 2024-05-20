@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Carousel;
-use Illuminate\Http\Request;
+use App\Models\Faq;
 
 class ultController extends Controller
 {
@@ -17,7 +17,8 @@ class ultController extends Controller
         return view('pages.ult.ult-page', [
             'items' => $this->items,
             'about' => About::first(),
-            'carousel' => Carousel::all()
+            'carousel' => Carousel::all(),
+            'faq' => Faq::orderBy('created_at','desc')->limit(4)->get(),
         ]);
     }
 }

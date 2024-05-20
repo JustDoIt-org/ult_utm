@@ -57,10 +57,17 @@ class FaqTable extends BaseTable
 
     public function delete($id)
     {
-        parent::delete($id);
-        Faq::destroy($id);
-        $this->toast(
-            message: "Faq Removed",
-        );
+        if(count(Faq::all()) > 4){
+            parent::delete($id);
+            Faq::destroy($id);
+            $this->toast(
+                message: "Faq Removed",
+            );
+        }else{
+            $this->toast(
+                type: "error",
+                message: "Faq Cannot Removed",
+            );
+        }
     }
 }

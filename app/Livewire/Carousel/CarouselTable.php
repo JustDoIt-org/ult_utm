@@ -62,13 +62,20 @@ class CarouselTable extends BaseTable
 
     public function delete($id)
     {
-        $carousel = Carousel::find($id);
+        if(count(Carousel::all()) > 1){
+            $carousel = Carousel::find($id);
 
-        unlink(public_path('storage/'.$carousel->photo));
-        parent::delete($id);
-        $carousel->delete();
-        $this->toast(
-            message: "Carousel Removed",
-        );
+            unlink(public_path('storage/'.$carousel->photo));
+            parent::delete($id);
+            $carousel->delete();
+            $this->toast(
+                message: "Carousel Removed",
+            );
+        }else{
+            $this->toast(
+                type: "error",
+                message: "Carousel Cannot Removed",
+            );
+        }
     }
 }

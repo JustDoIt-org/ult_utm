@@ -133,7 +133,7 @@
                                                 @case('photo')
                                                     <td class="px-6 py-4 whitespace-nowrap">
                                                         <div class="w-24 rounded-lg h-12 flex items-center">
-                                                            <img src="storage/{{$dt}}" alt="" class="object-cover max-w-[100px] w-full h-[60px]">
+                                                            <img src="storage/{{$dt}}" alt="" class="object-cover max-w-[100px] w-full rounded-lg h-[60px]">
                                                         </div>
                                                     </td>
                                                     @break
