@@ -3,7 +3,7 @@
 
   <x-section.ult.hero-section :$carousel/>
   <x-section.ult.about-section :$about :$carousel/>
-  <x-section.ult.faq-section />
+  <x-section.ult.faq-section :$faq/>
   <x-section.ult.contact-section />
 </x-layouts.ult-layout>
 
