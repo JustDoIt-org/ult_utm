@@ -5,9 +5,9 @@ use App\Http\Controllers\ULTInformationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ultController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Ppid\PpidController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Ppid\SurveyController;
 use App\Http\Controllers\Ppid\RequestController;
 use App\Http\Controllers\Visit\ScheduleController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -44,9 +44,9 @@ Route::get('/visit/submissions', [SubmissionController::class, 'index'])->name('
 // Ppid
 Route::prefix('ppid')->group(function () {
     Route::get('/', [RequestController::class, 'index'])->name('ppid.request');
-    Route::get('/form_keberatan', [FormKeberatanController::class, 'index'])->name('ppid.keberatan');
+    Route::get('/form_keberatan', [PpidController::class, 'keberatan'])->name('ppid.keberatan');
     Route::get('/aspirasi_pengaduan', [AspirasiPengaduanController::class, 'index'])->name('ppid.aspirasi-pengaduan');
-    Route::get('/survey', [SurveyController::class, 'index'])->name('ppid.survey');
+    Route::get('/survey', [PpidController::class, 'survey'])->name('ppid.survey');
 });
 
 Route::middleware('auth')->group(function () {
