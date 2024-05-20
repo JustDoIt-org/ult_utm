@@ -15,11 +15,12 @@
 
 
 <body class="max-w-full overflow-x-hidden">
-  @livewireScripts
-  <x-layouts.partials.navbar.navbar :$items />
-  {{ $slot }}
+    @livewireScripts
+    <x-chatbot />
+    <x-layouts.partials.navbar.navbar :$items />
+    {{ $slot }}
 
-  <x-layouts.partials.footer.footer-ult :$items />
+    <x-layouts.partials.footer.footer-ult :$items />
 
 </body>
 

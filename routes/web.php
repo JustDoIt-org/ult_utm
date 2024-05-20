@@ -27,6 +27,7 @@ use App\Http\Controllers\Ppid\AspirasiPengaduanController;
 */
 
 Route::get('/', [ultController::class, 'index'])->name('home');
+Route::match(['get', 'post'], '/botman', 'App\Http\Controllers\ChatBotController@handle');
 
 // Admin
 Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function () {
