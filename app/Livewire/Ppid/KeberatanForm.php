@@ -3,66 +3,45 @@
 namespace App\Livewire\Ppid;
 
 use Livewire\Component;
-use App\Models\SurveyPpid;
-use Illuminate\Http\Request;
-use App\Models\ResultSurveyPpid;
 use Illuminate\Support\Facades\Auth;
+use App\Models\PpidAspirasiPengaduan;
 use App\Livewire\Module\Trait\Notification;
 
 class KeberatanForm extends Component
 {
     use Notification;
 
-    public $hasil;
-    public $kemudahan;
-    public $kecepatan;
-    public $akurasi;
-    public $biaya;
-    public $arr = ['kemudahan', 'kecepatan', 'akurasi', 'biaya'];
+    public $field_search;
+    public $data_found;
+
 
     public function render()
     {
         $desc = 'Silakan ajukan keberatan saudara apabila permohonan informasi belum terlayani selama 10 hari kerja atau jawaban atas permohonan informasi tidak sesuai dengan memasukkan nomor permohonan yang bersangkutan.';
         $data = ['desc' => $desc];
-        return view('pages.ppid.keberatan', $data);
+        return view('pages.ppid.keberatan-form', $data);
     }
 
-    public function store()
+    public function send()
     {
-
-        $id = Auth::id();
         $this->validate([
-            "kemudahan" => 'required',
-            "kecepatan" => 'required',
-            "akurasi" => 'required',
-            "biaya" => 'required',
+            "field_search" => 'required|min:3',
         ]);
 
-        $arr = [$this->kemudahan, $this->kecepatan, $this->akurasi, $this->biaya];
-        $i = 1;
-
-        foreach ($arr as $key) {
-            ResultSurveyPpid::updateOrCreate(
-                ['user_id' =>  $id, 'survey_ppid_id' => $i],
-                ['hasil' => $key,]
-            );
-            $i++;
+        $data = PpidAspirasiPengaduan::find($this->field_search);
+        if ($data) {
+            $this->data_found = $data;
+        } else {
+            session()->flash('message', 'Data Not Found');
+            $this->data_found = false;
         }
 
-
-        $this->resetInput();
-        return $this->toast(
-            message: 'Berhasil',
-            type: 'success'
-        );
+        // $this->resetInput();
     }
 
 
     private function resetInput()
     {
-        $this->kemudahan = null;
-        $this->kecepatan = null;
-        $this->akurasi = null;
-        $this->biaya = null;
+        $this->field_search = null;
     }
 }

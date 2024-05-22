@@ -41,11 +41,13 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
 Route::get('/visit', [ScheduleController::class, 'index'])->name('visit.schedules');
 Route::get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
 
+
+
 // Ppid
-Route::prefix('ppid')->group(function () {
-    Route::get('/', [RequestController::class, 'index'])->name('ppid.request');
+Route::middleware(['auth', 'verified'])->prefix('ppid')->group(function () {
+    Route::get('/', [PpidController::class, 'request'])->name('ppid.request');
     Route::get('/form_keberatan', [PpidController::class, 'keberatan'])->name('ppid.keberatan');
-    Route::get('/aspirasi_pengaduan', [AspirasiPengaduanController::class, 'index'])->name('ppid.aspirasi-pengaduan');
+    Route::get('/aspirasi_pengaduan', [PpidController::class, 'aspirasi_pengaduan'])->name('ppid.aspirasi-pengaduan');
     Route::get('/survey', [PpidController::class, 'survey'])->name('ppid.survey');
 });
 

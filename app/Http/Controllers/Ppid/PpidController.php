@@ -17,8 +17,8 @@ class PpidController extends Controller
 
     public function request()
     {
-        $data = ['title' => 'Form Permohonan Informasi Publik', 'subTitle' => 'Pejabat Pengelola Informasi dan Dokumentasi'];
-        return view('pages.ppid.request', $data);
+        $data = ['title' => 'Form Permohonan Informasi Publik', 'subTitle' => 'Pejabat Pengelola Informasi dan Dokumentasi', 'page' => 'request'];
+        return view('pages.ppid.template-ppid', $data);
     }
 
     public function keberatan()
@@ -29,7 +29,8 @@ class PpidController extends Controller
 
     public function aspirasi_pengaduan()
     {
-        $data = ["title" => "Aspirasi dan Pengaduan"];
-        return view('pages.ppid.aspirasi-pengaduan', $data);
+
+        $data = ["title" => "Aspirasi dan Pengaduan", "page" => "aspirasi_pengaduan"];
+        return view('pages.ppid.template-ppid', $data);
     }
 }

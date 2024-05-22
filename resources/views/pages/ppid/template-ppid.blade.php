@@ -1,17 +1,29 @@
 @extends('components.layouts.multiple')
 
 @section('content')
-  <x-section.ppid.container :$title>
-    @switch($page)
-      @case('survey')
-        <livewire:ppid.survey-form :$hasil />
-      @break
+  @if ($page === 'request')
+    <x-section.ppid.container :$title :$subTitle>
+      <livewire:ppid.request-form />
 
-      @case('keberatan')
-        <livewire:ppid.keberatan-form />
-      @break
+    </x-section.ppid.container>
+  @else
+    <x-section.ppid.container :$title>
+      @switch($page)
+        @case('survey')
+          <livewire:ppid.survey-form :$hasil />
+        @break
 
-      @default
-    @endswitch
-  </x-section.ppid.container>
+        @case('keberatan')
+          <livewire:ppid.keberatan-form />
+        @break
+
+        @case('aspirasi_pengaduan')
+          <livewire:ppid.aspirasi-pengaduan-form />
+        @break
+
+        @default
+          <livewire:ppid.request-form />
+      @endswitch
+    </x-section.ppid.container>
+  @endif
 @endsection

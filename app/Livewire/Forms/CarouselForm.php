@@ -42,11 +42,11 @@ class CarouselForm extends Form
     public function post()
     {
         $this->validate();
-        $fileName = '/'.$this->photo->store('carousel', 'public');
+        $fileName = '/' . $this->photo->store('carousel', 'public');
 
-        if($this->id != 0){
+        if ($this->id != 0) {
             $carousel = Carousel::find($this->id);
-            unlink(public_path('storage/'.$carousel->photo));
+            unlink(public_path('storage/' . $carousel->photo));
         }
 
         return Carousel::updateOrCreate(['id' => $this->id], [
@@ -54,6 +54,5 @@ class CarouselForm extends Form
             'linkButton' => $this->linkButton,
             'photo' => $fileName,
         ]);
-
     }
 }
