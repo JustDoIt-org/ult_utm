@@ -14,14 +14,12 @@
 </head>
 
 
-<body class="max-w-full overflow-x-hidden">
+<body class="max-w-full relativ overflow-x-hidden">
     @livewireScripts
-    <x-chatbot />
     <x-layouts.partials.navbar.navbar :$items />
     {{ $slot }}
-
     <x-layouts.partials.footer.footer-ult :$items />
-
+    <x-chatbot />
 </body>
 
 </html>
