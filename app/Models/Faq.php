@@ -16,6 +16,6 @@ class Faq extends Model
 
     public function scopeSearch($query, $search)
     {
-        return $query->orWhere("question", "like", "%{$search}%");
+        return $query->orWhere("question", "like", "%{$search}%")->orWhere("answer", "like", "%{$search}%");;
     }
 }
