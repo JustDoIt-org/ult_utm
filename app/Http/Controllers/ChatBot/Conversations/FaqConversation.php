@@ -25,6 +25,7 @@ class FaqConversation extends Conversation
                 $this->askFaq($req);
             }else{
                 $this->say("Maaf saya tidak mengerti pertanyaan anda.");
+                $this->askNextStep();
             }
 
         });
@@ -47,7 +48,7 @@ class FaqConversation extends Conversation
 
     public function askNextStep()
     {
-        $this->ask('Apakah ada yang ingin anda tanyakan lagi ?', [
+        $this->ask('Apakah ada yang ingin anda tanyakan lagi ?(ya/tidak)', [
             [
                 'pattern' => 'yes|yep|ya|yeah|ye|y|yaa',
                 'callback' => function () {
