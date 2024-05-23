@@ -26,7 +26,7 @@
   @endif
 
   {{-- Logo Utm --}}
-  <a wire:navigate href="{{ route('home') }}" class="w-40 hidden md:block">
+  <a href="{{ route('home') }}" class="w-40 hidden md:block">
     <img src="{{ url(asset('assets/img/logo-ult-utm.png')) }}" alt="">
   </a>
 

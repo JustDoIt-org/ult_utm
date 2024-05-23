@@ -8,6 +8,8 @@
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "^2.1",
         "blade-ui-kit/blade-heroicons": "^2.3",
+        "botman/botman": "^2.8",
+        "botman/driver-web": "^1.5",
         "intervention/image-laravel": "^1.2",
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
