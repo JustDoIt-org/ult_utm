@@ -1,7 +1,5 @@
 @extends('components.layouts.multiple')
 
-
-
 @section('content')
     <section class="flex flex-col gap-10 px-5 pt-10">
         <h1 class="font-bold text-3xl">Visitor</h1>

@@ -1,5 +1,7 @@
 @extends('components.layouts.multiple')
 
 @section('content')
-    <h1>Submissions</h1>
+    <div>
+        <h1>Pengajuan Kunjungan</h1>
+    </div>
 @endsection
