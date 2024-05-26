@@ -1,15 +1,6 @@
 @extends('components.layouts.multiple')
 
-<!-- Full Calendar -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-       var calendarEl = document.getElementById('calendar');
-       var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
-       });
-       calendar.render();
-     });
-</script>
+
 
 @section('content')
     <section class="flex flex-col gap-10 px-5 pt-10">
@@ -20,6 +11,6 @@
             <div></div>
         </div>
 
-        <div id="calendar" class="bg-white px-5 py-10 rounded-lg shadow-lg"></div>
+        <x-section.visit.visit-calendar />
     </section>
 @endsection
