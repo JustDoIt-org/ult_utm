@@ -19,7 +19,7 @@ class InformasiKoutaTable extends BaseTable
     protected array $permissions = [
         'create' => 'informasi-kouta create',
         'edit' => 'informasi-kouta edit',
-        'delete' => 'roinformasi-koutale delete',
+        'delete' => 'informasi-kouta delete',
     ];
 
     protected array $modals = [

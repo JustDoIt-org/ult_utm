@@ -1,3 +1,16 @@
-<div>
-    {{-- The Master doesn't talk, he acts. --}}
-</div>
+<x-section.modal maxWidth="md" :name="$this->modal_name" :title="$this->title" method="save">
+
+    <x-element.layout.vertical name="form.tanggal_kunjungan" label="Tanggal Kunjungan">
+        <x-element.input.line type="date" wire:model="form.tanggal_kunjungan" />
+    </x-element.layout.vertical>
+    <x-element.layout.vertical name="form.sisa_kouta" label="Sisa Kouta">
+        <x-element.input.line type="number" wire:model="form.sisa_kouta" />
+    </x-element.layout.vertical>
+    <x-element.layout.vertical name="form.tujuan_kunjungan" label="Tujuan Kunjungan">
+        <x-element.input.line wire:model="form.tujuan_kunjungan" />
+    </x-element.layout.vertical>
+
+    <x-slot:button>
+        <button wire:loading.attr="disabled" type="submit" class="w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-yellow-600 hover:scale-95">Save</button>
+    </x-slot:button>
+</x-section.modal>
