@@ -8,27 +8,16 @@ use App\Models\InformasiKouta;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 
-class InformasiKoutaTable extends BaseTable
+class InformasiKoutaTableView extends BaseTable
 {
     use Notification;
 
     #[Locked]
     public $title = "Informasi Kouta Table";
 
-    protected array $permissions = [
-        'create' => 'informasi-kouta create',
-        'edit' => 'informasi-kouta edit',
-        'delete' => 'informasi-kouta delete',
-    ];
-
-    protected array $modals = [
-        'create' => 'informasi-kouta-form-modal',
-        'edit' => 'informasi-kouta-form-modal',
-    ];
-
     public function render()
     {
-        return view('pages.visit.informasi-kouta.informasi-kouta-table', $this->getData());
+        return view('pages.visit.informasi-kouta.informasi-kouta-table-view', $this->getData());
     }
 
     #[Computed]
@@ -58,14 +47,5 @@ class InformasiKoutaTable extends BaseTable
                 "sort" => true,
             ],
         ];
-    }
-
-    public function delete($id)
-    {
-        parent::delete($id);
-        InformasiKouta::destroy($id);
-        $this->toast(
-            message: "Informasi Kouta Removed",
-        );
     }
 }
