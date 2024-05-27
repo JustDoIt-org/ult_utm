@@ -3,7 +3,7 @@
 @section('content')
     <section class="mx-auto p-10 mb-10">
 
-        <div class="xl:flex xl:gap-2 xl:justify-between">
+        <div class="xl:flex xl:gap-2 xl:justify-between w-full">
 
             <section class="bg-white xl:w-[300px] sm:mx-7 xl:ml-9 rounded-lg p-10 mb-5">
                 <h1 class="font-bold text-xl mb-5">Hal-hal yang perlu diperhatikan bagi Visitor</h1>

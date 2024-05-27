@@ -26,6 +26,6 @@
     });
 </script>
 
-<div class="sm:px-6 lg:px-8">
+<div class="sm:px-6 lg:pl-8 lg:pr-0 xl:pr-8">
     <div id="calendar" class="bg-white px-5 py-10 rounded-lg shadow-lg"></div>
 </div>
