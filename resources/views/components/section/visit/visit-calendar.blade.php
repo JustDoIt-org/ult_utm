@@ -13,7 +13,7 @@
         calendar.batchRendering(() => {
             @js($information_kouta).forEach(value => {
                 calendar.addEvent({
-                    title: `${ value.tujuan_kunjungan }  Kouta: ${ value.sisa_kouta }`,
+                    title: `${ value.tujuan_kunjungan } | Kouta: ${ value.sisa_kouta }`,
                     start: value.tanggal_kunjungan,
                     textColor: value.warna_tulisan,
                     backgroundColor: value.warna_latar_belakang,
@@ -26,4 +26,6 @@
     });
 </script>
 
-<div id="calendar" class="bg-white px-5 py-10 rounded-lg shadow-lg"></div>
+<div class="sm:px-6 lg:px-8">
+    <div id="calendar" class="bg-white px-5 py-10 rounded-lg shadow-lg"></div>
+</div>
