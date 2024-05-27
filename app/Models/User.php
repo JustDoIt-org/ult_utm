@@ -89,6 +89,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Faculty::class, 'faculty_administrators', 'user_id');
     }
 
+    public function pengajuanKunjungan()
+    {
+        return $this->hasMany(PengajuanKunjungan::class, 'pengajuan_id', 'id');
+    }
+
     #################################################################
     #####                   Model Scopes                        #####
     #################################################################

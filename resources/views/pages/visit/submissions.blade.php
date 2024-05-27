@@ -1,7 +1,5 @@
 @extends('components.layouts.multiple')
 
 @section('content')
-    <div>
-        <h1>Pengajuan Kunjungan</h1>
-    </div>
+    <livewire:visit.pengajuan-kunjungan-user-table />
 @endsection
