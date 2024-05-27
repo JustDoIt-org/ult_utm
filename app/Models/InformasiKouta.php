@@ -19,6 +19,6 @@ class InformasiKouta extends Model
 
     public function scopeSearch($query, $search)
     {
-        return $query->orWhere("tujuan_kunjungan", "like", "%{$search}%");
+        return $query->orWhere("tujuan_kunjungan", "like", "%{$search}%")->orWhere("sisa_kouta", "like", "{$search}%");
     }
 }

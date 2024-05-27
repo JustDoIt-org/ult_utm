@@ -17,6 +17,7 @@ class InformasiKoutaTableView extends BaseTable
 
     public function render()
     {
+        $this->dispatch('contentChanged');
         return view('pages.visit.informasi-kouta.informasi-kouta-table-view', $this->getData());
     }
 
