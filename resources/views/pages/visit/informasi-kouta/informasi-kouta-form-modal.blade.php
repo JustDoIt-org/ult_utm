@@ -9,6 +9,12 @@
     <x-element.layout.vertical name="form.tujuan_kunjungan" label="Tujuan Kunjungan">
         <x-element.input.line wire:model="form.tujuan_kunjungan" />
     </x-element.layout.vertical>
+    <x-element.layout.vertical name="form.warna_tulisan" label="Warna Tulisan">
+        <x-element.input.line type="color" wire:model="form.warna_tulisan" />
+    </x-element.layout.vertical>
+    <x-element.layout.vertical name="form.warna_latar_belakang" label="Warna Latar Belakang">
+        <x-element.input.line type="color" wire:model="form.warna_latar_belakang" />
+    </x-element.layout.vertical>
 
     <x-slot:button>
         <button wire:loading.attr="disabled" type="submit" class="w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-yellow-600 hover:scale-95">Save</button>

@@ -12,7 +12,9 @@ class InformasiKouta extends Model
     protected $fillable = [
         'tanggal_kunjungan',
         'sisa_kouta',
-        'tujuan_kunjungan'
+        'tujuan_kunjungan',
+        'warna_tulisan',
+        'warna_latar_belakang'
     ];
 
     public function scopeSearch($query, $search)

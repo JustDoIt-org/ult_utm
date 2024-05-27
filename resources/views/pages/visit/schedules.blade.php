@@ -9,6 +9,6 @@
             <div></div>
         </div>
 
-        <x-section.visit.visit-calendar />
+        <x-section.visit.visit-calendar :$information_kouta />
     </section>
 @endsection

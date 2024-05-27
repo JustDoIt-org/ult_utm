@@ -16,6 +16,8 @@ return new class extends Migration
             $table->date('tanggal_kunjungan');
             $table->integer('sisa_kouta');
             $table->string('tujuan_kunjungan');
+            $table->string('warna_tulisan');
+            $table->string('warna_latar_belakang');
             $table->timestamps();
         });
     }
