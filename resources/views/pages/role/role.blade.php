@@ -1,5 +1,7 @@
 @extends('components.layouts.multiple')
 
 @section('content')
-    <livewire:role.role-table />
+    <section class="px-5 py-10">
+        <livewire:role.role-table />
+    </section>
 @endsection

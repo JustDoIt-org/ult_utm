@@ -4,10 +4,6 @@ namespace App\Http\Controllers\ChatBot;
 
 use App\Http\Controllers\ChatBot\Conversations\FaqConversation;
 use App\Http\Controllers\Controller;
-use BotMan\BotMan\Messages\Attachments\Image;
-use BotMan\BotMan\Messages\Incoming\Answer;
-use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
-use BotMan\BotMan\Traits\HandlesConversations;
 
 class ChatBotController extends Controller
 {

@@ -4,7 +4,7 @@
 
 <!-- Full Calendar -->
 <script>
-    document.addEventListener('contentChanged', function() {
+    document.addEventListener('calendarRefresh', function() {
         const calendarEl = document.getElementById('calendar');
         const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
