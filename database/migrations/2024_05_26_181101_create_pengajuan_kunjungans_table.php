@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('provinsi_asal');
             $table->string('kota_asal');
             $table->string('nama_kegiatan');
-            $table->string('kapasitas_peserta');
-            $table->string('jumlah_bus')->nullable();
+            $table->integer('kapasitas_peserta');
+            $table->integer('jumlah_bus')->nullable();
             $table->string('nama_pic');
             $table->string('kontak_pic');
             $table->string('surat_permohonan');

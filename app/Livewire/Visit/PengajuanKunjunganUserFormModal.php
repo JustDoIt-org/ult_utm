@@ -7,11 +7,11 @@ use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
 use App\Models\PengajuanKunjungan;
 use Livewire\Attributes\Computed;
-use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class PengajuanKunjunganUserFormModal extends BaseModal
 {
-    use Notification;
+    use Notification, WithFileUploads;
 
     public PengajuanKunjunganForm $form;
 
@@ -60,13 +60,24 @@ class PengajuanKunjunganUserFormModal extends BaseModal
 
     public function save()
     {
-        parent::save();
-        if($this->form->post()) {
-            $this->dispatch('close-modal', name: $this->modal_name);
-            $this->dispatch('pengajuan-kunjungan-user-table:reload');
+        if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+            // parent::save();
+            // if($this->form->post()) {
+            //     $this->dispatch('close-modal', name: $this->modal_name);
+            //     $this->dispatch('pengajuan-kunjungan-user-table:reload');
+            //     $this->toast(
+            //         message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
+            //         type: 'success'
+            //     );
+            // }
             $this->toast(
                 message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
                 type: 'success'
+            );
+        }else{
+            $this->toast(
+                message: 'Kapasitas peserta melebihi kouta',
+                type: 'error'
             );
         }
     }
