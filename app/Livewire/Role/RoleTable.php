@@ -28,7 +28,7 @@ class RoleTable extends BaseTable
 
     public function render()
     {
-        return view("pages.role.role-table", $this->getData());
+        return view("pages.admin.role.role-table", $this->getData());
     }
 
     #[Computed]

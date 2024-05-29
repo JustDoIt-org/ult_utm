@@ -43,7 +43,7 @@ class CarouselFormModal extends BaseModal
 
     public function render()
     {
-        return view('pages.ult-informations.carousel-ult.carousel-form-modal');
+        return view('pages.admin.ult-informations.carousel-ult.carousel-form-modal');
     }
 
     #[Computed(persist: true)]

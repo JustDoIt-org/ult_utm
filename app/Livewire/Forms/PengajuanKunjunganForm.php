@@ -2,10 +2,8 @@
 
 namespace App\Livewire\Forms;
 
-use App\Livewire\Module\Trait\Notification;
 use App\Models\InformasiKouta;
 use App\Models\PengajuanKunjungan;
-use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
@@ -112,6 +110,7 @@ class PengajuanKunjunganForm extends Form
             'surat_permohonan' => $fileName,
             'progress' => 'belum'
         ]);
+
 
     }
 

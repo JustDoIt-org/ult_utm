@@ -28,7 +28,7 @@ class InformasiKoutaTable extends BaseTable
 
     public function render()
     {
-        return view('pages.visit.informasi-kouta.informasi-kouta-table', $this->getData());
+        return view('pages.admin.visit.informasi-kouta.informasi-kouta-table', $this->getData());
     }
 
     #[Computed]

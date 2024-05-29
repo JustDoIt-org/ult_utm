@@ -42,7 +42,7 @@ class RoleFormModal extends BaseModal
 
     public function render()
     {
-        return view("pages.role.role-form-modal");
+        return view("pages.admin.role.role-form-modal");
     }
 
     #[Computed(persist: true)]

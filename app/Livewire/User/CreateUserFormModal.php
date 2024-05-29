@@ -40,7 +40,7 @@ class CreateUserFormModal extends BaseModal
 
     public function render()
     {
-        return view("pages.user.create-user-form-modal");
+        return view("pages.admin.user.create-user-form-modal");
     }
 
     public function save()

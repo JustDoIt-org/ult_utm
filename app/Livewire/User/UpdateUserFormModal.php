@@ -40,7 +40,7 @@ class UpdateUserFormModal extends BaseModal
 
     public function render()
     {
-        return view("pages.user.update-user-form-modal");
+        return view("pages.admin.user.update-user-form-modal");
     }
 
     public function load($id)

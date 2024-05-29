@@ -42,7 +42,7 @@ class InformasiKoutaFormModal extends BaseModal
 
     public function render()
     {
-        return view('pages.visit.informasi-kouta.informasi-kouta-form-modal');
+        return view('pages.admin.visit.informasi-kouta.informasi-kouta-form-modal');
     }
 
     #[Computed(persist: true)]

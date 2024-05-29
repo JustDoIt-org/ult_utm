@@ -28,7 +28,7 @@ class CarouselTable extends BaseTable
 
     public function render()
     {
-        return view('pages.ult-informations.carousel-ult.carousel-table', $this->getData());
+        return view('pages.admin.ult-informations.carousel-ult.carousel-table', $this->getData());
     }
 
     #[Computed]

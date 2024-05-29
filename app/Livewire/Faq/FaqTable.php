@@ -28,7 +28,7 @@ class FaqTable extends BaseTable
 
     public function render()
     {
-        return view('pages.faq.faq-table', $this->getData());
+        return view('pages.admin.faq.faq-table', $this->getData());
     }
 
     #[Computed]

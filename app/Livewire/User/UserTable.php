@@ -40,7 +40,7 @@ class UserTable extends BaseTable
 
     public function render()
     {
-        return view("pages.user.user-table", $this->getData());
+        return view("pages.admin.user.user-table", $this->getData());
     }
 
     #[Computed]
