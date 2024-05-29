@@ -22,7 +22,8 @@
 
             <livewire:visit.informasi-kouta-table-view />
         </div>
-
-        <x-section.visit.visit-calendar :$information_kouta />
+        <section class="lg:mr-8 xl:mr-0">
+            <x-section.visit.visit-calendar :$information_kouta />
+        </section>
     </section>
 @endsection
