@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Visit;
 
 use App\Http\Controllers\Controller;
-use App\Livewire\Visit\InformasiKoutaTable;
 use App\Models\InformasiKouta;
-use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {

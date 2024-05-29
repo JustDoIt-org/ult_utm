@@ -42,7 +42,7 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
 
 // Visit
 Route::get('/visit', [ScheduleController::class, 'index'])->name('visit.schedules');
-Route::get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
+Route::middleware(['auth', 'verified'])->get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
 
 
 
