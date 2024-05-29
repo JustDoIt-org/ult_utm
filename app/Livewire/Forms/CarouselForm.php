@@ -19,7 +19,6 @@ class CarouselForm extends Form
     #[Validate('required')]
     public $linkButton;
 
-    #[Validate('max:2048|mimes:png,jpg,jpeg')]
     public $photo;
 
     public function load(int $id)
@@ -42,11 +41,16 @@ class CarouselForm extends Form
     public function post()
     {
         $this->validate();
-        $fileName = '/' . $this->photo->store('carousel', 'public');
+        $fileName = ($this->id != 0) ? $this->photo : '/' . $this->photo->store('carousel', 'public');
+
 
         if ($this->id != 0) {
             $carousel = Carousel::find($this->id);
-            unlink(public_path('storage/' . $carousel->photo));
+
+            if($this->photo != $carousel->photo){
+                $fileName = '/' .$this->photo->store('carousel', 'public');
+                unlink(public_path('storage/' . $carousel->photo));
+            }
         }
 
         return Carousel::updateOrCreate(['id' => $this->id], [

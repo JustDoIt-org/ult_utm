@@ -60,9 +60,11 @@ class CarouselFormModal extends BaseModal
 
     public function save()
     {
-        if(!$this->load_state){
+        if($this->form->photo != null){
 
-            if(Carousel::all()->count() < 5){
+            if($this->form->id == 0){
+                $this->createCarousel();
+            }else{
                 parent::save();
                 if($this->form->post()) {
                     $this->dispatch('close-modal', name: $this->modal_name);
@@ -72,13 +74,20 @@ class CarouselFormModal extends BaseModal
                         type: 'success'
                     );
                 }
-            }else{
-                return $this->toast(
-                    message: 'Failed to Upload',
-                    type:'error'
-                );
+
             }
+
         }else{
+            $this->toast(
+                message: 'Diharap untuk melampirkan foto untuk carousel',
+                type: 'error'
+            );
+        }
+    }
+
+    public function createCarousel()
+    {
+        if(Carousel::all()->count() < 5){
             parent::save();
             if($this->form->post()) {
                 $this->dispatch('close-modal', name: $this->modal_name);
@@ -88,6 +97,11 @@ class CarouselFormModal extends BaseModal
                     type: 'success'
                 );
             }
+        }else{
+            return $this->toast(
+                message: 'Failed to Upload',
+                type:'error'
+            );
         }
     }
 
