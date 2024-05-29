@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ppid_aspirasi_pengaduans', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignId('status_ppid')->constrained();
-            $table->string('nik');
-            $table->string('judul');
-            $table->text('saran');
+        Schema::create('status_ppids', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->enum('progress', ['belum', 'diproses', 'selesai']);
+            $table->text('uraian');
+            $table->string('file');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ppid_aspirasi_pengaduan');
+        Schema::dropIfExists('status_ppids');
     }
 };

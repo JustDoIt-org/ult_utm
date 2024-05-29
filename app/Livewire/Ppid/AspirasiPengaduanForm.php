@@ -9,6 +9,7 @@ use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PpidAspirasiPengaduan;
 use App\Livewire\Module\Trait\Notification;
+use App\Models\StatusPpid;
 
 class AspirasiPengaduanForm extends Component
 {
@@ -60,17 +61,25 @@ class AspirasiPengaduanForm extends Component
         } else {
             $fileName = '';
         }
-        PpidAspirasiPengaduan::create(
+
+        $status = StatusPpid::create([
+            'user_id' => Auth::id(),
+            'progres' => 'belum',
+            'uraian' => $this->uraian,
+            'file' => $fileName,
+            'type' => $this->aspengaduan_button,
+        ]);
+
+        $data = PpidAspirasiPengaduan::create(
             [
-                'user_id' => Auth::id(),
-                'jenis' => $this->aspengaduan_button,
-                'nik' => $this->nik,
                 'judul' => $this->judul,
-                'uraian' => $this->uraian,
+                'status_ppid' => $status->id,
+                'nik' => $this->nik,
                 'saran' => $this->saran,
-                'file' => $fileName,
             ]
         );
+        dd($data);
+
 
         $this->resetInput();
 

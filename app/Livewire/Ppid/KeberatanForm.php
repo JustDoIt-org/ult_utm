@@ -6,6 +6,8 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PpidAspirasiPengaduan;
 use App\Livewire\Module\Trait\Notification;
+use App\Models\RequestPpid;
+use App\Models\StatusPpid;
 
 class KeberatanForm extends Component
 {
@@ -28,13 +30,20 @@ class KeberatanForm extends Component
             "field_search" => 'required|min:3',
         ]);
 
-        $data = PpidAspirasiPengaduan::find($this->field_search);
-        if ($data) {
-            $this->data_found = $data;
+        $data_aspirasi = PpidAspirasiPengaduan::find($this->field_search);
+        // $data = StatusPpid::find(1);
+        if ($data_aspirasi) {
+            $this->data_found = $data_aspirasi;
         } else {
-            session()->flash('message', 'Data Not Found');
-            $this->data_found = false;
+            $data_request = RequestPpid::find($this->field_search);
+            if ($data_request) {
+                $this->data_found = $data_request;
+            } else {
+                session()->flash('message', 'Data Not Found');
+                $this->data_found = false;
+            }
         }
+
 
         // $this->resetInput();
     }

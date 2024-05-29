@@ -10,14 +10,14 @@
     @if ($data_found)
       <div>
         {{-- <p>{{ $data_found->id }}</p> --}}
-        <p>{{ $data_found->progress }}</p>
-        <p>{{ $data_found->user->name }}</p>
+        <p>{{ $data_found->status->progress }}</p>
+        <p>{{ $data_found->status->user->name }}</p>
         <p>{{ $data_found->jenis }}</p>
         <p>{{ $data_found->nik }}</p>
         <p>{{ $data_found->judul }}</p>
-        <p>{{ $data_found->uraian }}</p>
+        <p>{{ $data_found->status->uraian }}</p>
         <p>{{ $data_found->saran }}</p>
-        <img src="/storage/{{ $data_found->file }}" alt="" width="100">
+        <img src="/storage/{{ $data_found->status->file }}" alt="" width="100">
       </div>
     @endif
     @if (session()->has('message'))

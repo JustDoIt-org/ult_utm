@@ -7,6 +7,11 @@
           @foreach ($kategori_pemohon as $kategori)
             <x-element.input.input-radio :$kategori name="jenis_layanan" model="aspengaduan_button" />
           @endforeach
+          @error('aspengaduan_button')
+            <div class="text-red-600">
+              <strong>{{ $message }}</strong>
+            </div>
+          @enderror
         </div>
       </div>
 

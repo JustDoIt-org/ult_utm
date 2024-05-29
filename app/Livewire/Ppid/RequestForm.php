@@ -3,42 +3,34 @@
 namespace App\Livewire\Ppid;
 
 use Livewire\Component;
+use App\Models\StatusPpid;
+use Livewire\WithFileUploads;
+use App\Livewire\Ppid\BasePpid;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Module\Trait\Notification;
+use App\Models\RequestPpid;
 
 class RequestForm extends Component
 {
-    use Notification;
+    use Notification, WithFileUploads;
 
-    public $field_search;
-    public $kategori_pemohon;
-    public $kategori_pemohon_field;
+    public BasePpid $base;
 
     public function render()
     {
-        $pemohon = ['Perorangan', 'Pemerintah', 'Instansi Swasta', 'Organisasi Lainnya'];
-        $fields = [['Alamat', 'alamat'], ['Pekerjaan', 'pekerjaan']];
-        $text_area = ['Judul Aspirasi/Pengaduan', 'Saran'];
-        $data = ["pemohon" => $pemohon, "fields" => $fields, "text_area" => $text_area];
-        return view('pages.ppid.request-form', $data);
+
+        return view('pages.ppid.request-form', $this->base->RequestFormStatic());
     }
 
     public function store()
     {
-        $fields = $this->kategori_pemohon . ' ' . $this->kategori_pemohon_field;
-        dd($fields);
-        $id = Auth::id();
-        $this->validate([
-            "field_search" => 'required|min:3',
-        ]);
+        $this->base->validate_form();
+        $this->base->post_request();
+        $this->base->resetInput();
 
-
-        $this->resetInput();
-    }
-
-
-    private function resetInput()
-    {
-        $this->field_search = null;
+        return $this->toast(
+            message: 'Berhasil',
+            type: 'success'
+        );
     }
 }
