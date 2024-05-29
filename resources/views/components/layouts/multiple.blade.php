@@ -50,7 +50,7 @@
         @if (Auth::check())
             <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="md:pl-60 pt-16 md:pointer-events-auto overflow-x-hidden">
         @else
-            <div class="py-10 px-24">
+            <div class="py-10 md:px-7 lg:px-24">
         @endif
         @yield('content')
       </div>
