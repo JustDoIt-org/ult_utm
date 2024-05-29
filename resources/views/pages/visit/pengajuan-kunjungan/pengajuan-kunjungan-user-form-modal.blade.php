@@ -1,7 +1,3 @@
-@php
-    $sisa_kouta = null;
-@endphp
-
 <x-section.modal maxWidth="md" :name="$this->modal_name" :title="$this->title" method="save">
     <div class="flex flex-col mb-5">
         <label for="form.tujuan_kegiatan">Tujuan Kegiatan</label>
@@ -15,6 +11,7 @@
     </div>
     <div class="flex flex-col">
         <label for="form.tanggal_tersedia">Tanggal Tersedia</label>
+
         <x-element.select.dropdown wire:model.change="form.tanggal_tersedia">
             <option>---Pilih tanggal yang tersedia---</option>
 
@@ -24,6 +21,10 @@
                 </option>
             @endforeach
         </x-element.select.dropdown>
+
+        <span class="text-sm font-semibold text-slate-600 mt-2">
+            Tanggal kunjungan: <span class="text-green-500">{{ $form->tanggal_tersedia }}</span>
+        </span>
     </div>
     <x-element.layout.vertical name="form.institusi_pengunjung" label="Institusi Pengunjung">
         <x-element.input.line wire:model="form.institusi_pengunjung" />
@@ -49,8 +50,9 @@
     <x-element.layout.vertical name="form.kontak_pic" label="Kontak PIC">
         <x-element.input.line wire:model="form.kontak_pic" />
     </x-element.layout.vertical>
+
     <x-element.layout.vertical name="form.surat_permohonan" label="Surat Permohonan">
-        <x-element.input.line type="file" wire:model="form.surat_permohonan" />
+        <input type="file" accept=".pdf, .doc, .docx" id="form.surat_permohonan" wire:model="form.surat_permohonan" />
     </x-element.layout.vertical>
 
     <x-slot:button>

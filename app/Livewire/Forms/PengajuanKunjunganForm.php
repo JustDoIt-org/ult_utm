@@ -5,6 +5,8 @@ namespace App\Livewire\Forms;
 use App\Livewire\Module\Trait\Notification;
 use App\Models\InformasiKouta;
 use App\Models\PengajuanKunjungan;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -44,7 +46,7 @@ class PengajuanKunjunganForm extends Form
     #[Validate('required')]
     public $kontak_pic;
 
-    #[Validate('required')]
+    #[Validate('mimes:pdf,doc,docx')]
     public $surat_permohonan;
 
     public function load(int $id)
@@ -74,8 +76,8 @@ class PengajuanKunjunganForm extends Form
         $this->provinsi_asal = '';
         $this->kota_asal = '';
         $this->nama_kegiatan = '';
-        $this->kapasitas_peserta = '';
-        $this->jumlah_bus = '';
+        $this->kapasitas_peserta = 0;
+        $this->jumlah_bus = 0;
         $this->nama_pic = '';
         $this->kontak_pic = '';
         $this->surat_permohonan = null;
@@ -84,7 +86,31 @@ class PengajuanKunjunganForm extends Form
     public function post()
     {
         $this->validate();
-        return PengajuanKunjungan::updateOrCreate(['id' => $this->id], $this->all());
+
+        $fileName = '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
+
+        if ($this->id != 0) {
+            $doc = PengajuanKunjungan::find($this->id);
+            unlink(public_path('storage' . $doc->surat_permohonan));
+
+        }
+
+        return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
+            'user_id' => Auth::id(),
+            'tujuan_kegiatan' => $this->tujuan_kegiatan,
+            'tanggal_tersedia' => date('Y-m-d', strtotime($this->tanggal_tersedia)),
+            'institusi_pengunjung' => $this->institusi_pengunjung,
+            'provinsi_asal' => $this->provinsi_asal,
+            'kota_asal' => $this->kota_asal,
+            'nama_kegiatan' => $this->nama_kegiatan,
+            'kapasitas_peserta' => $this->kapasitas_peserta,
+            'jumlah_bus' => $this->jumlah_bus,
+            'nama_pic' => $this->nama_pic,
+            'kontak_pic' => $this->kontak_pic,
+            'surat_permohonan' => $fileName,
+            'progress' => 'belum'
+        ]);
+
     }
 
     public function generateKunjungan()

@@ -11,6 +11,7 @@ class PengajuanKunjungan extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'tujuan_kegiatan',
         'tanggal_tersedia',
         'institusi_pengunjung',
