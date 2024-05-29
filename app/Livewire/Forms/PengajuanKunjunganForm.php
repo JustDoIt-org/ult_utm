@@ -46,7 +46,6 @@ class PengajuanKunjunganForm extends Form
     #[Validate('required')]
     public $kontak_pic;
 
-    #[Validate('mimes:pdf,doc,docx')]
     public $surat_permohonan;
 
     public function load(int $id)
@@ -87,12 +86,15 @@ class PengajuanKunjunganForm extends Form
     {
         $this->validate();
 
-        $fileName = '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
+        $fileName = ($this->id != 0) ? $this->surat_permohonan : '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
 
         if ($this->id != 0) {
             $doc = PengajuanKunjungan::find($this->id);
-            unlink(public_path('storage' . $doc->surat_permohonan));
 
+            if($this->surat_permohonan != $doc->surat_permohonan){
+                $fileName = '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
+                unlink(public_path('storage' . $doc->surat_permohonan));
+            }
         }
 
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [

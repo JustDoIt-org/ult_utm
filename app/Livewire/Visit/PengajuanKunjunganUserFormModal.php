@@ -60,19 +60,28 @@ class PengajuanKunjunganUserFormModal extends BaseModal
 
     public function save()
     {
-        if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
-            parent::save();
-            if($this->form->post()) {
-                $this->dispatch('close-modal', name: $this->modal_name);
-                $this->dispatch('pengajuan-kunjungan-user-table:reload');
+        if($this->form->surat_permohonan != null){
+
+            if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+                parent::save();
+                if($this->form->post()) {
+                    $this->dispatch('close-modal', name: $this->modal_name);
+                    $this->dispatch('pengajuan-kunjungan-user-table:reload');
+                    $this->toast(
+                        message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
+                        type: 'success'
+                    );
+                }
+            }else{
                 $this->toast(
-                    message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
-                    type: 'success'
+                    message: 'Kapasitas peserta melebihi kouta',
+                    type: 'error'
                 );
             }
+
         }else{
             $this->toast(
-                message: 'Kapasitas peserta melebihi kouta',
+                message: 'Diharap untuk melampirkan surat permohonan',
                 type: 'error'
             );
         }
