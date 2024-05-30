@@ -88,7 +88,43 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "description" => "Dapat menghapus data faq",
                     "role" => [Role::ADMIN],
                 ],
-            ]
+            ],
+            "informasi-kouta" => [
+                "index" => [
+                    "description" => "Dapat mengakses data informasi-kouta",
+                    "role" => [Role::ADMIN],
+                ],
+                "create" => [
+                    "description" => "Dapat membuat data informasi-kouta",
+                    "role" => [Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data informasi-kouta",
+                    "role" => [Role::ADMIN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data informasi-kouta",
+                    "role" => [Role::ADMIN],
+                ],
+            ],
+            "pengajuan-kunjungan-for-user" => [
+                "index" => [
+                    "description" => "Dapat mengakses data pengajuan-kunjungan-for-user",
+                    "role" => [Role::ADMIN, Role::GUEST],
+                ],
+                "create" => [
+                    "description" => "Dapat membuat data pengajuan-kunjungan-for-user",
+                    "role" => [Role::ADMIN, Role::GUEST],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data pengajuan-kunjungan-for-user",
+                    "role" => [Role::ADMIN, Role::GUEST],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data pengajuan-kunjungan-for-user",
+                    "role" => [Role::ADMIN, Role::GUEST],
+                ],
+            ],
         ];
     }
 }

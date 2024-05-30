@@ -37,6 +37,6 @@ class CreateUserForm extends Form
     public function post()
     {
         $this->validate();
-        return User::create($this->all());
+        return User::create($this->all())->syncRoles(\App\Models\Role::GUEST);
     }
 }

@@ -42,7 +42,7 @@ class FaqFormModal extends BaseModal
 
     public function render()
     {
-        return view('pages.faq.faq-form-modal');
+        return view('pages.admin.faq.faq-form-modal');
     }
 
     #[Computed(persist: true)]

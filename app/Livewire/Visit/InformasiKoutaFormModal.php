@@ -1,38 +1,38 @@
 <?php
 
-namespace App\Livewire\Role;
+namespace App\Livewire\Visit;
 
-use App\Livewire\Forms\RoleForm;
+use App\Livewire\Forms\InformasiKoutaForm;
 use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
-use App\Models\Permission;
+use App\Models\InformasiKouta;
 use Livewire\Attributes\Computed;
 
-class RoleFormModal extends BaseModal
+class InformasiKoutaFormModal extends BaseModal
 {
     use Notification;
 
-    public RoleForm $form;
+    public InformasiKoutaForm $form;
 
     /*
      * normal modal title
      * @var string
      */
-    protected static $title = "Add New Role";
+    protected static $title = "Add New Informasi Kouta";
 
     /*
      * load modal title
      * @var string
      */
-    protected static $load_title = "Update Role";
+    protected static $load_title = "Update Informasi Kouta";
 
     /*
      * save or load permission
      * @var string|bool
      */
     protected $permission = [
-        'load' => 'role edit',
-        'save' => 'role create'
+        'load' => 'informasi-kouta edit',
+        'save' => 'informasi-kouta create'
     ];
 
     public function mount()
@@ -42,13 +42,13 @@ class RoleFormModal extends BaseModal
 
     public function render()
     {
-        return view("pages.admin.role.role-form-modal");
+        return view('pages.admin.visit.informasi-kouta.informasi-kouta-form-modal');
     }
 
     #[Computed(persist: true)]
-    public function permissions()
+    public function informasiKouta()
     {
-        return Permission::all();
+        return InformasiKouta::all();
     }
 
     public function load($id)
@@ -62,9 +62,9 @@ class RoleFormModal extends BaseModal
         parent::save();
         if($this->form->post()) {
             $this->dispatch('close-modal', name: $this->modal_name);
-            $this->dispatch('role-table:reload');
+            $this->dispatch('informasi-kouta-table:reload');
             $this->toast(
-                message: $this->form->id == 0 ? 'Role Created' : 'Role Updated',
+                message: $this->form->id == 0 ? 'Informasi Kouta Created' : 'Informasi Kouta Updated',
                 type: 'success'
             );
         }

@@ -1,19 +1,17 @@
 <?php
 
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\ULTInformationsController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\ULTInformationsController;
+use App\Http\Controllers\Admin\InformasiKoutaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ultController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Ppid\PpidController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Ppid\RequestController;
 use App\Http\Controllers\Visit\ScheduleController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Visit\SubmissionController;
-use App\Http\Controllers\Ppid\FormKeberatanController;
-use App\Http\Controllers\Ppid\AspirasiPengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +34,12 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
     Route::get('/roles', [RoleController::class, 'index'])->can('role index')->name('admin.roles');
     Route::get('/faqs', [FaqController::class, 'index'])->can('faq index')->name('admin.faqs');
     Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->can('ult-informations index')->name('admin.ult-informations');
+    Route::get('/informasi-kouta', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.informasi-kouta');
 });
 
 // Visit
 Route::get('/visit', [ScheduleController::class, 'index'])->name('visit.schedules');
-Route::get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
+Route::middleware(['auth', 'verified'])->get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
 
 
 

@@ -28,23 +28,30 @@
     </header>
 
     <aside>
-        <x-layouts.partials.sidebar.sidebar>
-            @if ($path = explode('.', Route::currentRouteName())[0] == "admin")
-                <x-section.admin.admin-navigation />
-            @endif
-
-            @if ($path = explode('.', Route::currentRouteName())[0] == "visit")
-                <x-section.visit.visit-navigation />
-            @endif
-
-            @if ($path = explode('.', Route::currentRouteName())[0] == "ppid")
-                <x-section.ppid.ppid-navigation />
-            @endif
-        </x-layouts.partials.sidebar.sidebar>
+        @if (Auth::check())
+            <x-layouts.partials.sidebar.sidebar>
+                @switch(explode('.', Route::currentRouteName())[0])
+                    @case("admin")
+                        <x-section.admin.admin-navigation />
+                        @break
+                    @case("visit")
+                        <x-section.visit.visit-navigation />
+                        @break
+                    @case("ppid")
+                        <x-section.ppid.ppid-navigation />
+                        @break
+                    @default
+                @endswitch
+            </x-layouts.partials.sidebar.sidebar>
+        @endif
     </aside>
 
     <main class="box-border">
-      <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="md:pl-60 pt-16 md:pointer-events-auto overflow-x-hidden">
+        @if (Auth::check())
+            <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="md:pl-60 pt-16 md:pointer-events-auto overflow-x-hidden">
+        @else
+            <div class="py-10 md:px-7 lg:px-24">
+        @endif
         @yield('content')
       </div>
     </main>

@@ -20,7 +20,7 @@ class AboutForm extends Component
     public function render()
     {
         $this->load();
-        return view('pages.ult-informations.about-ult.about-form');
+        return view('pages.admin.ult-informations.about-ult.about-form');
     }
 
     public function load()

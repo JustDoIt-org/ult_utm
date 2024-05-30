@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\ChatBot\Conversations;
 
-use App\Http\Controllers\Controller;
 use App\Models\Faq;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Messages\Incoming\Answer;

@@ -142,6 +142,23 @@
                                                         <p class="w-[250px] md:w-[400px] truncate">{{ __($dt) }}</p>
                                                     </td>
                                                     @break
+                                                @case('progress')
+                                                    <td class="pl-14 box-border">
+
+                                                        @if ($dt == 'belum')
+                                                            <img alt="{{ $dt }}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABzklEQVR4nM2Xu0oDQRSGP1CsFI2PIMHCxl4FL4h3LcQ3EGMnGsHewspLYaW1L2CrUfEdRMgjeItBu8Til8ETCGEvs9kkOPDDMjs735wzZ86chf/YBN2CnGC8k9B5QVHwIlixvoxgQ5AXnJny1pdpBfRAUBEcCnoFS4I7wY9AIaoKCoLFZqGXgrJgTjAseIyAhelekE1qaVkwIpgVfDYBrakkmPHd04pZOmuui5o4Z4oaU42E6y96i7anw56W+oBrlmfDwNuCV0Gf7Y9aCHZ6DANPCJYtetUGsAQLUS6/ayP4Ngw6GHNO04KrgUnGso/aCJZgPQi83wFwPgh8mmCCkuXtjD37fneSFvwu6K9LsanA+wnd9ia4EPQIrtK4eiMhuKarBPD1IHDGIz/Hwa8jxlRq2xMELzQJlkHfIt7fBEINvJgCHKc5wapgrBVp01cPdgG5MmozDJxNeDbj9CEYEhwLngRdUS6fSRFo9XJzTAvWLLgmQ6EN8FJKS6cEo4JvwU4stMHtvoVBvQrmXnfHfwnOvaENC1hw92mM+50rbyx6XSAdWd9uU9CGBQy47CPYs2L+1J5d34CNWbEy6tmryqRFzf3uCLZcAdkxaJL2C2LSRTbC3CXeAAAAAElFTkSuQmCC">
+                                                        @endif
+
+                                                        @if ($dt == 'diproses')
+                                                            <img alt="{{ $dt }}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAACnElEQVR4nNWXyWsUURDGPyEgiAtuqAcXvMQgKi4ogqBnEVEUl/8hRxfwoicP0YSAIKOHiYqCG3iQkJPkoImHjAeHMV3Vw4AgEfVmVBS3T17P657XMz0z6ZmMYkPB8Lrq/aqq36uqAf6Xh3kspuAOBc+pGKNgmIp+Co6xhEWtberhIAUZCq7FRNEb6ShOUMFEEXyj4CYVPenAgo8NNt0Q6BQwn4oBCrIBxEQseFOl/4OCy/Qx1wlqH33sTQYrzlExQcXrGrCH7Q2dLmIjBX1VzudYwEp6WEfBr0BeYW29qJdRIWnBkb0BKe47mSpSsb/hPpzCPHtoQuDttOBoL8UpCn5b+PvGYMFFx9OzRqlVsIWfbpo5KtYHp7Ks8ChY89DtGHS3dDsUn5qBw7ROs4jVznqve51m4XZsrigWsMSJdjANpMntyMVEkOUoulwPjzte7WwXnMbDQQt9S2LO3wNLUG8NeKxjDMUuKp6amu6Cxy34bsfAgow9XOPuYrloCLIdAytu2eCeuYv3LPhSB8EjlvG4sjiJpVScNJ2ng+CpTgdXC/WwKbquPo7EX/pYHtRmV4rYZhpH22BFv432Kz0siEPrl7l8W9Bym5y24KH4S7cL1crLFJFdoOALBYeiNcFDu8/3cIppBn6QNtW2PpvIMhZ6xmkOfbUGLljwwfl9fqZQC85Zu+tBPw8HAcWEO38lg30coKDkwIfNzJQKHO/BPktYkWxgUloBb+UkVlHwwjH+TMEVFrG7URNxwKHT74J5q4Q1yQZm1lLkzUEKv6lJTTCimlE1/u1NIRix8/NVethRF1xx4CcFe2aSNTeKHgpuOINCtTyJdAVDswZGuKmPhfRw1JQ820bN3xfTXA5HOqPoomJLQiGKRql//vwBpAx4oM9SHQYAAAAASUVORK5CYII=">
+                                                        @endif
+
+                                                        @if ($dt == 'selesai')
+                                                            <img alt="{{ $dt }}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABuUlEQVR4nO2Wu0oDURCG/ySFaJHszGoh2MXewsZeooLxUvkcVnaCVVCxsVbjA3hpLHwHQUxawZ2zAUMaBbWKhSu7QWPInr3biAPTZE/mY+4D/EsUeZwcQ2tiuqdTo/g1cZCHba5C0SkUdaDYGVT3N6rDNla8t5mI0BIUN4dhWm3A4oU0XhYgvBsDOKhCh56N2FBFl4mh/RRcxAu94oP00C/PeS8atJdTJ1O1uRIW4jwU32UOVtwMDrnXMqnC+gRhy/+7UQ3Irduniav4Bq0iw0HOvzDpJAjcSQyVkvHDTs3nTVs/BvVtsQXLmIHi61Co8BwUvfraafmNV7tY1njz9v3mHiMQvgqBvuiru1iODvb+QBtD8LhQpQMHhpq7sMy1AfgDlWJBlS7U4cU1CI8LFV1x9cD1EAPvEHO9n57xWQg/R+zxIz3Y3afhRrpQvA3hzUie9jtjWQ92x5rQbaJeDtZG+JayaDFTqPAHlDmPSCK8nx2catGgvZAXIHSe3ls6i3+DOchBaCfl6ZPi8LO5EmtHe8UZNadh4h0IRtVbbe4gGIa1IXTstUxm562fuKPPnbuu/upBjz8kn2ngdQoQFG+/AAAAAElFTkSuQmCC">
+                                                        @endif
+
+                                                    </td>
+                                                    @break
                                                 @default
                                                     <td class="px-6 py-4 whitespace-nowrap">{{ __($dt) }}</td>
                                             @endswitch
