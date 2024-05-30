@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\FacultiesController;
+use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ULTInformationsController;
 use App\Http\Controllers\Admin\InformasiKoutaController;
@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
     Route::get('/users', [UserController::class, 'index'])->can('user index')->name('admin.users');
     Route::get('/roles', [RoleController::class, 'index'])->can('role index')->name('admin.roles');
     Route::get('/faqs', [FaqController::class, 'index'])->can('faq index')->name('admin.faqs');
-    Route::get('/faculties', [FacultiesController::class, 'index'])->name('admin.faculties');
+    Route::get('/faculties', [FacultyController::class, 'index'])->name('admin.faculties');
     Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->can('ult-informations index')->name('admin.ult-informations');
     Route::get('/informasi-kouta', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.informasi-kouta');
 });

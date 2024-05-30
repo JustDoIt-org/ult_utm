@@ -11,6 +11,11 @@ class Faculty extends Model
 
     protected $fillable = ['name', 'code'];
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->orWhere("name", "like", "%{$search}%")->orWhere("code", "like", "{$search}%");
+    }
+
     #################################################################
     #####                      Relations                        #####
     #################################################################
