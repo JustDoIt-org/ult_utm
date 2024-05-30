@@ -84,10 +84,10 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withPivot('value');
     }
 
-    public function faculty()
-    {
-        return $this->belongsToMany(Faculty::class, 'faculty_administrators', 'user_id');
-    }
+    // public function faculty()
+    // {
+    //     return $this->belongsToMany(Faculty::class, 'faculty_administrators', 'user_id');
+    // }
 
     public function pengajuanKunjungan()
     {

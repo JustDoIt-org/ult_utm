@@ -14,9 +14,9 @@ class Faculty extends Model
     #################################################################
     #####                      Relations                        #####
     #################################################################
-    
-    public function admin()
-    {
-        return $this->belongsToMany(User::class);
-    } 
+
+    // public function admin()
+    // {
+    //     return $this->belongsToMany(User::class);
+    // }
 }
