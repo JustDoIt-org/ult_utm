@@ -78,7 +78,6 @@ class AspirasiPengaduanForm extends Component
                 'saran' => $this->saran,
             ]
         );
-        dd($data);
 
 
         $this->resetInput();
