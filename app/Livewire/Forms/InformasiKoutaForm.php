@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Faculty;
 use App\Models\InformasiKouta;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
@@ -34,7 +35,7 @@ class InformasiKoutaForm extends Form
         $this->id = $ik->id;
         $this->tanggal_kunjungan = $ik->tanggal_kunjungan;
         $this->sisa_kouta = $ik->sisa_kouta;
-        $this->tujuan_kunjungan = $ik->tujuan_kunjungan;
+        $this->tujuan_kunjungan = $ik->faculty->name;
         $this->warna_tulisan = $ik->warna_tulisan;
         $this->warna_latar_belakang = $ik->warna_latar_belakang;
 
@@ -53,6 +54,17 @@ class InformasiKoutaForm extends Form
     public function post()
     {
         $this->validate();
-        return InformasiKouta::updateOrCreate(['id' => $this->id], $this->all());
+
+        $faculty = Faculty::where('name', '=', $this->tujuan_kunjungan)->get()->first();
+
+        return InformasiKouta::updateOrCreate(['id' => $this->id], [
+            'id' => $this->id,
+            'faculty_id' => $faculty->id,
+            'tanggal_kunjungan' => $this->tanggal_kunjungan,
+            'sisa_kouta' => $this->sisa_kouta,
+            // 'tujuan_kunjungan' => $this->tujuan_kunjungan,
+            'warna_tulisan' => $this->warna_tulisan,
+            'warna_latar_belakang' => $this->warna_latar_belakang
+        ]);
     }
 }

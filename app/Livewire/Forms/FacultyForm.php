@@ -21,7 +21,7 @@ class FacultyForm extends Form
     public function rules()
     {
         return ($this->id == 0) ? [
-            'name' => ['required'],
+            'name' => ['required', 'unique:faculties,name'],
             'code' => ['required', 'unique:faculties,code'],
         ] : [
             'name' => ['required'],

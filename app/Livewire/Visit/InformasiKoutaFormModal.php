@@ -5,6 +5,7 @@ namespace App\Livewire\Visit;
 use App\Livewire\Forms\InformasiKoutaForm;
 use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
+use App\Models\Faculty;
 use App\Models\InformasiKouta;
 use Livewire\Attributes\Computed;
 
@@ -42,7 +43,9 @@ class InformasiKoutaFormModal extends BaseModal
 
     public function render()
     {
-        return view('pages.admin.visit.informasi-kouta.informasi-kouta-form-modal');
+        return view('pages.admin.visit.informasi-kouta.informasi-kouta-form-modal', [
+            'faculties' => Faculty::all()
+        ]);
     }
 
     #[Computed(persist: true)]

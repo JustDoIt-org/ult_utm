@@ -6,9 +6,18 @@
     <x-element.layout.vertical name="form.sisa_kouta" label="Sisa Kouta">
         <x-element.input.line type="number" wire:model="form.sisa_kouta" />
     </x-element.layout.vertical>
-    <x-element.layout.vertical name="form.tujuan_kunjungan" label="Tujuan Kunjungan">
+    <div class="flex flex-col">
+        <label for="form.tujuan_kunjungan">Roles</label>
+        <x-element.select.dropdown wire:model.change="form.tujuan_kunjungan">
+                <option>--- Choose Faculty ---</option>
+            @foreach ($faculties as $faculty)
+                <option value="{{$faculty['name']}}">{{ $faculty["name"] }}</option>
+            @endforeach
+        </x-element.select.dropdown>
+    </div>
+    {{-- <x-element.layout.vertical name="form.tujuan_kunjungan" label="Tujuan Kunjungan">
         <x-element.input.line wire:model="form.tujuan_kunjungan" />
-    </x-element.layout.vertical>
+    </x-element.layout.vertical> --}}
     <x-element.layout.vertical name="form.warna_tulisan" label="Warna Tulisan">
         <x-element.input.line type="color" wire:model="form.warna_tulisan" />
     </x-element.layout.vertical>

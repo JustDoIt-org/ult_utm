@@ -24,4 +24,9 @@ class Faculty extends Model
     // {
     //     return $this->belongsToMany(User::class);
     // }
+
+    public function informasiKouta()
+    {
+        return $this->hasMany(PengajuanKunjungan::class);
+    }
 }

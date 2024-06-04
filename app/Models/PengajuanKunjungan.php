@@ -11,7 +11,8 @@ class PengajuanKunjungan extends Model
 
     protected $fillable = [
         'user_id',
-        'tujuan_kegiatan',
+        'informasi_kouta_id',
+        // 'tujuan_kegiatan',
         'tanggal_tersedia',
         'institusi_pengunjung',
         'provinsi_asal',
@@ -41,5 +42,10 @@ class PengajuanKunjungan extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function informasiKouta()
+    {
+        return $this->belongsTo(InformasiKouta::class, 'informasi_kouta_id', 'id');
     }
 }
