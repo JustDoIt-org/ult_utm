@@ -2,6 +2,7 @@
     'information_kouta' => ''
 ])
 
+
 <!-- Full Calendar -->
 <script>
     document.addEventListener('calendarRefresh', function() {
@@ -11,9 +12,9 @@
         });
 
         calendar.batchRendering(() => {
-            @js($information_kouta).forEach(value => {
+            @js($information_kouta).forEach(value, i => {
                 calendar.addEvent({
-                    title: `${ value.tujuan_kunjungan } | Kouta: ${ value.sisa_kouta }`,
+                    title: `${ value.name } | Kouta: ${ value.sisa_kouta }`,
                     start: value.tanggal_kunjungan,
                     textColor: value.warna_tulisan,
                     backgroundColor: value.warna_latar_belakang,

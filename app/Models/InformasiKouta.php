@@ -18,6 +18,14 @@ class InformasiKouta extends Model
         'warna_latar_belakang'
     ];
 
+    public static function selectedInformasiKouta($id, $tanggal, $sisa_kouta)
+    {
+        return InformasiKouta::where('faculty_id', '=', $id)
+            ->where('tanggal_kunjungan', '=', $tanggal)
+            ->where('sisa_kouta', '=', $sisa_kouta)
+            ->get()->first();
+    }
+
     public function scopeSearch($query, $search)
     {
         return $query->orWhere("sisa_kouta", "like", "{$search}%");

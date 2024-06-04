@@ -16,6 +16,11 @@ class Faculty extends Model
         return $query->orWhere("name", "like", "%{$search}%")->orWhere("code", "like", "{$search}%");
     }
 
+    public static function getIdFacultyWithName($name)
+    {
+        return Faculty::where("name", "=", $name)->get()->first()->id;
+    }
+
     #################################################################
     #####                      Relations                        #####
     #################################################################

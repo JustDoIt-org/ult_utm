@@ -85,11 +85,11 @@ class PengajuanKunjunganForm extends Form
     {
         $this->validate();
 
-        $faculty_id = Faculty::where("name", "=", $this->tujuan_kegiatan)->get()->first()->id;
-        $informasi_kouta = InformasiKouta::where('faculty_id', '=', $faculty_id)
-            ->where('tanggal_kunjungan', '=', $this->tanggal_tersedia)
-            ->where('sisa_kouta', '=', $this->getSisaKouta())
-            ->get();
+        $informasi_kouta = InformasiKouta::selectedInformasiKouta(
+            Faculty::getIdFacultyWithName($this->tujuan_kegiatan),
+            $this->tanggal_tersedia,
+            $this->getSisaKouta()
+        );
 
         $fileName = ($this->id != 0) ? $this->surat_permohonan : '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
 
@@ -104,7 +104,7 @@ class PengajuanKunjunganForm extends Form
 
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
             'user_id' => Auth::id(),
-            'informasi_kouta_id' => $informasi_kouta[0]["id"],
+            'informasi_kouta_id' => $informasi_kouta->id,
             'institusi_pengunjung' => $this->institusi_pengunjung,
             'provinsi_asal' => $this->provinsi_asal,
             'kota_asal' => $this->kota_asal,
@@ -137,7 +137,7 @@ class PengajuanKunjunganForm extends Form
         $sisa_kouta = [];
 
         if($this->tujuan_kegiatan){
-            $faculty_id = Faculty::where("name", "=", $this->tujuan_kegiatan)->get()->first()->id;
+            $faculty_id = Faculty::getIdFacultyWithName($this->tujuan_kegiatan);
             $informasi_kouta = InformasiKouta::where("faculty_id", "=", $faculty_id)->get();
 
             foreach ($informasi_kouta as $value) {
