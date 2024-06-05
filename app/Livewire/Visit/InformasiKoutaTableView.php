@@ -44,7 +44,7 @@ class InformasiKoutaTableView extends BaseTable
             ],
             [
                 "label" => "Tujuan Kunjungan",
-                "query" => "tujuan_kunjungan",
+                "query" => "faculty.name",
                 "sort" => true,
             ],
         ];

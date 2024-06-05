@@ -35,6 +35,24 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN],
                 ],
             ],
+            "faculty" => [
+                "index" => [
+                    "description" => "Dapat mengakses data faculty",
+                    "role" => [Role::ADMIN],
+                ],
+                "create" => [
+                    "description" => "Dapat membuat data faculty",
+                    "role" => [Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data faculty",
+                    "role" => [Role::ADMIN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data faculty",
+                    "role" => [Role::ADMIN],
+                ],
+            ],
             "role" => [
                 "index" => [
                     "description" => "Dapat mengakses data role",

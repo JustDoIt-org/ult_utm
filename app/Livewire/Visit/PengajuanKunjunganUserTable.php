@@ -46,7 +46,7 @@ class PengajuanKunjunganUserTable extends BaseTable
         return [
             [
                 "label" => "Tanggal Kunjungan",
-                "query" => "tanggal_tersedia",
+                "query" => "informasiKouta.tanggal_kunjungan",
                 "sort" => true,
             ],
             [
@@ -61,7 +61,7 @@ class PengajuanKunjunganUserTable extends BaseTable
             ],
             [
                 "label" => "Tujuan Kegiatan",
-                "query" => "tujuan_kegiatan",
+                "query" => "informasiKouta.faculty.name",
                 "sort" => true,
             ],
             [

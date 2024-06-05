@@ -1,39 +1,38 @@
 <?php
 
-namespace App\Livewire\Visit;
+namespace App\Livewire\Faculty;
 
-use App\Livewire\Forms\InformasiKoutaForm;
+use App\Livewire\Forms\FacultyForm;
 use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
 use App\Models\Faculty;
-use App\Models\InformasiKouta;
 use Livewire\Attributes\Computed;
 
-class InformasiKoutaFormModal extends BaseModal
+class FacultyFormModal extends BaseModal
 {
     use Notification;
 
-    public InformasiKoutaForm $form;
+    public FacultyForm $form;
 
     /*
      * normal modal title
      * @var string
      */
-    protected static $title = "Add New Informasi Kouta";
+    protected static $title = "Add New Faculty";
 
     /*
      * load modal title
      * @var string
      */
-    protected static $load_title = "Update Informasi Kouta";
+    protected static $load_title = "Update Faculty";
 
     /*
      * save or load permission
      * @var string|bool
      */
     protected $permission = [
-        'load' => 'informasi-kouta edit',
-        'save' => 'informasi-kouta create'
+        'load' => 'faculty edit',
+        'save' => 'faculty create'
     ];
 
     public function mount()
@@ -43,15 +42,13 @@ class InformasiKoutaFormModal extends BaseModal
 
     public function render()
     {
-        return view('pages.admin.visit.informasi-kouta.informasi-kouta-form-modal', [
-            'faculties' => Faculty::all()
-        ]);
+        return view('pages.admin.faculty.faculty-form-modal');
     }
 
     #[Computed(persist: true)]
-    public function informasiKouta()
+    public function faculties()
     {
-        return InformasiKouta::all();
+        return Faculty::all();
     }
 
     public function load($id)
@@ -65,9 +62,9 @@ class InformasiKoutaFormModal extends BaseModal
         parent::save();
         if($this->form->post()) {
             $this->dispatch('close-modal', name: $this->modal_name);
-            $this->dispatch('informasi-kouta-table:reload');
+            $this->dispatch('faculties-table:reload');
             $this->toast(
-                message: $this->form->id == 0 ? 'Informasi Kouta Created' : 'Informasi Kouta Updated',
+                message: $this->form->id == 0 ? 'Faculty Created' : 'Faculty Updated',
                 type: 'success'
             );
         }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Faculty;
 use App\Models\InformasiKouta;
 use App\Models\PengajuanKunjungan;
 use Illuminate\Support\Facades\Auth;
@@ -51,8 +52,8 @@ class PengajuanKunjunganForm extends Form
         $pengajuan = PengajuanKunjungan::find($id);
 
         $this->id = $pengajuan->id;
-        $this->tujuan_kegiatan = $pengajuan->tujuan_kegiatan;
-        $this->tanggal_tersedia = $pengajuan->tanggal_tersedia;
+        $this->tujuan_kegiatan = $pengajuan->informasiKouta->faculty->name;
+        $this->tanggal_tersedia = $pengajuan->informasiKouta->tanggal_kunjungan;
         $this->institusi_pengunjung = $pengajuan->institusi_pengunjung;
         $this->provinsi_asal = $pengajuan->provinsi_asal;
         $this->kota_asal = $pengajuan->kota_asal;
@@ -84,6 +85,12 @@ class PengajuanKunjunganForm extends Form
     {
         $this->validate();
 
+        $informasi_kouta = InformasiKouta::selectedInformasiKouta(
+            Faculty::getIdFacultyWithName($this->tujuan_kegiatan),
+            $this->tanggal_tersedia,
+            $this->getSisaKouta()
+        );
+
         $fileName = ($this->id != 0) ? $this->surat_permohonan : '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
 
         if ($this->id != 0) {
@@ -97,8 +104,7 @@ class PengajuanKunjunganForm extends Form
 
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
             'user_id' => Auth::id(),
-            'tujuan_kegiatan' => $this->tujuan_kegiatan,
-            'tanggal_tersedia' => date('Y-m-d', strtotime($this->tanggal_tersedia)),
+            'informasi_kouta_id' => $informasi_kouta->id,
             'institusi_pengunjung' => $this->institusi_pengunjung,
             'provinsi_asal' => $this->provinsi_asal,
             'kota_asal' => $this->kota_asal,
@@ -119,7 +125,7 @@ class PengajuanKunjunganForm extends Form
         $tujuan_kunjungan = [];
 
         foreach (InformasiKouta::all() as $value) {
-            $tujuan_kunjungan[] = $value['tujuan_kunjungan'];
+            $tujuan_kunjungan[] = $value->faculty->name;
         }
 
         return array_unique($tujuan_kunjungan);
@@ -131,7 +137,8 @@ class PengajuanKunjunganForm extends Form
         $sisa_kouta = [];
 
         if($this->tujuan_kegiatan){
-            $informasi_kouta = InformasiKouta::where("tujuan_kunjungan", "like", "%{$this->tujuan_kegiatan}%")->get();
+            $faculty_id = Faculty::getIdFacultyWithName($this->tujuan_kegiatan);
+            $informasi_kouta = InformasiKouta::where("faculty_id", "=", $faculty_id)->get();
 
             foreach ($informasi_kouta as $value) {
                 if($value['sisa_kouta'] > 0){
