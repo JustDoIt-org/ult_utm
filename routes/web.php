@@ -35,6 +35,10 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
     Route::get('/faqs', [FaqController::class, 'index'])->can('faq index')->name('admin.faqs');
     Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->can('ult-informations index')->name('admin.ult-informations');
     Route::get('/informasi-kouta', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.informasi-kouta');
+
+    Route::get('/request', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.request');
+    Route::get('/aspirasipengaduan', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.aspirasi-pengaduan');
+    Route::get('/survey', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.survey');
 });
 
 // Visit
