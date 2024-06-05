@@ -88,7 +88,7 @@
       toggle() {
           this.isActive = !this.isActive
       },
-  
+
       activate() {
           this.isActive = true
       }

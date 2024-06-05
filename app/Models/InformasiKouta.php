@@ -11,14 +11,32 @@ class InformasiKouta extends Model
 
     protected $fillable = [
         'tanggal_kunjungan',
+        'faculty_id',
         'sisa_kouta',
-        'tujuan_kunjungan',
+        // 'tujuan_kunjungan',
         'warna_tulisan',
         'warna_latar_belakang'
     ];
 
+    public static function selectedInformasiKouta($id, $tanggal, $sisa_kouta)
+    {
+        return InformasiKouta::where('faculty_id', '=', $id)
+            ->where('tanggal_kunjungan', '=', $tanggal)
+            ->where('sisa_kouta', '=', $sisa_kouta)
+            ->get()->first();
+    }
+
     public function scopeSearch($query, $search)
     {
-        return $query->orWhere("tujuan_kunjungan", "like", "%{$search}%")->orWhere("sisa_kouta", "like", "{$search}%");
+        return $query->orWhere("sisa_kouta", "like", "{$search}%");
+        // ->orWhere("tujuan_kunjungan", "like", "%{$search}%");
+    }
+
+    #################################################################
+    #####                      Relations                        #####
+    #################################################################
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class, 'faculty_id', 'id');
     }
 }

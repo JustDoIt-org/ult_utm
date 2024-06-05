@@ -11,6 +11,16 @@ class Faculty extends Model
 
     protected $fillable = ['name', 'code'];
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->orWhere("name", "like", "%{$search}%")->orWhere("code", "like", "{$search}%");
+    }
+
+    public static function getIdFacultyWithName($name)
+    {
+        return Faculty::where("name", "=", $name)->get()->first()->id;
+    }
+
     #################################################################
     #####                      Relations                        #####
     #################################################################
@@ -19,4 +29,9 @@ class Faculty extends Model
     // {
     //     return $this->belongsToMany(User::class);
     // }
+
+    public function informasiKouta()
+    {
+        return $this->hasMany(PengajuanKunjungan::class);
+    }
 }
