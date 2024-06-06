@@ -62,12 +62,19 @@ class InformasiKoutaFormModal extends BaseModal
 
     public function save()
     {
-        // check apakah data informasi kouta ditanggal yang sama dan nama kunjungan yang sama sudah ada atau tidak
-        $isAvailable = InformasiKouta::where('faculty_id', '=', Faculty::getIdFacultyWithName($this->form->tujuan_kunjungan))
-            ->where('tanggal_kunjungan', '=', $this->form->tanggal_kunjungan)->get()->first();
+        if($this->form->tujuan_kunjungan){
+            // check apakah data informasi kouta ditanggal yang sama dan nama kunjungan yang sama sudah ada atau tidak
+            $isAvailable = InformasiKouta::where('faculty_id', '=', Faculty::getIdFacultyWithName($this->form->tujuan_kunjungan))
+                ->where('tanggal_kunjungan', '=', $this->form->tanggal_kunjungan)->get()->first();
 
 
-        if(!$isAvailable){
+            if($isAvailable && $this->form->id == 0){
+                return $this->toast(
+                    message: "Maaf, fakultas kunjugan di tanggal tersebut telah tersedia.",
+                    type: 'error'
+                );
+            }
+
             parent::save();
             if($this->form->post()) {
                 $this->dispatch('close-modal', name: $this->modal_name);
@@ -77,8 +84,12 @@ class InformasiKoutaFormModal extends BaseModal
                     type: 'success'
                 );
             }
+
         }else{
-            dd($isAvailable);
+            return $this->toast(
+                message: "Maaf, tolong untuk mengisi fakultas kunjungan.",
+                type: 'error'
+            );
         }
     }
 

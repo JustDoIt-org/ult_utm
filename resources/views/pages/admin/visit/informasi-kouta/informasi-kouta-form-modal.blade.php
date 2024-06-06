@@ -7,7 +7,7 @@
         <x-element.input.line type="number" wire:model="form.sisa_kouta" />
     </x-element.layout.vertical>
     <div class="flex flex-col">
-        <label for="form.tujuan_kunjungan">Roles</label>
+        <label for="form.tujuan_kunjungan">Tujuan Kunjungan</label>
         <x-element.select.dropdown wire:model.change="form.tujuan_kunjungan">
                 <option>--- Choose Faculty ---</option>
             @foreach ($faculties as $faculty)
