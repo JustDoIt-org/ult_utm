@@ -13,7 +13,7 @@ class PengajuanKunjungan extends Model
         'user_id',
         'informasi_kouta_id',
         // 'tujuan_kegiatan',
-        'tanggal_tersedia',
+        // 'tanggal_tersedia',
         'institusi_pengunjung',
         'provinsi_asal',
         'kota_asal',
@@ -28,9 +28,9 @@ class PengajuanKunjungan extends Model
 
     public function scopeSearch($query, $search)
     {
-        return $query->orWhere("tujuan_kegiatan", "like", "%{$search}%")
-            ->orWhere("institusi_pengunjung", "like", "%{$search}%")
-            ->orWhere("tanggal_tersedia", "like", "%{$search}%")
+        return $query->orWhere("institusi_pengunjung", "like", "%{$search}%")
+            // ->orWhere("informasiKouta.faculty.tujuan_kegiatan", "like", "%{$search}%")
+            // ->orWhere("informasiKouta.tanggal_tersedia", "like", "%{$search}%")
             ->orWhere("provinsi_asal", "like", "%{$search}%")
             ->orWhere("kota_asal", "like", "%{$search}%")
             ->orWhere("nama_kegiatan", "like", "%{$search}%");

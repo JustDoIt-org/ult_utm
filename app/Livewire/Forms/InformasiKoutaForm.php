@@ -46,7 +46,7 @@ class InformasiKoutaForm extends Form
         $this->id = 0;
         $this->tanggal_kunjungan = null;
         $this->sisa_kouta = 0;
-        $this->tujuan_kunjungan = '';
+        $this->tujuan_kunjungan = null;
         $this->warna_tulisan = '#ffffff';
         $this->warna_latar_belakang = '#ffffff';
     }
