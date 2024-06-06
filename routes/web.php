@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Visit\ScheduleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PpidAdminController;
 use App\Http\Controllers\Visit\SubmissionController;
 
 /*
@@ -29,7 +30,7 @@ Route::get('/', [ultController::class, 'index'])->name('home');
 Route::match(['get', 'post'], '/botman', 'App\Http\Controllers\ChatBot\ChatBotController@handle');
 
 // Admin
-Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'verified', 'can:dashboard index'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->can('user index')->name('admin.users');
     Route::get('/roles', [RoleController::class, 'index'])->can('role index')->name('admin.roles');
@@ -38,9 +39,9 @@ Route::middleware(['auth', 'verified', 'can:dashboard index'])->group(function (
     Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->can('ult-informations index')->name('admin.ult-informations');
     Route::get('/informasi-kouta', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.informasi-kouta');
 
-    Route::get('/request', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.request');
-    Route::get('/aspirasipengaduan', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.aspirasi-pengaduan');
-    Route::get('/survey', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.survey');
+    Route::get('/request', [PpidAdminController::class, 'request'])->can('ppid index')->name('admin.request');
+    Route::get('/aspirasipengaduan', [PpidAdminController::class, 'aspirasi_pengaduan'])->can('ppid index')->name('admin.aspirasi-pengaduan');
+    Route::get('/survey', [PpidAdminController::class, 'survey'])->can('ppid index')->name('admin.survey');
 });
 
 // Visit

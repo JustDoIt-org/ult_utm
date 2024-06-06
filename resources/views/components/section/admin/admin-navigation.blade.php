@@ -33,10 +33,16 @@
       toggle() {
           this.isActive = !this.isActive
       }
-  }">
+  }"
+    @switch(Route::currentRouteName())
+  @case('admin.informasi-kouta')
+    x-init="isActive = true"
+  @break
+@endswitch>
+
 
     <!-- Button -->
-    <button x-ref="button" @click="toggle()" type="button"
+    <butt on x-ref="button" @click="toggle()" type="button"
       class="flex justify-between items-center w-full p-4 text-slate-400 font-semibold hover:bg-slate-50 hover:text-slate-600">
       <div class="flex gap-5">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -67,7 +73,7 @@
             clip-rule="evenodd" />
         </svg>
       </template>
-    </button>
+    </butt>
 
     {{-- Panel --}}
     <div x-transition x-show="isActive" class="scale-90 transition-all">
@@ -82,17 +88,31 @@
   </section>
   {{-- End Section Visit --}}
 
+
+
+
   {{-- Dropdown PPID --}}
   <section x-data="{
       isActive: false,
       toggle() {
           this.isActive = !this.isActive
       },
-
+  
       activate() {
           this.isActive = true
       }
-  }">
+  }"
+    @switch(Route::currentRouteName())
+  @case('admin.request')
+    x-init="isActive = true"
+  @break
+  @case('admin.aspirasi-pengaduan')
+    x-init="isActive = true"
+  @break
+  @case('admin.survey')
+    x-init="isActive = true"
+  @break
+@endswitch>
 
     <!-- Button -->
     <button x-ref="button" @click="toggle()" type="button"

@@ -143,6 +143,13 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN, Role::GUEST],
                 ],
             ],
+
+            "ppid" => [
+                "index" => [
+                    "description" => "Dapat mengakses PPID ADMIN",
+                    "role" => [Role::ADMIN],
+                ],
+            ]
         ];
     }
 }
