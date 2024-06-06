@@ -100,23 +100,24 @@ class PengajuanKunjunganForm extends Form
         $fileName = ($this->id != 0) ? $this->surat_permohonan : '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
         $pengajuan = PengajuanKunjungan::find($this->id);
 
-        // Ketika kondisi edit dan user mengubah file surat permohonan, file tersebut akan terhapus di folder storage
         if($this->id != 0) {
-
+            // Ketika kondisi edit dan user mengubah file surat permohonan, file tersebut akan terhapus di folder storage
             if($this->surat_permohonan != $pengajuan->surat_permohonan){
                 $fileName = '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
                 unlink(public_path('storage' . $pengajuan->surat_permohonan));
             }
+
+            // Ketika value progress == selesai, maka nilai kouta di informasi kouta akan berkurang
+            if($this->progress == 'selesai' && $pengajuan->progress != 'selesai'){
+                $informasi_kouta->update(['sisa_kouta' => $informasi_kouta->sisa_kouta - $this->kapasitas_peserta]);
+            }
+
+            // Ketika value progress == selesai, dan diganti oleh admin menjadi belum atau diproses maka nilai kouta di informasi kouta akan bertambah
+            if($pengajuan->progress == 'selesai' && $this->progress != 'selesai'){
+                $informasi_kouta->update(['sisa_kouta' => $informasi_kouta->sisa_kouta + $this->kapasitas_peserta]);
+            }
         }
 
-        // Ketika value progress == selesai, maka nilai kouta di informasi kouta akan berkurang
-        if($this->progress == 'selesai' && $pengajuan->progress != 'selesai'){
-            $informasi_kouta->update(['sisa_kouta' => $informasi_kouta->sisa_kouta - $this->kapasitas_peserta]);
-        }
-
-        if($pengajuan->progress == 'selesai' && $this->progress != 'selesai'){
-            $informasi_kouta->update(['sisa_kouta' => $informasi_kouta->sisa_kouta + $pengajuan->kapasitas_peserta]);
-        }
 
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
             'user_id' =>($this->id == 0) ? Auth::id() : $pengajuan->user_id,
