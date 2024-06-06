@@ -143,6 +143,25 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN, Role::GUEST],
                 ],
             ],
+
+            "pengajuan-kunjungan" => [
+                "index" => [
+                    "description" => "Dapat mengakses data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN],
+                ],
+                "create" => [
+                    "description" => "Dapat membuat data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN],
+                ],
+            ],
         ];
     }
 }

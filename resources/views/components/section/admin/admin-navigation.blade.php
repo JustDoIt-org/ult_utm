@@ -79,7 +79,16 @@
         <span>Informasi Kouta</span>
       </x-element.sidebar-anchor>
     </div>
+
+    <div x-transition x-show="isActive" class="scale-90 transition-all">
+        <x-element.sidebar-anchor route="admin.pengajuan-kunjungan">
+            <x-heroicon-s-clipboard-document-list class="size-6" />
+          <span>Pengajuan Kunjungan</span>
+        </x-element.sidebar-anchor>
+    </div>
   </section>
+
+
   {{-- End Section Visit --}}
 
   {{-- Dropdown PPID --}}
