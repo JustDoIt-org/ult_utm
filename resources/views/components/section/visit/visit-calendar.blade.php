@@ -3,7 +3,6 @@
 ])
 
 <div>
-  {{-- @dd($informasi_kuota) --}}
   <!-- Full Calendar -->
 
   <script>
