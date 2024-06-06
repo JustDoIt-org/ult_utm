@@ -8,9 +8,10 @@ use App\Models\InformasiKouta;
 class ScheduleController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         return view('pages.visit.schedules', [
-            'information_kouta' => InformasiKouta::all(),
+            'information_kouta' => InformasiKouta::with('faculty')->get(),
         ]);
     }
 }
