@@ -65,9 +65,6 @@
             Tanggal kunjungan: <span class="text-green-500">{{ $form->tanggal_tersedia }}</span>
         </span>
     </div>
-    {{-- <x-element.layout.vertical name="form.progress" label="Progress">
-        <x-element.input.line wire:model="form.progress" />
-    </x-element.layout.vertical> --}}
 
     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
         x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false"

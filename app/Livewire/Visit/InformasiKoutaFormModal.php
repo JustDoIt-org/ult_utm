@@ -62,14 +62,23 @@ class InformasiKoutaFormModal extends BaseModal
 
     public function save()
     {
-        parent::save();
-        if($this->form->post()) {
-            $this->dispatch('close-modal', name: $this->modal_name);
-            $this->dispatch('informasi-kouta-table:reload');
-            $this->toast(
-                message: $this->form->id == 0 ? 'Informasi Kouta Created' : 'Informasi Kouta Updated',
-                type: 'success'
-            );
+        // check apakah data informasi kouta ditanggal yang sama dan nama kunjungan yang sama sudah ada atau tidak
+        $isAvailable = InformasiKouta::where('faculty_id', '=', Faculty::getIdFacultyWithName($this->form->tujuan_kunjungan))
+            ->where('tanggal_kunjungan', '=', $this->form->tanggal_kunjungan)->get()->first();
+
+
+        if(!$isAvailable){
+            parent::save();
+            if($this->form->post()) {
+                $this->dispatch('close-modal', name: $this->modal_name);
+                $this->dispatch('informasi-kouta-table:reload');
+                $this->toast(
+                    message: $this->form->id == 0 ? 'Informasi Kouta Created' : 'Informasi Kouta Updated',
+                    type: 'success'
+                );
+            }
+        }else{
+            dd($isAvailable);
         }
     }
 
