@@ -16,7 +16,7 @@
         calendar.batchRendering(() => {
             @js($information_kouta).forEach(value => {
                 calendar.addEvent({
-                    title: `Kunjungan | Kouta: ${ value.sisa_kouta }`,
+                    title: `Kunjungan: ${value.faculty.name} | Kouta: ${ value.sisa_kouta }`,
                     start: value.tanggal_kunjungan,
                     textColor: value.warna_tulisan,
                     backgroundColor: value.warna_latar_belakang,
