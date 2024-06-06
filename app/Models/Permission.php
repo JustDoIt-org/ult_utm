@@ -149,10 +149,6 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "description" => "Dapat mengakses data pengajuan-kunjungan",
                     "role" => [Role::ADMIN],
                 ],
-                "create" => [
-                    "description" => "Dapat membuat data pengajuan-kunjungan",
-                    "role" => [Role::ADMIN],
-                ],
                 "edit" => [
                     "description" => "Dapat mengedit data pengajuan-kunjungan",
                     "role" => [Role::ADMIN],

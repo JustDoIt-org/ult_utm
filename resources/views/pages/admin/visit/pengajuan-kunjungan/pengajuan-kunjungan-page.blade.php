@@ -2,6 +2,6 @@
 
 @section('content')
     <section class="mx-auto p-10 mb-10">
-        <h1>Pengajuan Kunjungan Admin</h1>
+        <livewire:visit.pengajuan-kunjungan-table />
     </section>
 @endsection

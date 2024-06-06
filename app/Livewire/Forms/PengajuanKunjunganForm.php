@@ -45,6 +45,9 @@ class PengajuanKunjunganForm extends Form
     #[Validate('required')]
     public $kontak_pic;
 
+    #[Validate('required')]
+    public $progress = 'belum';
+
     public $surat_permohonan;
 
     public function load(int $id)
@@ -62,6 +65,7 @@ class PengajuanKunjunganForm extends Form
         $this->jumlah_bus = $pengajuan->jumlah_bus;
         $this->nama_pic = $pengajuan->nama_pic;
         $this->kontak_pic = $pengajuan->kontak_pic;
+        $this->progress = $pengajuan->progress;
         $this->surat_permohonan = $pengajuan->surat_permohonan;
     }
 
@@ -78,6 +82,7 @@ class PengajuanKunjunganForm extends Form
         $this->jumlah_bus = 0;
         $this->nama_pic = '';
         $this->kontak_pic = '';
+        $this->progress = 'belum';
         $this->surat_permohonan = null;
     }
 
@@ -85,6 +90,7 @@ class PengajuanKunjunganForm extends Form
     {
         $this->validate();
 
+        // Scope data informasi kouta
         $informasi_kouta = InformasiKouta::selectedInformasiKouta(
             Faculty::getIdFacultyWithName($this->tujuan_kegiatan),
             $this->tanggal_tersedia,
@@ -92,18 +98,24 @@ class PengajuanKunjunganForm extends Form
         );
 
         $fileName = ($this->id != 0) ? $this->surat_permohonan : '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
+        $pengajuan = PengajuanKunjungan::find($this->id);
 
-        if ($this->id != 0) {
-            $doc = PengajuanKunjungan::find($this->id);
+        // Ketika kondisi edit dan user mengubah file surat permohonan, file tersebut akan terhapus di folder storage
+        if($this->id != 0) {
 
-            if($this->surat_permohonan != $doc->surat_permohonan){
+            if($this->surat_permohonan != $pengajuan->surat_permohonan){
                 $fileName = '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
-                unlink(public_path('storage' . $doc->surat_permohonan));
+                unlink(public_path('storage' . $pengajuan->surat_permohonan));
             }
         }
 
+        // Ketika value progress == selesai, maka nilai kouta di informasi kouta akan berkurang
+        if($this->progress == 'selesai' && $this->progress != $pengajuan->progress){
+            $informasi_kouta->update(['sisa_kouta' => $informasi_kouta->sisa_kouta - $this->kapasitas_peserta]);
+        }
+
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
-            'user_id' => Auth::id(),
+            'user_id' =>($this->id == 0) ? Auth::id() : $pengajuan->user_id,
             'informasi_kouta_id' => $informasi_kouta->id,
             'institusi_pengunjung' => $this->institusi_pengunjung,
             'provinsi_asal' => $this->provinsi_asal,
@@ -114,7 +126,7 @@ class PengajuanKunjunganForm extends Form
             'nama_pic' => $this->nama_pic,
             'kontak_pic' => $this->kontak_pic,
             'surat_permohonan' => $fileName,
-            'progress' => 'belum'
+            'progress' => $this->progress
         ]);
 
 
