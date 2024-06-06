@@ -110,8 +110,12 @@ class PengajuanKunjunganForm extends Form
         }
 
         // Ketika value progress == selesai, maka nilai kouta di informasi kouta akan berkurang
-        if($this->progress == 'selesai'){
-            $informasi_kouta->update(['sisa_kouta' => ($informasi_kouta->sisa_kouta + $pengajuan->kapasitas_peserta) - $this->kapasitas_peserta]);
+        if($this->progress == 'selesai' && $pengajuan->progress != 'selesai'){
+            $informasi_kouta->update(['sisa_kouta' => $informasi_kouta->sisa_kouta - $this->kapasitas_peserta]);
+        }
+
+        if($pengajuan->progress == 'selesai' && $this->progress != 'selesai'){
+            $informasi_kouta->update(['sisa_kouta' => $informasi_kouta->sisa_kouta + $pengajuan->kapasitas_peserta]);
         }
 
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
