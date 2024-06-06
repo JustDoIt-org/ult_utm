@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\PengajuanKunjunganController;
 use App\Http\Controllers\Admin\ULTInformationsController;
 use App\Http\Controllers\Admin\InformasiKoutaController;
 use Illuminate\Support\Facades\Route;
@@ -37,11 +38,13 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'can:dashboard index'])-
     Route::get('/faqs', [FaqController::class, 'index'])->can('faq index')->name('admin.faqs');
     Route::get('/faculties', [FacultyController::class, 'index'])->name('admin.faculties');
     Route::get('/ult-informations', [ULTInformationsController::class, 'index'])->can('ult-informations index')->name('admin.ult-informations');
-    Route::get('/informasi-kouta', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.informasi-kouta');
 
     Route::get('/request', [PpidAdminController::class, 'request'])->can('ppid index')->name('admin.request');
     Route::get('/aspirasipengaduan', [PpidAdminController::class, 'aspirasi_pengaduan'])->can('ppid index')->name('admin.aspirasi-pengaduan');
     Route::get('/survey', [PpidAdminController::class, 'survey'])->can('ppid index')->name('admin.survey');
+
+    Route::get('/informasi-kouta', [InformasiKoutaController::class, 'index'])->can('informasi-kouta index')->name('admin.informasi-kouta');
+    Route::get('/pengajuan-kunjungan', [PengajuanKunjunganController::class, 'index'])->can('pengajuan-kunjungan index')->name('admin.pengajuan-kunjungan');
 });
 
 // Visit

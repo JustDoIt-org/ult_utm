@@ -143,13 +143,26 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN, Role::GUEST],
                 ],
             ],
-
             "ppid" => [
                 "index" => [
                     "description" => "Dapat mengakses PPID ADMIN",
                     "role" => [Role::ADMIN],
                 ],
-            ]
+            ],
+            "pengajuan-kunjungan" => [
+                "index" => [
+                    "description" => "Dapat mengakses data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN],
+                ],
+            ],
         ];
     }
 }

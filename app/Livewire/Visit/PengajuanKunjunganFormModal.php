@@ -9,7 +9,7 @@ use App\Models\PengajuanKunjungan;
 use Livewire\Attributes\Computed;
 use Livewire\WithFileUploads;
 
-class PengajuanKunjunganUserFormModal extends BaseModal
+class PengajuanKunjunganFormModal extends BaseModal
 {
     use Notification, WithFileUploads;
 
@@ -19,7 +19,7 @@ class PengajuanKunjunganUserFormModal extends BaseModal
      * normal modal title
      * @var string
      */
-    protected static $title = "Add New Pengajuan Kunjungan";
+    // protected static $title = "Add New Pengajuan Kunjungan";
 
     /*
      * load modal title
@@ -32,8 +32,14 @@ class PengajuanKunjunganUserFormModal extends BaseModal
      * @var string|bool
      */
     protected $permission = [
-        'load' => 'pengajuan-kunjungan-for-user edit',
-        'save' => 'pengajuan-kunjungan-for-user create'
+        'load' => 'pengajuan-kunjungan edit',
+        'save' => 'pengajuan-kunjungan create'
+    ];
+
+    protected $progress = [
+        'belum',
+        'diproses',
+        'selesai'
     ];
 
     public function mount()
@@ -43,7 +49,7 @@ class PengajuanKunjunganUserFormModal extends BaseModal
 
     public function render()
     {
-        return view('pages.visit.pengajuan-kunjungan.pengajuan-kunjungan-user-form-modal');
+        return view('pages.admin.visit.pengajuan-kunjungan.pengajuan-kunjungan-form-modal');
     }
 
     #[Computed(persist: true)]
@@ -66,8 +72,8 @@ class PengajuanKunjunganUserFormModal extends BaseModal
                 parent::save();
                 if($this->form->post()) {
                     $this->dispatch('close-modal', name: $this->modal_name);
-                    $this->dispatch('pengajuan-kunjungan-user-table:reload');
                     $this->dispatch('pengajuan-kunjungan-table:reload');
+                    $this->dispatch('pengajuan-kunjungan-user-table:reload');
                     $this->toast(
                         message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
                         type: 'success'
