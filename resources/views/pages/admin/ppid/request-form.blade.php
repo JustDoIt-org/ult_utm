@@ -1,8 +1,8 @@
 <div x-data="{ activeTab: 0 }" class="ml-3 mt-3">
   <!-- Tab List -->
-  <ul role="tablist" class="flex mb-3">
+  <ul role="tablist" class="flex mb-3 ml-8">
     @php
-      $arr = ['My Account', 'Billing'];
+      $arr = ['Belom Diproses', 'Diproses', 'Selesai'];
     @endphp
     @foreach ($arr as $i)
       <li>
@@ -16,14 +16,27 @@
   </ul>
 
 
-
   <!-- Panels -->
   <div role="tabpanels">
     @foreach ($arr as $i)
-      <!-- Panel 1 -->
       <section x-show="activeTab === {{ $loop->index }}" role="tabpanel">
-        <!-- Content for Panel 1 -->
-        <p>Tab panel {{ $loop->index + 1 }}</p>
+        @switch($loop->index)
+          @case(0)
+            <livewire:ppid-admin.request-table />
+          @break
+
+          @case(1)
+            <p>Hekki world</p>
+          @break
+
+          @case(2)
+            <p>Tigaa</p>
+          @break
+
+          @default
+        @endswitch
+
+
       </section>
     @endforeach
   </div>
