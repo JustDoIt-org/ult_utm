@@ -64,6 +64,11 @@ class PengajuanKunjunganFormModal extends BaseModal
         $this->form->load($id);
     }
 
+    public function downloadFile()
+    {
+        if($this->form->id != 0) return response()->download(storage_path("/app/public".$this->form->surat_permohonan));
+    }
+
     public function save()
     {
         if($this->form->surat_permohonan != null){

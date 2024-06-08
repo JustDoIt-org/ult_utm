@@ -45,11 +45,6 @@ class PengajuanKunjunganUserTable extends BaseTable
     {
         return [
             [
-                "label" => "Email",
-                "query" => "user.email",
-                "sort" => true,
-            ],
-            [
                 "label" => "Tanggal Kunjungan",
                 "query" => "informasiKouta.tanggal_kunjungan",
                 "sort" => true,

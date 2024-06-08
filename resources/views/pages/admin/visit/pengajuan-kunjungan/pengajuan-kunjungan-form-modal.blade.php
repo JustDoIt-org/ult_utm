@@ -50,6 +50,7 @@
     <x-element.layout.vertical name="form.kontak_pic" label="Kontak PIC">
         <x-element.input.line wire:model="form.kontak_pic" />
     </x-element.layout.vertical>
+
     <div class="flex flex-col">
         <label for="form.progress">Progress</label>
 
@@ -66,26 +67,41 @@
         </span>
     </div>
 
-    <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
-        x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false"
-        x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress" wire:target="save">
+    <section>
+        <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
+            x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false"
+            x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress" wire:target="save" class="flex flex-col gap-2">
 
-        <x-element.layout.vertical name="form.surat_permohonan" label="Surat Permohonan">
-            <input x-show="!uploading" type="file" accept=".pdf, .doc, .docx" id="form.surat_permohonan" wire:model="form.surat_permohonan" />
-            <div x-show="uploading" class="flex justify-center">
-                <img class="animate-spin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABI0lEQVR4nO2WQW7CMBBF/6q3gF6naXqvpkcq7aqIRdotlWaK2EDTA9AKlh/ZZBGoMQl2LBZ8aRTJUfzm/1gjA1ddoqjIKfimYElBlg4sWFJBW4JFsqboA3vexQBntaMFBXfRwTwjNl9T7cF9xnap4Cw0Nn7ilopXKv4oeOEcw/idusA7KBvJjVKBf/fAipX/gzmGMWKx8bZ1TAMVbGzNMAgCm38sGFnngmevmQZ4HQru3ukMg+TQGOIUN1Q8UfFDRUVFYdb6BxvQ/mk2VXTZYELF+Axw5QBXXTYYU/D2b/0LD1S824m0e+ZRwS7VUDoqPxH1I0JExYcTLCgPDldRO49zuKhYHXHsH4ehauO4F9HcTNyO73sFN65FZT2DyyTQqxCgLYb+uaojF71KAAAAAElFTkSuQmCC">
-            </div>
-        </x-element.layout.vertical>
+            <div class="relative">
+                <x-element.layout.vertical name="form.surat_permohonan" label="Surat Permohonan">
+                    <input x-show="!uploading" type="file" accept=".pdf, .doc, .docx" id="form.surat_permohonan" wire:model="form.surat_permohonan" />
+                    <div x-show="uploading" class="flex justify-center">
+                        <img class="animate-spin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABI0lEQVR4nO2WQW7CMBBF/6q3gF6naXqvpkcq7aqIRdotlWaK2EDTA9AKlh/ZZBGoMQl2LBZ8aRTJUfzm/1gjA1ddoqjIKfimYElBlg4sWFJBW4JFsqboA3vexQBntaMFBXfRwTwjNl9T7cF9xnap4Cw0Nn7ilopXKv4oeOEcw/idusA7KBvJjVKBf/fAipX/gzmGMWKx8bZ1TAMVbGzNMAgCm38sGFnngmevmQZ4HQru3ukMg+TQGOIUN1Q8UfFDRUVFYdb6BxvQ/mk2VXTZYELF+Axw5QBXXTYYU/D2b/0LD1S824m0e+ZRwS7VUDoqPxH1I0JExYcTLCgPDldRO49zuKhYHXHsH4ehauO4F9HcTNyO73sFN65FZT2DyyTQqxCgLYb+uaojF71KAAAAAElFTkSuQmCC">
+                    </div>
+                </x-element.layout.vertical>
 
-        <section>
-            <button x-show="!uploading" wire:target="save" wire:loading.attr="disabled" wire:loading.class="opacity-50" type="submit" class="w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-yellow-600 hover:scale-95">
-                <span wire:loading.remove wire:target="save">Save</span>
-                <span wire:loading wire:target="save">Loading ...</span>
-            </button>
-            <div x-show="uploading" class="flex justify-center w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all">
-                <span>Uploading ...</span>
+                {{-- Download file --}}
+                @if ($form->id != 0)
+                    <button type="button" wire:click="downloadFile" class="flex flex-row gap-1 items-center font-semibold text-sm p-1 text-yellow-500 rounded-lg hover:bg-yellow-100 absolute top-0 right-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
+                        </svg>
+                        <span>Download</span>
+                    </button>
+                @endif
             </div>
-        </section>
-    </div>
+
+            <section>
+                <button x-show="!uploading" wire:target="save" wire:loading.attr="disabled" wire:loading.class="opacity-50" type="submit" class="w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-yellow-600 hover:scale-95">
+                    <span wire:loading.remove wire:target="save">Save</span>
+                    <span wire:loading wire:target="save">Loading ...</span>
+                </button>
+                <div x-show="uploading" class="flex justify-center w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all">
+                    <span>Uploading ...</span>
+                </div>
+            </section>
+        </div>
+    </section>
+
 </x-section.modal>
 
