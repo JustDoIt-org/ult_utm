@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PpidAspirasiPengaduan extends Model
 {
-    use HasFactory, HasUuids;
+    // use HasFactory, HasUuids;
+    use HasFactory;
 
 
     protected $guarded = ['id'];
