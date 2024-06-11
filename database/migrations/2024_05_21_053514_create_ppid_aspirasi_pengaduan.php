@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ppid_aspirasi_pengaduans', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            // $table->uuid('id')->primary();
+            $table->id();
             $table->foreignId('status_ppid')->constrained();
             $table->string('nik');
             $table->string('judul');
