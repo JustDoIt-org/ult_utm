@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('rincian_informasi');
             $table->string('tujuan_penggunaan');
             $table->string('memperoleh_informasi');
-            $table->string('memperoleh_salinan');
+            $table->string('memperoleh_salinan')->nullable();
             $table->timestamps();
         });
     }

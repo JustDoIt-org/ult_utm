@@ -18,4 +18,11 @@ class RequestPpid extends Model
     {
         return $this->belongsTo(StatusPpid::class, 'status_ppid', 'id');
     }
+
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->orWhere("alamat", "like", "{$search}%")
+            ->orWhere("pekerjaan", "like", "%{$search}%");
+    }
 }

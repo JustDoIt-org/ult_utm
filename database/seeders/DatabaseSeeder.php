@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CarouselsSeeder::class);
         $this->call(SurveyPpidSeeder::class);
         $this->call(FaqSeeder::class);
-        // $this->call(AspirasiPengaduanSeeder::class);
+        $this->call(RequestPpidSeeder::class);
     }
 }

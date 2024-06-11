@@ -4,7 +4,7 @@ namespace App\Livewire\PpidAdmin;
 
 use App\Livewire\Module\BaseTable;
 use App\Livewire\Module\Trait\Notification;
-use App\Models\InformasiKouta;
+use App\Models\RequestPpid;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 
@@ -13,28 +13,28 @@ class RequestTable extends BaseTable
     use Notification;
 
     #[Locked]
-    public $title = "Informasi Kouta Table";
+    public $title = "Informasi Request Table";
 
     protected array $permissions = [
-        'create' => 'informasi-kouta create',
-        'edit' => 'informasi-kouta edit',
-        'delete' => 'informasi-kouta delete',
+        'create' => 'request create',
+        'edit' => 'request edit',
+        'delete' => 'request delete',
     ];
 
     protected array $modals = [
-        'create' => 'informasi-kouta-form-modal',
-        'edit' => 'informasi-kouta-form-modal',
+        'create' => 'request-form-modal',
+        'edit' => 'request-form-modal',
     ];
 
     public function render()
     {
-        return view('pages.admin.visit.informasi-kouta.informasi-kouta-table', $this->getData());
+        return view('pages.admin.ppid.ppid-table', $this->getData());
     }
 
     #[Computed]
     public function rows()
     {
-        return InformasiKouta::search($this->search)
+        return RequestPpid::search($this->search)
             ->orderBy($this->sort_by, $this->sort_direction)
             ->paginate($this->perPage);
     }
@@ -43,18 +43,23 @@ class RequestTable extends BaseTable
     {
         return [
             [
-                "label" => "Tanggal Kunjungan",
-                "query" => "tanggal_kunjungan",
+                "label" => "Nama",
+                "query" => "status.user.name",
                 "sort" => true,
             ],
             [
-                "label" => "Sisa Kouta",
-                "query" => "sisa_kouta",
+                "label" => "Pekerjaan",
+                "query" => "pekerjaan",
                 "sort" => true,
             ],
             [
-                "label" => "Tujuan Kunjungan",
-                "query" => "faculty.name",
+                "label" => "Kategori Pemohon",
+                "query" => "kategori_pemohon",
+                "sort" => true,
+            ],
+            [
+                "label" => "Rincian Informasi",
+                "query" => "rincian_informasi",
                 "sort" => true,
             ],
         ];
@@ -62,8 +67,9 @@ class RequestTable extends BaseTable
 
     public function delete($id)
     {
+        dd($id);
         parent::delete($id);
-        InformasiKouta::destroy($id);
+        RequestPpid::destroy($id);
         $this->toast(
             message: "Informasi Kouta Removed",
         );
