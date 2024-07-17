@@ -1,14 +1,14 @@
-<x-layouts.ult-layout :$items>
+<x-layouts.ult-layout :$title>
+  <x-section.ult.hero-section :$list_layanan />
+  <x-section.ult.about-section />
 
 
-  <x-section.ult.hero-section :$carousel/>
-  <x-section.ult.about-section :$about :$carousel/>
-  <x-section.ult.faq-section :$faq/>
-  <x-section.ult.contact-section />
 </x-layouts.ult-layout>
 
 
 
+{{-- <x-section.ult.faq-section :$faq/> --}}
+{{-- <x-section.ult.contact-section /> --}}
 {{-- <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
@@ -130,7 +130,7 @@
       <button x-on:click="activeSlide = activeSlide === 1 ? 5 : activeSlide - 1"
         class="p-3 w-14 h-14 bg-slate-300/60 rounded-full shadow-lg backdrop-blur-sm relative hover:scale-125 transition duration-500"><i
           class="fa-solid fa-angle-left fa-2xl absolute top-1/2 left-1/2 -translate-x-1/2"></i></button>
-      <button x-on:click="activeSlide = activeSlide === contentSlides.length ? 1 : activeSlide + 1"
+      <button x-on:click="activeSlide = activeSlidbae === contentSlides.length ? 1 : activeSlide + 1"
         class="p-3 w-14 h-14 bg-slate-300/60 rounded-full shadow-lg backdrop-blur-sm relative hover:scale-125 transition duration-500"><i
           class="fa-solid fa-angle-right fa-2xl absolute top-1/2 left-1/2 -translate-x-1/2"></i></button>
     </div>

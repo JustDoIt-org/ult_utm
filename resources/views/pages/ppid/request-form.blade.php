@@ -33,4 +33,8 @@
 
   <x-element.button.submit-ppid target="store, base.ktp" buttonName="Kirim Permohonan" position="middle" />
 
+  @if (session('data'))
+    {{ session('data') }}
+  @endif
+
 </form>

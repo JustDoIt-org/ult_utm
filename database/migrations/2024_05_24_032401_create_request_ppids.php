@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('request_ppids', function (Blueprint $table) {
             // $table->uuid('id')->primary();
             $table->id();
+            $table->string('slug');
             $table->foreignId('status_ppid')->constrained();
             $table->string('alamat');
             $table->string('pekerjaan');

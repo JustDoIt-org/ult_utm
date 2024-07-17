@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Visit\ScheduleController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PpidAdminController;
+use App\Http\Controllers\LayananTerpaduController;
 use App\Http\Controllers\Visit\SubmissionController;
 
 /*
@@ -59,6 +60,11 @@ Route::middleware(['auth', 'verified'])->prefix('ppid')->group(function () {
     Route::get('/form_keberatan', [PpidController::class, 'keberatan'])->name('ppid.keberatan');
     Route::get('/aspirasi_pengaduan', [PpidController::class, 'aspirasi_pengaduan'])->name('ppid.aspirasi-pengaduan');
     Route::get('/survey', [PpidController::class, 'survey'])->name('ppid.survey');
+});
+
+
+Route::middleware(['auth', 'verified'])->prefix('terpadu')->group(function () {
+    Route::get('/', [LayananTerpaduController::class, 'index'])->name('lt.home');
 });
 
 Route::middleware('auth')->group(function () {

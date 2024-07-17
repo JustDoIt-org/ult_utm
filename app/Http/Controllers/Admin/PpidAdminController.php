@@ -17,7 +17,7 @@ class PpidAdminController extends Controller
 
     public function request()
     {
-        $data = ['title' => 'Form Permohonan Informasi Publik', 'subTitle' => 'Pejabat Pengelola Informasi dan Dokumentasi', 'page' => 'request'];
+        $data = ['title' => 'Request Informasi Publik', 'subTitle' => 'Pejabat Pengelola Informasi dan Dokumentasi', 'page' => 'request'];
         return view('pages.admin.ppid.template-ppid', $data);
     }
 

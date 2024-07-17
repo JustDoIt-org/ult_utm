@@ -33,9 +33,12 @@ class PpidForm extends Form
 
     public $memperoleh_salinan;
 
+    public $progress;
+
     public function load(int $id)
     {
         $ik = RequestPpid::find($id);
+        $this->progress = $ik->status->progress;
         $this->id = $ik->id;
         $this->alamat = $ik->alamat;
         $this->pekerjaan = $ik->pekerjaan;
@@ -60,19 +63,23 @@ class PpidForm extends Form
 
     public function post()
     {
-        dd('post');
-        // $this->validate();
+        $this->validate();
 
-        // $faculty = Faculty::where('name', '=', $this->tujuan_kunjungan)->get()->first();
+        switch ($this->progress) {
+            case 'belum':
+                $this->progress = 1;
+                break;
+            case 'diproses':
+                $this->progress = 2;
+                break;
+            default:
+                $this->progress = 3;
+                break;
+        }
 
-        // return RequestPpid::updateOrCreate(['id' => $this->id], [
-        //     'id' => $this->id,
-        //     'faculty_id' => $faculty->id,
-        //     'tanggal_kunjungan' => $this->tanggal_kunjungan,
-        //     'sisa_kouta' => $this->sisa_kouta,
-        //     // 'tujuan_kunjungan' => $this->tujuan_kunjungan,
-        //     'warna_tulisan' => $this->warna_tulisan,
-        //     'warna_latar_belakang' => $this->warna_latar_belakang
-        // ]);
+        return RequestPpid::updateOrCreate(['id' => $this->id], [
+            'id' => $this->id,
+            'status_ppid' => $this->progress
+        ]);
     }
 }

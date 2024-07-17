@@ -33,4 +33,7 @@
     <div class="text-center text-4xl mt-3">Mohon Lengkapi No Telepon Di Profile Menu</div>
   @endif
 
+  @if (session('data'))
+    {{ session('data') }}
+  @endif
 </div>

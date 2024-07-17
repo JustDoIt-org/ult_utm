@@ -25,8 +25,10 @@ class RequestForm extends Component
     public function store()
     {
         $this->base->validate_form();
-        $this->base->post_request();
+        $data = $this->base->post_request();
         $this->base->resetInput();
+
+        request()->session()->flash('data', $data->slug);
 
         return $this->toast(
             message: 'Berhasil',

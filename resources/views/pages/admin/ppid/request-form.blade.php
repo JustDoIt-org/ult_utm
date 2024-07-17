@@ -6,11 +6,14 @@
     @endphp
     @foreach ($arr as $i)
       <li>
-        <button @click="activeTab = {{ $loop->index }}" :aria-selected="activeTab === {{ $loop->index }}"
-          :class="{ 'bg-white': activeTab === {{ $loop->index }} }" class="px-3 py-2 rounded-lg" role="tab">
-          <!-- Icon and Title for Tab 1 -->
-          <span>{{ $i }}</span>
-        </button>
+        <div class="rounded-lg mx-3">
+          <button @click="activeTab = {{ $loop->index }}" :aria-selected="activeTab === {{ $loop->index }}"
+            :class="{ 'bg-gray-950 text-white': activeTab === {{ $loop->index }} }"
+            class="px-3 py-2 rounded-lg bg-yellow-300  " role="tab">
+            <!-- Icon and Title for Tab 1 -->
+            <span>{{ $i }}</span>
+          </button>
+        </div>
       </li>
     @endforeach
   </ul>
@@ -22,15 +25,15 @@
       <section x-show="activeTab === {{ $loop->index }}" role="tabpanel">
         @switch($loop->index)
           @case(0)
-            <livewire:ppid-admin.request-table />
+            <livewire:ppid-admin.aspirasi.aspirasi-table status='belum' />
           @break
 
           @case(1)
-            <p>Hekki world</p>
+            <livewire:ppid-admin.aspirasi.aspirasi-table status='diproses' />
           @break
 
           @case(2)
-            <p>Tigaa</p>
+            <livewire:ppid-admin.aspirasi.aspirasi-table status='selesai' />
           @break
 
           @default

@@ -5,16 +5,19 @@
   </x-element.layout.vertical>
   <x-element.layout.vertical name="form.sisa_kouta" label="Sisa Kouta">
     <x-element.input.line type="number" wire:model="form.sisa_kouta" />
-  </x-element.layout.vertical>
+  </x-element.layout.vertical> --}}
   <div class="flex flex-col">
-    <label for="form.tujuan_kunjungan">Tujuan Kunjungan</label>
-    <x-element.select.dropdown wire:model.change="form.tujuan_kunjungan">
-      <option>--- Choose Faculty ---</option>
-      @foreach ($faculties as $faculty)
-        <option value="{{ $faculty['name'] }}">{{ $faculty['name'] }}</option>
+    <label for="form.progress">Status Request</label>
+    @php
+      $progress = ['belum', 'diproses', 'selesai'];
+    @endphp
+    <x-element.select.dropdown wire:model.change="form.progress">
+      <option>--- Update Progress ---</option>
+      @foreach ($progress as $key)
+        <option value="{{ $key }}">{{ $key }}</option>
       @endforeach
     </x-element.select.dropdown>
-  </div> --}}
+  </div>
   {{-- <x-element.layout.vertical name="form.tujuan_kunjungan" label="Tujuan Kunjungan">
         <x-element.input.line wire:model="form.tujuan_kunjungan" />
     </x-element.layout.vertical> --}}

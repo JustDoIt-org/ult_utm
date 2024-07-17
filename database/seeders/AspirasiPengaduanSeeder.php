@@ -15,14 +15,15 @@ class AspirasiPengaduanSeeder extends Seeder
     public function run(): void
     {
         StatusPpid::create([
-            'user_id' => 1,
+            'user_id' => 2,
             'progress' => 'belum',
             'uraian' => 'dsadasdd',
             'file' => 'dsadas',
-            'type' => 'testing',
+            'type' => 'aspirasi',
         ]);
 
         PpidAspirasiPengaduan::create([
+            'slug' => '2Akdaklsdla',
             'judul' => 'jsdhjhadjashdj',
             'status_ppid' => 1,
             'nik' => 3343443,

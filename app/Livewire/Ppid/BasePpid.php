@@ -116,6 +116,7 @@ class BasePpid extends Form
         $data = RequestPpid::create(
             [
                 'status_ppid' => $status->id,
+                'slug' => sha1(time()),
                 'alamat' => $this->alamat,
                 'pekerjaan' => $this->pekerjaan,
                 'kategori_pemohon' => $this->kategori_pemohon,

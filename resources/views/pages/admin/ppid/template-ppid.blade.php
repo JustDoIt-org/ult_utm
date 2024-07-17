@@ -1,8 +1,8 @@
 @extends('components.layouts.multiple')
 
 @section('content')
-  @if ($page === 'request')
-    <livewire:ppid-admin.request-form />
+  @if ($page === 'd')
+    <livewire:ppid-admin.request.request-form />
   @else
     <x-section.ppid.container :$title>
       @switch($page)
@@ -15,11 +15,11 @@
         @break
 
         @case('aspirasi_pengaduan')
-          <livewire:ppid.aspirasi-pengaduan-form />
+          <livewire:ppid-admin.aspirasi.aspirasi-form />
         @break
 
         @default
-          <livewire:ppid.request-form />
+          <livewire:ppid-admin.request.request-form />
       @endswitch
     </x-section.ppid.container>
   @endif

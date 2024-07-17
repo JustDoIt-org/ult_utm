@@ -1,25 +1,38 @@
-@props(['about' => '', 'carousel' => []])
+<section id="about" class="about section">
 
-<section class="h-screen w-screen py-6 px-6 lg:px-20 bg-slate-200 flex flex-col lg:flex-row items-center gap-5"
-  id="tentang-ult-section">
-  <div class="w-full lg:w-1/2 h-[636px] flex gap-5 order-last lg:order-first" id="galery">
-    <div class="w-1/2 flex flex-col gap-5">
-        <div class="h-1/2 w-full bg-cover bg-center bg-no-repeat rounded-xl shadow-xl"
-            style="background-image: url({{ asset('storage/'.$carousel[0]->photo) }})"></div>
-        <div class="h-1/2 w-full bg-cover bg-center bg-no-repeat rounded-xl shadow-xl"
-            style="background-image: url({{ asset('storage/'.$carousel[2]->photo) }})"></div>
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>About Us</h2>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore
+          magna aliqua.
+        </p>
+        <ul>
+          <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
+              consequat.</span></li>
+          <li><i class="bi bi-check2-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate
+              velit.</span></li>
+          <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo</span></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+        <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+      </div>
+
     </div>
-    <div class="w-1/2 bg-cover bg-center bg-no-repeat rounded-xl shadow-xl"
-    style="background-image: url({{ asset('storage/'.$carousel[1]->photo) }})"></div>
+
   </div>
-  <div class="w-full lg:w-1/2 justify-self-end" id="tentang-ult">
-    <h2 class="text-2xl text-center lg:text-left font-bold">{{ $about->title }}</h2>
-    <p class="hidden text-justify lg:block">{{ $about->desc }}</p>
-    <p class="text-justify lg:hidden">Unit Layanan Terpadu (ULT) Universitas Trunojoyo Madura memberikan manfaat
-      yang signifikan dalam mempermudah kepengurusan layanan mahasiswa dan masyarakat dengan mengintegrasikan
-      layanan publik di Kantor Manajemen Universitas Trunojoyo Madura. Melalui ULT, proses pemantauan dokumen
-      yang diajukan pemohon menjadi lebih efisien, sementara perolehan informasi publik dan proses layanan
-      kepada mahasiswa/masyarakat menjadi lebih cepat dan... <small class="text-sky-500">Selengkapnya</small>
-    </p>
-  </div>
+
 </section>

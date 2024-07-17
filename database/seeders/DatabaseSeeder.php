@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SurveyPpidSeeder::class);
         $this->call(FaqSeeder::class);
         $this->call(RequestPpidSeeder::class);
+        $this->call(AspirasiPengaduanSeeder::class);
     }
 }

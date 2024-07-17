@@ -30,12 +30,12 @@ class KeberatanForm extends Component
             "field_search" => 'required|min:3',
         ]);
 
-        $data_aspirasi = PpidAspirasiPengaduan::find($this->field_search);
-        // $data = StatusPpid::find(1);
+        $data_aspirasi = PpidAspirasiPengaduan::where('slug', $this->field_search)->first();
+        // $data = StatusPpid::where(1);
         if ($data_aspirasi) {
             $this->data_found = $data_aspirasi;
         } else {
-            $data_request = RequestPpid::find($this->field_search);
+            $data_request = RequestPpid::where('slug', $this->field_search)->first();
             if ($data_request) {
                 $this->data_found = $data_request;
             } else {

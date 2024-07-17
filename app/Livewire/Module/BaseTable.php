@@ -24,7 +24,7 @@ class BaseTable extends Component
     public $perPage = 5;
 
     /**
-     * 
+     *
      * insert modal name to use in view here
      *
      * @var array('action' => 'modal-component')
@@ -36,7 +36,7 @@ class BaseTable extends Component
     ];
 
     /**
-     * 
+     *
      * @var array('action' => 'permission')
      */
     protected array $permissions = [
@@ -57,7 +57,7 @@ class BaseTable extends Component
     protected array $import = [];
 
     /**
-     * 
+     *
      * insert route name and parameter to use in view here
      *
      * @var array('action' => array('route' => 'route-name', 'params' => 'parameter'))

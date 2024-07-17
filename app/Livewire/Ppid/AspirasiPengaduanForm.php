@@ -38,10 +38,10 @@ class AspirasiPengaduanForm extends Component
     private function cek_profile()
     {
         $cek_no_hp = auth()->user()->profile_information;
-        if ($cek_no_hp[2]->value) {
+        if (isset($cek_no_hp[2]->value)) {
             $this->profile = true;
         } else {
-            $this->profile = false;
+            $this->profile = true;
         }
     }
 
@@ -73,6 +73,7 @@ class AspirasiPengaduanForm extends Component
         $data = PpidAspirasiPengaduan::create(
             [
                 'judul' => $this->judul,
+                'slug' => sha1(time()),
                 'status_ppid' => $status->id,
                 'nik' => $this->nik,
                 'saran' => $this->saran,
@@ -81,9 +82,10 @@ class AspirasiPengaduanForm extends Component
 
 
         $this->resetInput();
-
+        request()->session()->flash('data', $data->slug);
+        // return redirect('/ppid/aspirasi_pengaduan')->with(['data' => $data->slug]);
         return $this->toast(
-            message: 'Berhasil',
+            message: 'Berhasil ' . $data->slug,
             type: 'success'
         );
     }

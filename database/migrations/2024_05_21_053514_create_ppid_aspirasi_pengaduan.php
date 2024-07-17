@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('ppid_aspirasi_pengaduans', function (Blueprint $table) {
             // $table->uuid('id')->primary();
             $table->id();
+            $table->string('slug');
+            $table->string('judul');
             $table->foreignId('status_ppid')->constrained();
             $table->string('nik');
-            $table->string('judul');
             $table->text('saran');
             $table->timestamps();
         });

@@ -14,11 +14,34 @@ class ultController extends Controller
     ];
     public function index()
     {
-        return view('pages.ult.ult-page', [
-            'items' => $this->items,
-            'about' => About::first(),
-            'carousel' => Carousel::all(),
-            'faq' => Faq::orderBy('created_at','desc')->limit(4)->get(),
-        ]);
+        $data = [
+            'title' => 'Homepage', 'list_layanan' =>
+            [
+                [
+                    'title' => 'Visit UTM',
+                    'desc' => 'Visit UTM adalah layanan untuk melakukan kunjungan ke UTM',
+                    'link' => 'visit.schedules'
+                ],
+                [
+                    'title' => 'PPID',
+                    'desc' => 'PPID atau Pejabat Pengelola Informasi dan Dokumentasi adalah layanan untuk melakukan permintaan data ke UTM',
+                    "link" => 'ppid.request'
+                ],
+                [
+                    'title' => 'Layanan Terpadu',
+                    'desc' => 'layanan terpadu adalah tempat untuk melakukan beberapa layanan sekaligus',
+                    "link" => 'lt.home'
+                ],
+            ]
+        ];
+
+        // [
+        //     'items' => $this->items,
+        //     'about' => About::first(),
+        //     'carousel' => Carousel::all(),
+        //     'faq' => Faq::orderBy('created_at', 'desc')->limit(4)->get(),
+        // ]
+
+        return view('pages.ult.ult-page', $data);
     }
 }
