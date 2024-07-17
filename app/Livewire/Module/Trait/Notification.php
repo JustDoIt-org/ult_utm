@@ -11,7 +11,8 @@ trait Notification
      */
     public function swal($title, $message, $type = 'success')
     {
-        return $this->js("window.swal({icon: '{$type}', message: '{$message}', title: '{$title}'})");
+        return $this->js("window.swal.fire({icon: '{$type}', message: '{$message}', title: '{$title}'})");
+        // return $this->js("window.swal({icon: '{$type}', message: '{$message}', title: '{$title}'})");
     }
 
     /**

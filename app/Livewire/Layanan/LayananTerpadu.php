@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Layanan;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Livewire\Module\Trait\Notification;
+use App\Models\LayananTerpadu as ModelsLayananTerpadu;
+use Illuminate\Support\Facades\Auth;
 
 class LayananTerpadu extends Component
 {
@@ -69,25 +71,55 @@ class LayananTerpadu extends Component
             "nim" => 'required',
             "service" => 'required',
             "desc" => 'required',
-            "file" => 'mimes:jpg,png,pdf|extensions:jpg,png,pdf',
         ];
+        if ($this->file) {
+            $rules['file'] = 'mimes:jpg,png,pdf|extensions:jpg,png,pdf';
+        }
 
-        $this->validate($rules);
+        if (!$this->validate($rules)) {
+            $this->file = null;
+        }
 
-        $variables =
-            [
-                $this->date,
-                $this->name,
-                $this->gender,
-                $this->age,
-                $this->nohp,
-                $this->address,
-                $this->institusi,
-                $this->nim,
-                $this->service,
-                $this->desc,
-                $this->file,
-            ];
-        dd($variables);
+
+        $data = ModelsLayananTerpadu::create([
+            'user_id' => Auth::id(),
+            'date' => $this->date,
+            'name' => $this->name,
+            'gender' => $this->gender,
+            'age' => $this->age,
+            'nohp' => $this->nohp,
+            'address' => $this->address,
+            'institusi' => $this->institusi,
+            'nim' => $this->nim,
+            'service' => $this->service,
+            'desc' => $this->desc,
+            'file' => $this->file,
+        ]);
+        $this->resetInput();
+
+
+        request()->session()->flash('data', $data->name);
+
+        return $this->swal(
+            title: 'Berhasil',
+            message: 'Berhasil ' . $data->name,
+            type: 'success'
+        );
+    }
+
+
+    private function resetInput()
+    {
+        $this->date = null;
+        $this->name = null;
+        $this->gender = 'man';
+        $this->age = null;
+        $this->nohp = null;
+        $this->address = null;
+        $this->institusi = null;
+        $this->nim = null;
+        $this->service = 'Layanan Akademik';
+        $this->desc = null;
+        $this->file = null;
     }
 }

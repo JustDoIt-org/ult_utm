@@ -2,15 +2,14 @@
 <x-element.dropdown.container>
   <x-slot:trigger>
     <button class="flex items-center gap-3">
-      <div
-        class="flex justify-center items-center font-semibold text-white bg-yellow-600 w-9 h-9 rounded-full uppercase ">
+      <div class="flex justify-center items-center font-semibold text-white bg-primary w-9 h-9 rounded-full uppercase ">
         <img width="36px" height="36px"
           src="{{ Auth::user()->picture ? Auth::user()->picture : 'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg' }}"
           alt="{{ Auth::user()->name }}" class="rounded-full">
       </div>
 
       <div class="hidden md:flex md:items-center">
-        <div class="font-semibold text-sm text-white">{{ Auth::user()->name }}</div>
+        <div class="font-semibold text-sm text-black">{{ Auth::user()->name }}</div>
 
         <div class="ml-1 text-slate-400">
           <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -58,7 +57,7 @@
       @csrf
 
       <button onclick="event.preventDefault(); this.closest('form').submit();"
-        class="block w-full px-1 py-2 text-left text-sm leading-5 text-slate-400 hover:text-yellow-600 hover:font-semibold hover:bg-yellow-50 hover:border-l-4 hover:border-yellow-500 focus:bg-yellow-50 focus:text-yellow-600 focus:font-semibold focus:border-l-4 focus:border-yellow-500 transition duration-150 ease-in-out rounded-lg">
+        class="block w-full px-1 py-2 text-left text-sm leading-5 text-slate-400 hover:text-white hover:font-semibold hover:bg-secondary hover:border-l-4 hover:border-primary focus:bg-yellow-50 focus:text-primary focus:font-semibold focus:border-l-4 focus:border-primary transition duration-150 ease-in-out rounded-lg">
         <div class="flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path fill-rule="evenodd"

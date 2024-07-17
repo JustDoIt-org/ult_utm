@@ -65,6 +65,7 @@ Route::middleware(['auth', 'verified'])->prefix('ppid')->group(function () {
 
 Route::middleware(['auth', 'verified'])->prefix('terpadu')->group(function () {
     Route::get('/', [LayananTerpaduController::class, 'index'])->name('lt.home');
+    Route::get('/riwayat', [LayananTerpaduController::class, 'riwayat'])->name('lt.riwayat');
 });
 
 Route::middleware('auth')->group(function () {

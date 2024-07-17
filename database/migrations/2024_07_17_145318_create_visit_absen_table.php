@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('informasi_koutas', function (Blueprint $table) {
+        Schema::create('visit_absen', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('faculty_id')->constrained();
-            $table->date('tanggal_kunjungan');  
-            $table->integer('sisa_kouta');
-            // $table->string('tujuan_kunjungan');
-            $table->string('warna_tulisan');
-            $table->string('warna_latar_belakang');
+            $table->foreignId('pengajuan_kunjungan')->constrained('pengajuan_kunjungans'); //get code_absen
+            $table->string('code_absen')->nullable(); //null jika kunjungan langsung
+            $table->enum('absen', ['belum', 'sudah']);
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('informasi_koutas');
+        Schema::dropIfExists('visit_absen');
     }
 };

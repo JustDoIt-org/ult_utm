@@ -1,10 +1,10 @@
-@props(['title' => ''])
+@props(['title' => '', 'type' => 'layananTerpadu'])
 
 <?php
-if (session()->get('role') == 'admin') {
-    $data = [['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'dashboard'], ['name' => 'List Order', 'icon' => 'ni ni-calendar-grid-58 text-warning', 'link' => 'list-order'], ['name' => 'Services', 'icon' => 'ni ni-single-copy-04 text-primary', 'link' => 'services'], ['name' => 'Metode Pembayaran', 'icon' => 'fa-solid fa-dollar-sign text-success', 'link' => 'payment-methods'], ['name' => 'FAQ', 'icon' => 'fa-solid fa-circle-question text-primary', 'link' => 'faq-admin'], ['name' => 'Tags', 'icon' => 'fa-solid fa-tag text-warning', 'link' => 'tags-admin'], ['name' => 'Portfolio', 'icon' => 'fa-solid fa-briefcase text-warning', 'link' => 'portfolio-admin'], ['name' => 'Chat', 'icon' => 'fa-solid fa-comments text-success', 'link' => 'chat-admin'], ['name' => 'Riwayat', 'icon' => 'fa-solid fa-history text-success', 'link' => 'riwayat-admin']];
+if ($type == 'layananTerpadu') {
+    $data = [['name' => 'Form Layanan', 'icon' => 'ni ni-single-copy-04 text-primary', 'link' => 'lt.home'], ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.riwayat']];
 } else {
-    $data = [['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'dashboard'], ['name' => 'Chat', 'icon' => 'fa-solid fa-comments text-success', 'link' => 'chat-guest'], ['name' => 'Daftar Pesanan', 'icon' => 'ni ni-calendar-grid-58 text-warning', 'link' => 'list-orders-guest']];
+    $data = [['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'dashboard'], ['name' => 'List Order', 'icon' => 'ni ni-calendar-grid-58 text-warning', 'link' => 'list-order'], ['name' => 'Services', 'icon' => 'ni ni-single-copy-04 text-primary', 'link' => 'services'], ['name' => 'Metode Pembayaran', 'icon' => 'fa-solid fa-dollar-sign text-success', 'link' => 'payment-methods'], ['name' => 'FAQ', 'icon' => 'fa-solid fa-circle-question text-primary', 'link' => 'faq-admin'], ['name' => 'Tags', 'icon' => 'fa-solid fa-tag text-warning', 'link' => 'tags-admin'], ['name' => 'Portfolio', 'icon' => 'fa-solid fa-briefcase text-warning', 'link' => 'portfolio-admin'], ['name' => 'Chat', 'icon' => 'fa-solid fa-comments text-success', 'link' => 'chat-admin'], ['name' => 'Riwayat', 'icon' => 'fa-solid fa-history text-success', 'link' => 'riwayat-admin']];
 }
 ?>
 
@@ -14,47 +14,51 @@ if (session()->get('role') == 'admin') {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>
     {{ $title }}
   </title>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href=" {{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+  <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
-  <script src="assets/js/plugins/flatpickr.min.js"></script>
+  <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  <script src="{{ asset('assets/js/plugins/flatpickr.min.js') }}"></script>
   <!-- CSS Files -->
-  <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <link href="assets/DataTables/datatables.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/DataTables/datatables.min.css') }}" rel="stylesheet">
 
-  <script src="assets/DataTables/datatables.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+  <script src="{{ asset('assets/DataTables/datatables.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('assets/css/dataTables.dataTables.css') }}">
   <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
   <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="{{ asset('assets/js/pdfmake.min.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+  <script src="{{ asset('assets/js/buttons.colVis.min.js') }}"></script>
 
   <style>
     .d-flex {
@@ -113,7 +117,7 @@ if (session()->get('role') == 'admin') {
         aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
         target="_blank">
-        <img src="assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Dashboard</span>
       </a>
     </div>
@@ -121,14 +125,20 @@ if (session()->get('role') == 'admin') {
 
     <ul class="navbar-nav">
       <?php
-      foreach ($data as $key) { ?>
+      foreach ($data as $key) {
+        ?>
       <li class="nav-item">
-        <a class="nav-link" href="/<?= $key['link'] ?>">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="<?= $key['icon'] ?> text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1"><?= $key['name'] ?></span>
+        @if (Route::is($key['link']))
+          <a class="nav-link" style="background-color: #5e72e4; border-radius: 10px; color: white !important;"
+            href="{{ route($key['link']) }}">
+          @else
+            <a class="nav-link" href="{{ route($key['link']) }}">
+        @endif
+        <div
+          class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+          <i class="<?= $key['icon'] ?> text-sm opacity-10 {{ Route::is($key['link']) ? 'text-white' : '' }}"></i>
+        </div>
+        <span class="nav-link-text ms-1"><?= $key['name'] ?></span>
         </a>
       </li>
       <?php
@@ -266,11 +276,15 @@ if (session()->get('role') == 'admin') {
   </script>
 
   <!--   Core JS Files   -->
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <script src="{{ asset('assets/js/core/popper.min.js') }} ></script>
+  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}></script>
+  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}></script>
+  <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}></script>
+  <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}></script>
+
+  <script>
+    const Swal = require('sweetalert2')
+  </script>
 
 
 </body>
