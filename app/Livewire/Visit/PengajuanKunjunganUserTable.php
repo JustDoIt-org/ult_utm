@@ -45,13 +45,18 @@ class PengajuanKunjunganUserTable extends BaseTable
     {
         return [
             [
+                "label" => "Tipe Kunjungan",
+                "query" => "tipe_kunjungan",
+                "sort" => true,
+            ],
+            [
                 "label" => "Tanggal Kunjungan",
                 "query" => "informasiKouta.tanggal_kunjungan",
                 "sort" => true,
             ],
             [
-                "label" => "Asal Institusi",
-                "query" => "institusi_pengunjung",
+                "label" => "Asal Sekolah",
+                "query" => "asal_sekolah",
                 "sort" => false,
             ],
             [
@@ -86,7 +91,9 @@ class PengajuanKunjunganUserTable extends BaseTable
     {
         $doc = PengajuanKunjungan::find($id);
 
-        unlink(public_path('storage' . $doc->surat_permohonan));
+        if($doc->tipe_kunjungan != "langsung"){
+            unlink(public_path('storage' . $doc->surat_permohonan));
+        }
         parent::delete($id);
         PengajuanKunjungan::destroy($id);
         $this->toast(
