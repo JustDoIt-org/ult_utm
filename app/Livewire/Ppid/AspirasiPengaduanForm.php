@@ -47,13 +47,15 @@ class AspirasiPengaduanForm extends Component
 
     public function save()
     {
+        $rand = substr(sha1(time()), rand(0, 26), 5);
         // $this->validate();
         $this->validate([
             "aspengaduan_button" => 'required',
             "judul" => 'required|min:5',
             "uraian" => 'required|min:10',
             "saran" => 'required|min:10',
-            "nik" => 'required|numeric',
+            "nik" => 'required|numeric|digits:16',
+            "photo" => 'mimes:jpg,png,pdf|extensions:jpg,png,pdf'
         ]);
 
         if ($this->photo) {

@@ -11,12 +11,14 @@ class Role extends \Spatie\Permission\Models\Role
 
     const ADMIN = "Administrator";
     const GUEST = "Guest";
+    const ADMIN_ULT = "Admin_ULT";
 
     public static function getDefaultRoles()
     {
         return [
             self::ADMIN,
             self::GUEST,
+            self::ADMIN_ULT,
         ];
     }
 

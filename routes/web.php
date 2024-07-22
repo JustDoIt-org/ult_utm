@@ -66,6 +66,14 @@ Route::middleware(['auth', 'verified'])->prefix('ppid')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('terpadu')->group(function () {
     Route::get('/', [LayananTerpaduController::class, 'index'])->name('lt.home');
     Route::get('/riwayat', [LayananTerpaduController::class, 'riwayat'])->name('lt.riwayat');
+    Route::get('/dashboard', [LayananTerpaduController::class, 'dashboard'])->name('lt.dashboard');
+    Route::get('/admin_riwayat', [LayananTerpaduController::class, 'riwayat_admin'])->name('lt.admin_riwayat');
+
+    Route::get('/chat_layanan', [LayananTerpaduController::class, 'chat_guest'])->name('lt.chat_layanan');
+
+
+    Route::get('/list', [LayananTerpaduController::class, 'list'])->name('lt.list');
+    Route::delete('/list', [LayananTerpaduController::class, 'destroy'])->name('lt.list');
 });
 
 Route::middleware('auth')->group(function () {

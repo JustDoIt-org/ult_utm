@@ -167,6 +167,7 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN],
                 ],
             ],
+
             "pengajuan-kunjungan" => [
                 "index" => [
                     "description" => "Dapat mengakses data pengajuan-kunjungan",
@@ -179,6 +180,22 @@ class Permission extends \Spatie\Permission\Models\Permission
                 "delete" => [
                     "description" => "Dapat menghapus data pengajuan-kunjungan",
                     "role" => [Role::ADMIN],
+                ],
+            ],
+
+
+            "layanan-terpadu" => [
+                "index" => [
+                    "description" => "Dapat mengakses data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN_ULT, Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN_ULT, Role::ADMIN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN_ULT, Role::ADMIN],
                 ],
             ],
         ];

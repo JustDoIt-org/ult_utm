@@ -25,6 +25,8 @@ class LayananTerpadu extends Component
     public $service = 'Layanan Akademik';
     public $desc;
     public $file;
+    public $lainnya;
+
     public function render()
     {
         $from_data = [
@@ -54,14 +56,15 @@ class LayananTerpadu extends Component
             ['title' => 'File', 'model' => 'file', 'type' => 'file'],
         ];
 
-        return view('livewire.layanan-terpadu',  ['data' => $from_data]);
+        return view('livewire.form',  ['data' => $from_data, 'title' => 'Form Layanan Terpadu']);
     }
 
     public function save()
     {
+        $minDate = date('Y-m-d');
 
         $rules = [
-            "date" => 'required',
+            "date" => 'required|after_or_equal:' . $minDate,
             "name" => 'required',
             "gender" => 'required',
             "age" => 'required',
@@ -76,6 +79,10 @@ class LayananTerpadu extends Component
             $rules['file'] = 'mimes:jpg,png,pdf|extensions:jpg,png,pdf';
         }
 
+        if ($this->service == 'Lainnya') {
+            $rules['lainnya'] = 'required';
+        }
+
         if (!$this->validate($rules)) {
             $this->file = null;
         }
@@ -83,6 +90,7 @@ class LayananTerpadu extends Component
 
         $data = ModelsLayananTerpadu::create([
             'user_id' => Auth::id(),
+            'progress' => 'belum',
             'date' => $this->date,
             'name' => $this->name,
             'gender' => $this->gender,
@@ -98,7 +106,7 @@ class LayananTerpadu extends Component
         $this->resetInput();
 
 
-        request()->session()->flash('data', $data->name);
+        // request()->session()->flash('data', $data->name);
 
         return $this->swal(
             title: 'Berhasil',

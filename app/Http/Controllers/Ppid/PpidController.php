@@ -23,7 +23,7 @@ class PpidController extends Controller
 
     public function keberatan()
     {
-        $data = ["title" => "Form Keberatan", "page" => "keberatan"];
+        $data = ["title" => "Pelacakan Permohonan", "page" => "keberatan"];
         return view('pages.ppid.template-ppid', $data);
     }
 

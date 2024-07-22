@@ -1,13 +1,12 @@
 <x-layouts.ult-layout :$title>
   <x-section.ult.hero-section :$list_layanan />
-  <x-section.ult.about-section />
-
+  <x-section.ult.about-section :$about />
+  <x-section.ult.faq-section :$faq />
 
 </x-layouts.ult-layout>
 
 
 
-{{-- <x-section.ult.faq-section :$faq/> --}}
 {{-- <x-section.ult.contact-section /> --}}
 {{-- <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">

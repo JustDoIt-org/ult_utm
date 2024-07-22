@@ -1,4 +1,9 @@
-@props(['title' => '', 'model' => '', 'type' => '', 'select_item' => []])
+@props([
+    'title' => '',
+    'model' => '',
+    'type' => 'text',
+    'select_item' => [],
+])
 
 @switch($type)
   @case('select')
@@ -9,6 +14,7 @@
           <option>{{ $item }}</option>
         @endforeach
       </select>
+
       @error($model)
         <div class="text-danger">
           <small>{{ $message }}</small>
@@ -29,14 +35,31 @@
     </div>
   @break
 
-  @default
+  @case('date')
+    @php
+      $minDate = date('Y-m-d');
+      $nextDate = date('Y') + 6 . date('-m-d');
+    @endphp
+
     <div class="form-group">
       <label for="example-text-input" class="form-control-label">{{ __($title) }}</label>
-      <input class="form-control" type={{ $type }} wire:model={{ $model }} id="example-text-input">
+      <input class="form-control" type={{ $type }} wire:model={{ $model }} id="example-text-input"
+        min={{ $minDate }} max={{ $nextDate }}>
       @error($model)
         <div class="text-danger">
           <small>{{ $message }}</small>
         </div>
       @enderror
-    </div>
-@endswitch
+    @break
+
+    @default
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">{{ __($title) }}</label>
+        <input class="form-control" type={{ $type }} wire:model={{ $model }} id="example-text-input">
+        @error($model)
+          <div class="text-danger">
+            <small>{{ $message }}</small>
+          </div>
+        @enderror
+      </div>
+  @endswitch

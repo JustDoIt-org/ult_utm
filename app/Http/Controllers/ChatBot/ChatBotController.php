@@ -12,10 +12,9 @@ class ChatBotController extends Controller
     {
         $botman = app('botman');
 
-        $botman->hears('{message}', function($botman, $message) {
+        $botman->hears('{message}', function ($botman, $message) {
 
             $botman->startConversation(new FaqConversation);
-
         });
 
         $botman->listen();

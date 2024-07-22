@@ -15,7 +15,8 @@ class ultController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Homepage', 'list_layanan' =>
+            'title' => 'Homepage',
+            'list_layanan' =>
             [
                 [
                     'title' => 'Visit UTM',
@@ -32,7 +33,10 @@ class ultController extends Controller
                     'desc' => 'layanan terpadu adalah tempat untuk melakukan beberapa layanan sekaligus',
                     "link" => 'lt.home'
                 ],
-            ]
+            ],
+            'faq' => Faq::orderBy('created_at', 'desc')->limit(4)->get(),
+            'about' => About::first(),
+
         ];
 
         // [

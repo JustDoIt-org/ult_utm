@@ -1,11 +1,26 @@
-@props(['title' => '', 'type' => 'layananTerpadu'])
+@props(['title' => '', 'view' => 'guest', 'type' => 'layanan'])
 
 <?php
-if ($type == 'layananTerpadu') {
-    $data = [['name' => 'Form Layanan', 'icon' => 'ni ni-single-copy-04 text-primary', 'link' => 'lt.home'], ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.riwayat']];
-} else {
-    $data = [['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'dashboard'], ['name' => 'List Order', 'icon' => 'ni ni-calendar-grid-58 text-warning', 'link' => 'list-order'], ['name' => 'Services', 'icon' => 'ni ni-single-copy-04 text-primary', 'link' => 'services'], ['name' => 'Metode Pembayaran', 'icon' => 'fa-solid fa-dollar-sign text-success', 'link' => 'payment-methods'], ['name' => 'FAQ', 'icon' => 'fa-solid fa-circle-question text-primary', 'link' => 'faq-admin'], ['name' => 'Tags', 'icon' => 'fa-solid fa-tag text-warning', 'link' => 'tags-admin'], ['name' => 'Portfolio', 'icon' => 'fa-solid fa-briefcase text-warning', 'link' => 'portfolio-admin'], ['name' => 'Chat', 'icon' => 'fa-solid fa-comments text-success', 'link' => 'chat-admin'], ['name' => 'Riwayat', 'icon' => 'fa-solid fa-history text-success', 'link' => 'riwayat-admin']];
+switch ($type) {
+    case 'ppid':
+        # code...
+        break;
+
+    default:
+        if ($view == 'guest') {
+            $data =
+            [
+                ['name' => 'Form Layanan', 'icon' => 'ni ni-single-copy-04 text-primary', 'link' => 'lt.home'],
+                ['name' => 'List Pengajuan', 'icon' => 'ni ni-single-copy-04 text-warning', 'link' => 'lt.list'],
+                ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.riwayat'],
+                ['name' => 'Chat Admin', 'icon' => 'ni ni-chat-round text-success', 'link' => 'lt.chat_layanan']
+            ];
+        } else {
+            $data = [['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'lt.dashboard'], ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.admin_riwayat']];
+        }
+        break;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -16,14 +31,12 @@ if ($type == 'layananTerpadu') {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
   <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.all.min.css') }}" />
   <title>
     {{ $title }}
   </title>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{{ asset('assets/js/sweetalert2@11.js') }}"></script>
 
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -32,32 +45,32 @@ if ($type == 'layananTerpadu') {
   <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <script src="{{ asset('assets/js/font-awesome42d5adcbca.js') }}" crossorigin="anonymous"></script>
   <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
-  <script src="{{ asset('assets/js/plugins/flatpickr.min.js') }}"></script>
+  {{-- <script src="{{ asset('assets/js/plugins/flatpickr.min.js') }}"></script> --}}
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <link href="{{ asset('assets/DataTables/datatables.min.css') }}" rel="stylesheet">
+  <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+  {{-- <link href="{{ asset('assets/DataTables/datatables.min.css') }}" rel="stylesheet"> --}}
 
-  <script src="{{ asset('assets/DataTables/datatables.min.js') }}"></script>
+  {{-- <script src="{{ asset('assets/DataTables/datatables.min.js') }}"></script> --}}
   <link rel="stylesheet" href="{{ asset('assets/css/dataTables.dataTables.css') }}">
-  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+  {{-- <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script> --}}
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/buttons.bootstrap5.css') }}">
 
 
 
   <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
-  <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
-  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="{{ asset('assets/js/dataTables.js') }}"></script>
+  <script src="{{ asset('assets/js/dataTables.bootstrap5.js') }}"></script>
+  <script src="{{ asset('assets/js/dataTables.buttons.js') }}"></script>
+  <script src="{{ asset('assets/js/buttons.bootstrap5.js') }}"></script>
+  <script src="{{ asset('assets/js/jszip.min.js') }}"></script>
   <script src="{{ asset('assets/js/pdfmake.min.js') }}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+  <script src="{{ asset('assets/js/vfs_fonts.js') }}"></script>
+  <script src="{{ asset('assets/js/buttons.html5.min.js') }}"></script>
+  <script src="{{ asset('assets/js/buttons.print.min.js') }}"></script>
   <script src="{{ asset('assets/js/buttons.colVis.min.js') }}"></script>
 
   <style>
@@ -76,7 +89,7 @@ if ($type == 'layananTerpadu') {
       top: 50px;
       border-radius: 10px;
       padding: 15px 15px 0 15px;
-      height: 120px;
+      /* max-height: 220px; */
       right: 30px;
       width: 150px;
       z-index: 9999;
@@ -118,7 +131,7 @@ if ($type == 'layananTerpadu') {
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
         target="_blank">
         <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Dashboard</span>
+        <span class="ms-1 font-weight-bold">{{ __('Layanan Terpadu') }}</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -145,19 +158,6 @@ if ($type == 'layananTerpadu') {
       }
       ?>
     </ul>
-    <!-- <div class="sidenav-footer mx-3 ">
-      <div class="card card-plain shadow-none" id="sidenavCard">
-        <img class="w-50 mx-auto" src="assets/img/illustrations/icon-documentation.svg" alt="sidebar_illustration">
-        <div class="card-body text-center p-3 w-100 pt-0">
-          <div class="docs-info">
-            <h6 class="mb-0">Need help?</h6>
-            <p class="text-xs font-weight-bold mb-0">Please check our docs</p>
-          </div>
-        </div>
-      </div>
-      <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a>
-      <a class="btn btn-primary btn-sm mb-0 w-100" href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
-    </div> -->
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
@@ -216,34 +216,47 @@ if ($type == 'layananTerpadu') {
 
               <div class="dropdown-container">
                 <a href="{{ route('profile.edit') }}" class="link-item">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                    class="icon-profile">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-profile">
                     <path fill-rule="evenodd"
                       d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
                       clip-rule="evenodd" />
                   </svg>
-                  {{ __('Profile') }}</a>
-                <div class="link-item">
-                  <form style="background: gray; height: 0px; font-size: 15px;" method="POST"
-                    action="{{ route('logout') }}">
-                    @csrf
-                    <a onclick="event.preventDefault(); this.closest('form').submit();" class="link-item">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                        class="icon-profile">
-                        <path fill-rule="evenodd"
-                          d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z"
-                          clip-rule="evenodd" />
-                      </svg>
-                      {{ __('Log Out') }}
-                    </a>
-                  </form>
-                </div>
+                  {{ __('Profile') }}
+                </a>
+
+
+                @can('layanan-terpadu index')
+                  <a href="{{ route('lt.dashboard') }}" class="link-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="icon-profile">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                    </svg>
+                    {{ __('Dashboard') }}
+                  </a>
+                @endcan
+
+
+                <form style=" font-size: 15px; margin-bottom: 5px;" method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <a onclick="event.preventDefault(); this.closest('form').submit();" class="link-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                      class="icon-profile">
+                      <path fill-rule="evenodd"
+                        d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    {{ __('Log Out') }}
+                  </a>
+                </form>
+
+
               </div>
             </div>
 
 
 
-            ==
+
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="" class="nav-link text-white p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
@@ -276,11 +289,11 @@ if ($type == 'layananTerpadu') {
   </script>
 
   <!--   Core JS Files   -->
-  <script src="{{ asset('assets/js/core/popper.min.js') }} ></script>
-  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}></script>
-  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}></script>
-  <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}></script>
-  <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}></script>
+  <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
 
   <script>
     const Swal = require('sweetalert2')

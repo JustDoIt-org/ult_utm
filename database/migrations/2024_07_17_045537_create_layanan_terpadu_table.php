@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {   
+    {
         Schema::create('layanan_terpadu', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('nim');
             $table->string('service');
             $table->string('desc');
+            $table->enum('progress', ['belum', 'diproses', 'selesai']);
             $table->string('file')->nullable();
             $table->timestamps();
         });

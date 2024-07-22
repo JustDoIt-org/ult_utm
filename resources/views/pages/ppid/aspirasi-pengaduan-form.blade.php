@@ -25,7 +25,7 @@
 
       <x-element.input.input-file label="input file" model="photo" target="save" />
 
-      <x-section.ppid.image-file-preview :$photo />
+      {{-- <x-section.ppid.image-file-preview :$photo /> --}}
 
       <x-element.button.submit-ppid target="save, photo" buttonName="Kirim Permohonan" position="middle" />
     </form>
