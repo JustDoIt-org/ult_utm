@@ -70,26 +70,34 @@ class PengajuanKunjunganFormModal extends BaseModal
         if($this->form->id != 0) return response()->download(storage_path("/app/public".$this->form->surat_permohonan));
     }
 
+    public function sendCodeAbsensi(){
+        if($this->form->progress == "selesai"){
+            $code_absen = $this->form->generateRandomNumber();
+
+            VisitAbsen::updateOrCreate(['id' => $this->form->id], [
+                'pengajuan_kunjungan' => $this->form->id,
+                'code_absen' => $code_absen
+            ]);
+        }
+    }
+
+    public function deleteCodeAbsensi(){
+        if($this->form->progress != "selesai" && $this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+            $pengajuan = PengajuanKunjungan::find($this->form->id);
+
+            $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($pengajuan);
+            // dd($absen);
+            if($absen){
+                $absen->delete();
+            }
+        }
+    }
+
     public function save()
     {
 
         if($this->form->tipe_kunjungan != "langsung"){
-
-            if($this->form->progress == "selesai" && $this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
-                $code_absen = $this->form->generateRandomNumber();
-
-                VisitAbsen::updateOrCreate(['id' => $this->form->id], [
-                    'pengajuan_kunjungan' => $this->form->id,
-                    'code_absen' => $code_absen
-                ]);
-            }
-            else if($this->form->progress != "selesai" && $this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
-                $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($this->form->id);
-                // dd($absen);
-                if($absen){
-                    $absen->delete();
-                }
-            }
+            $this->deleteCodeAbsensi();
 
             if($this->form->surat_permohonan == null){
 
@@ -122,6 +130,7 @@ class PengajuanKunjunganFormModal extends BaseModal
 
     public function clear()
     {
+        $this->deleteCodeAbsensi();
         parent::clear();
         $this->form->clear();
     }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('informasi_koutas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('faculty_id')->constrained();
-            $table->date('tanggal_kunjungan');  
+            $table->date('tanggal_kunjungan');
             $table->integer('sisa_kouta');
             // $table->string('tujuan_kunjungan');
             $table->string('warna_tulisan');

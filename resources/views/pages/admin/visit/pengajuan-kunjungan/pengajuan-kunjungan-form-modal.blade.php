@@ -64,9 +64,15 @@
             @endforeach
         </x-element.select.dropdown>
 
-        <span class="text-sm font-semibold text-slate-600 mt-2">
-            Tanggal kunjungan: <span class="text-green-500">{{ $form->tanggal_tersedia }}</span>
-        </span>
+        <div class="text-sm font-semibold text-slate-600 mt-2 flex flex-col gap-2 mb-3">
+            <div>
+                <span>Tanggal kunjungan:</span>
+                <span class="text-green-500">{{ $form->tanggal_tersedia }}</span>
+            </div>
+            @if ($form->progress == "selesai")
+                <button type="button" wire:click="sendCodeAbsensi" class="bg-blue-600 hover:bg-blue-800 py-1 px-2 text-white rounded-full">Kirim kode absensi</button>
+            @endif
+        </div>
     </div>
 
     <section>

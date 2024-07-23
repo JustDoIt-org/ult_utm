@@ -132,6 +132,7 @@ class PengajuanKunjunganForm extends Form
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
             'user_id' =>($this->id == 0) ? Auth::id() : $pengajuan->user_id,
             'tipe_kunjungan' => $this->tipe_kunjungan,
+            // 'tujuan_kegiatan' => $this->tujuan_kegiatan,
             'informasi_kouta_id' => $informasi_kouta->id,
             'asal_sekolah' => $this->asal_sekolah,
             'provinsi_asal' => $this->provinsi_asal,
