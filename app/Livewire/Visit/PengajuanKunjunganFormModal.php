@@ -71,24 +71,40 @@ class PengajuanKunjunganFormModal extends BaseModal
     }
 
     public function sendCodeAbsensi(){
+        // $pengajuan = PengajuanKunjungan::find($this->form->id);
+
+
         if($this->form->progress == "selesai"){
+            $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($this->form->id);
             $code_absen = $this->form->generateRandomNumber();
 
-            VisitAbsen::updateOrCreate(['id' => $this->form->id], [
-                'pengajuan_kunjungan' => $this->form->id,
-                'code_absen' => $code_absen
-            ]);
+            if($absen){
+
+                VisitAbsen::updateOrCreate(['id' => $absen->id], [
+                    'pengajuan_kunjungan' => $this->form->id,
+                    'code_absen' => $code_absen
+                ]);
+            }else{
+                VisitAbsen::create([
+                    'pengajuan_kunjungan' => $this->form->id,
+                    'code_absen' => $code_absen
+                ]);
+            }
         }
     }
 
     public function deleteCodeAbsensi(){
-        if($this->form->progress != "selesai" && $this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
-            $pengajuan = PengajuanKunjungan::find($this->form->id);
+        $pengajuan = PengajuanKunjungan::find($this->form->id);
 
-            $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($pengajuan);
-            // dd($absen);
-            if($absen){
-                $absen->delete();
+        if($pengajuan){
+
+            if($pengajuan->progress != "selesai" && $this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+                $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($this->form->id);
+
+                // dd($absen);
+                if($absen){
+                    $absen->delete();
+                }
             }
         }
     }
