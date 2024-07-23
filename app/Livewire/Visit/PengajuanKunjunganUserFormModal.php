@@ -15,6 +15,12 @@ class PengajuanKunjunganUserFormModal extends BaseModal
 
     public PengajuanKunjunganForm $form;
 
+    protected $tipe_kunjungan = [
+        'langsung',
+        'sekolah',
+        'umum'
+    ];
+
     /*
      * normal modal title
      * @var string
@@ -65,29 +71,32 @@ class PengajuanKunjunganUserFormModal extends BaseModal
 
     public function save()
     {
-        if($this->form->surat_permohonan != null){
+        if($this->form->tipe_kunjungan != "langsung"){
 
-            if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
-                parent::save();
-                if($this->form->post()) {
-                    $this->dispatch('close-modal', name: $this->modal_name);
-                    $this->dispatch('pengajuan-kunjungan-user-table:reload');
-                    $this->dispatch('pengajuan-kunjungan-table:reload');
-                    $this->toast(
-                        message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
-                        type: 'success'
-                    );
-                }
-            }else{
-                $this->toast(
-                    message: 'Kapasitas peserta melebihi kouta',
+            if($this->form->surat_permohonan == null){
+
+                return $this->toast(
+                    message: 'Diharap untuk melampirkan surat permohonan',
                     type: 'error'
                 );
             }
+        }
 
+        if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+            parent::save();
+
+            if($this->form->post()) {
+                $this->dispatch('close-modal', name: $this->modal_name);
+                $this->dispatch('pengajuan-kunjungan-user-table:reload');
+                $this->dispatch('pengajuan-kunjungan-table:reload');
+                $this->toast(
+                    message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
+                    type: 'success'
+                );
+            }
         }else{
             $this->toast(
-                message: 'Diharap untuk melampirkan surat permohonan',
+                message: 'Kapasitas peserta melebihi kouta',
                 type: 'error'
             );
         }

@@ -11,10 +11,11 @@ class PengajuanKunjungan extends Model
 
     protected $fillable = [
         'user_id',
+        'tipe_kunjungan',
         'informasi_kouta_id',
         // 'tujuan_kegiatan',
         // 'tanggal_tersedia',
-        'institusi_pengunjung',
+        'asal_sekolah',
         'provinsi_asal',
         'kota_asal',
         'nama_kegiatan',
@@ -28,7 +29,7 @@ class PengajuanKunjungan extends Model
 
     public function scopeSearch($query, $search)
     {
-        return $query->orWhere("institusi_pengunjung", "like", "%{$search}%")
+        return $query->orWhere("asal_sekolah", "like", "%{$search}%")
             // ->orWhere("informasiKouta.faculty.tujuan_kegiatan", "like", "%{$search}%")
             // ->orWhere("informasiKouta.tanggal_tersedia", "like", "%{$search}%")
             ->orWhere("provinsi_asal", "like", "%{$search}%")

@@ -6,6 +6,7 @@ use App\Livewire\Forms\PengajuanKunjunganForm;
 use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
 use App\Models\PengajuanKunjungan;
+use App\Models\VisitAbsen;
 use Livewire\Attributes\Computed;
 use Livewire\WithFileUploads;
 
@@ -69,31 +70,59 @@ class PengajuanKunjunganFormModal extends BaseModal
         if($this->form->id != 0) return response()->download(storage_path("/app/public".$this->form->surat_permohonan));
     }
 
+    public function sendCodeAbsensi(){
+        if($this->form->progress == "selesai"){
+            $code_absen = $this->form->generateRandomNumber();
+
+            VisitAbsen::updateOrCreate(['id' => $this->form->id], [
+                'pengajuan_kunjungan' => $this->form->id,
+                'code_absen' => $code_absen
+            ]);
+        }
+    }
+
+    public function deleteCodeAbsensi(){
+        if($this->form->progress != "selesai" && $this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+            $pengajuan = PengajuanKunjungan::find($this->form->id);
+
+            $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($pengajuan);
+            // dd($absen);
+            if($absen){
+                $absen->delete();
+            }
+        }
+    }
+
     public function save()
     {
-        if($this->form->surat_permohonan != null){
 
-            if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
-                parent::save();
-                if($this->form->post()) {
-                    $this->dispatch('close-modal', name: $this->modal_name);
-                    $this->dispatch('pengajuan-kunjungan-table:reload');
-                    $this->dispatch('pengajuan-kunjungan-user-table:reload');
-                    $this->toast(
-                        message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
-                        type: 'success'
-                    );
-                }
-            }else{
-                $this->toast(
-                    message: 'Kapasitas peserta melebihi kouta',
+        if($this->form->tipe_kunjungan != "langsung"){
+            $this->deleteCodeAbsensi();
+
+            if($this->form->surat_permohonan == null){
+
+                return $this->toast(
+                    message: 'Diharap untuk melampirkan surat permohonan',
                     type: 'error'
                 );
             }
+        }
 
+        if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+            parent::save();
+
+            if($this->form->post()) {
+                $this->dispatch('close-modal', name: $this->modal_name);
+                $this->dispatch('pengajuan-kunjungan-user-table:reload');
+                $this->dispatch('pengajuan-kunjungan-table:reload');
+                $this->toast(
+                    message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
+                    type: 'success'
+                );
+            }
         }else{
             $this->toast(
-                message: 'Diharap untuk melampirkan surat permohonan',
+                message: 'Kapasitas peserta melebihi kouta',
                 type: 'error'
             );
         }
@@ -101,6 +130,7 @@ class PengajuanKunjunganFormModal extends BaseModal
 
     public function clear()
     {
+        $this->deleteCodeAbsensi();
         parent::clear();
         $this->form->clear();
     }

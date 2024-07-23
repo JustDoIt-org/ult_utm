@@ -62,7 +62,7 @@ class InformasiKoutaForm extends Form
             'faculty_id' => $faculty->id,
             'tanggal_kunjungan' => $this->tanggal_kunjungan,
             'sisa_kouta' => $this->sisa_kouta,
-            // 'tujuan_kunjungan' => $this->tujuan_kunjungan,
+            // 'tujuan_kunjungan' => $faculty,
             'warna_tulisan' => $this->warna_tulisan,
             'warna_latar_belakang' => $this->warna_latar_belakang
         ]);
