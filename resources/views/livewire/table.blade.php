@@ -85,25 +85,28 @@
         <tr>
           <td class=" text-center"><?= $no ?></td>
           <?php foreach ($rows as $row) {
-
-                  if (isset($row[1]) && $row[1] == 'image') { ?>
+            if (isset($row[1]) && $row[1] == 'image') { ?>
           <div class="d-flex justify-content-center mx-auto">
             <td class="">
               <?php if (isset($data[$row[0]]) && strlen($data[$row[0]]) > 1) { ?>
               <img class="img-thumbnail" width="100" height="100" alt="<?= $data[$row[0]] ?>" src="#"
-                <?php } else { ?> <p>Kosong</p>
+                <?php } else
+                { ?> <p>Kosong</p>
               <?php } ?>
             </td>
           </div>
           <?php } else { ?>
           <td class="text-wrap text-center"><?= $data[$row] ?></td>
           <?php }
-                  ?>
-          <?php } ?>
+           } ?>
           @if (!empty($modal_title['edit']) && !empty($modal_title['delete']))
             <td class="">
+
               <?php if ($btn_link) { ?>
-              <a href="<?= $btn_link ?>?id=<?= $data['id'] ?>" type="button" class="btn btn-warning btn-simple p-2">
+              {{-- <button type="button" class="btn btn-warning btn-simple p-2" onclick="">
+                {{ $btn_link_name }}
+              </button> --}}
+              <a href="<?= $btn_link ?>/<?= $data['id'] ?>" type="button" class="btn btn-warning btn-simple p-2">
                 <?= $btn_link_name ?>
               </a>
               <input type="hidden" name="id" value="<?= $data['id'] ?>">

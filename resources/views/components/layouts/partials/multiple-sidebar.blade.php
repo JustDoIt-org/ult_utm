@@ -16,7 +16,12 @@ switch ($type) {
                 ['name' => 'Chat Admin', 'icon' => 'ni ni-chat-round text-success', 'link' => 'lt.chat_layanan']
             ];
         } else {
-            $data = [['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'lt.dashboard'], ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.admin_riwayat']];
+            $data = [
+                ['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'lt.dashboard'], 
+                ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.admin_riwayat'],
+                ['name' => 'List Chat', 'icon' => 'ni ni-chat-round text-success', 'link' => 'lt.chat_layanan_admin']
+            
+            ];
         }
         break;
 }

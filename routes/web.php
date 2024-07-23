@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Visit\ScheduleController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PpidAdminController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LayananTerpaduController;
 use App\Http\Controllers\Visit\SubmissionController;
 
@@ -69,11 +70,13 @@ Route::middleware(['auth', 'verified'])->prefix('terpadu')->group(function () {
     Route::get('/dashboard', [LayananTerpaduController::class, 'dashboard'])->name('lt.dashboard');
     Route::get('/admin_riwayat', [LayananTerpaduController::class, 'riwayat_admin'])->name('lt.admin_riwayat');
 
-    Route::get('/chat_layanan', [LayananTerpaduController::class, 'chat_guest'])->name('lt.chat_layanan');
-
-
     Route::get('/list', [LayananTerpaduController::class, 'list'])->name('lt.list');
     Route::delete('/list', [LayananTerpaduController::class, 'destroy'])->name('lt.list');
+
+    Route::get('/chat_layanan', [ChatController::class, 'chat_guest'])->name('lt.chat_layanan');
+    Route::get('/chat_layanan_admin', [ChatController::class, 'chat_admin'])->name('lt.chat_layanan_admin');
+
+    Route::get('/chat_admin_to_guest/{id}', [ChatController::class, 'chat_admin_guest'])->name('lt.chat_layanan_admin_guest');
 });
 
 Route::middleware('auth')->group(function () {

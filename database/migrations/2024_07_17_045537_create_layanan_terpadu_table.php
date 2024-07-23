@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('nim');
             $table->string('service');
             $table->string('desc');
+            $table->string('file_permohonan')->nullable();
+            $table->string('file_balasan')->nullable();
             $table->enum('progress', ['belum', 'diproses', 'selesai']);
             $table->string('file')->nullable();
             $table->timestamps();
