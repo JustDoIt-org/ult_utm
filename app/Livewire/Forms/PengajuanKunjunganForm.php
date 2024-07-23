@@ -148,6 +148,10 @@ class PengajuanKunjunganForm extends Form
 
     }
 
+    public function generateRandomNumber(){
+        return rand(000000, 999999);
+    }
+
     public function generateKunjungan()
     {
         $tujuan_kunjungan = [];

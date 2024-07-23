@@ -26,7 +26,7 @@
             Tanggal kunjungan: <span class="text-green-500">{{ $form->tanggal_tersedia }}</span>
         </span>
     </div>
-    @if ($form->tipe_kunjungan != "umum" || $form->tipe_kunjungan != "langsung")
+    @if ($form->tipe_kunjungan == "sekolah")
         <x-element.layout.vertical name="form.asal_sekolah" label="Asal Sekolah">
             <x-element.input.line wire:model="form.asal_sekolah" />
         </x-element.layout.vertical>

@@ -6,6 +6,7 @@ use App\Livewire\Forms\PengajuanKunjunganForm;
 use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
 use App\Models\PengajuanKunjungan;
+use App\Models\VisitAbsen;
 use Livewire\Attributes\Computed;
 use Livewire\WithFileUploads;
 
@@ -71,34 +72,24 @@ class PengajuanKunjunganFormModal extends BaseModal
 
     public function save()
     {
-        // if($this->form->surat_permohonan != null){
-
-        //     if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
-        //         parent::save();
-        //         if($this->form->post()) {
-        //             $this->dispatch('close-modal', name: $this->modal_name);
-        //             $this->dispatch('pengajuan-kunjungan-table:reload');
-        //             $this->dispatch('pengajuan-kunjungan-user-table:reload');
-        //             $this->toast(
-        //                 message: $this->form->id == 0 ? 'Pengajuan Kunjungan Created' : 'Pengajuan Kunjungan Updated',
-        //                 type: 'success'
-        //             );
-        //         }
-        //     }else{
-        //         $this->toast(
-        //             message: 'Kapasitas peserta melebihi kouta',
-        //             type: 'error'
-        //         );
-        //     }
-
-        // }else{
-        //     $this->toast(
-        //         message: 'Diharap untuk melampirkan surat permohonan',
-        //         type: 'error'
-        //     );
-        // }
 
         if($this->form->tipe_kunjungan != "langsung"){
+
+            if($this->form->progress == "selesai" && $this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+                $code_absen = $this->form->generateRandomNumber();
+
+                VisitAbsen::updateOrCreate(['id' => $this->form->id], [
+                    'pengajuan_kunjungan' => $this->form->id,
+                    'code_absen' => $code_absen
+                ]);
+            }
+            else if($this->form->progress != "selesai" && $this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
+                $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($this->form->id);
+                // dd($absen);
+                if($absen){
+                    $absen->delete();
+                }
+            }
 
             if($this->form->surat_permohonan == null){
 
