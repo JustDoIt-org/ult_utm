@@ -19,13 +19,16 @@ class PengajuanKunjunganForm extends Form
     public $id;
 
     #[Validate('required')]
+    public $tipe_kunjungan="umum";
+
+    #[Validate('required')]
     public $tujuan_kegiatan;
 
     #[Validate('required')]
     public $tanggal_tersedia;
 
-    #[Validate('required')]
-    public $institusi_pengunjung;
+    // #[Validate('required')]
+    public $asal_sekolah='-';
 
     #[Validate('required')]
     public $provinsi_asal;
@@ -57,9 +60,10 @@ class PengajuanKunjunganForm extends Form
         $pengajuan = PengajuanKunjungan::find($id);
 
         $this->id = $pengajuan->id;
+        $this->tipe_kunjungan = $pengajuan->tipe_kunjungan;
         $this->tujuan_kegiatan = $pengajuan->informasiKouta->faculty->name;
         $this->tanggal_tersedia = $pengajuan->informasiKouta->tanggal_kunjungan;
-        $this->institusi_pengunjung = $pengajuan->institusi_pengunjung;
+        $this->asal_sekolah = $pengajuan->asal_sekolah;
         $this->provinsi_asal = $pengajuan->provinsi_asal;
         $this->kota_asal = $pengajuan->kota_asal;
         $this->nama_kegiatan = $pengajuan->nama_kegiatan;
@@ -74,9 +78,10 @@ class PengajuanKunjunganForm extends Form
     public function clear()
     {
         $this->id = 0;
+        $this->tipe_kunjungan = 'umum';
         $this->tujuan_kegiatan = null;
         $this->tanggal_tersedia = null;
-        $this->institusi_pengunjung = '';
+        $this->asal_sekolah = '-';
         $this->provinsi_asal = '';
         $this->kota_asal = '';
         $this->nama_kegiatan = '';
@@ -90,6 +95,7 @@ class PengajuanKunjunganForm extends Form
 
     public function post()
     {
+        // dd($this->tipe_kunjungan);
         $this->validate();
 
         // Scope data informasi kouta
@@ -99,12 +105,14 @@ class PengajuanKunjunganForm extends Form
             $this->getSisaKouta()
         );
 
-        $fileName = ($this->id != 0) ? $this->surat_permohonan : '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
+        if($this->tipe_kunjungan != "langsung"){
+            $fileName = ($this->id != 0) ? $this->surat_permohonan : '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
+        }
         $pengajuan = PengajuanKunjungan::find($this->id);
 
         if($this->id != 0) {
             // Ketika kondisi edit dan user mengubah file surat permohonan, file tersebut akan terhapus di folder storage
-            if($this->surat_permohonan != $pengajuan->surat_permohonan){
+            if($this->surat_permohonan != $pengajuan->surat_permohonan && $this->tipe_kunjungan != 'langsung'){
                 $fileName = '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
                 unlink(public_path('storage' . $pengajuan->surat_permohonan));
             }
@@ -123,8 +131,10 @@ class PengajuanKunjunganForm extends Form
 
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
             'user_id' =>($this->id == 0) ? Auth::id() : $pengajuan->user_id,
+            'tipe_kunjungan' => $this->tipe_kunjungan,
+            // 'tujuan_kegiatan' => $this->tujuan_kegiatan,
             'informasi_kouta_id' => $informasi_kouta->id,
-            'institusi_pengunjung' => $this->institusi_pengunjung,
+            'asal_sekolah' => $this->asal_sekolah,
             'provinsi_asal' => $this->provinsi_asal,
             'kota_asal' => $this->kota_asal,
             'nama_kegiatan' => $this->nama_kegiatan,
@@ -132,11 +142,15 @@ class PengajuanKunjunganForm extends Form
             'jumlah_bus' => $this->jumlah_bus,
             'nama_pic' => $this->nama_pic,
             'kontak_pic' => $this->kontak_pic,
-            'surat_permohonan' => $fileName,
+            'surat_permohonan' => ($this->tipe_kunjungan != "langsung") ? $fileName : '-',
             'progress' => $this->progress
         ]);
 
 
+    }
+
+    public function generateRandomNumber(){
+        return rand(000000, 999999);
     }
 
     public function generateKunjungan()
