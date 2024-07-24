@@ -7,6 +7,8 @@ use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
 use App\Models\PengajuanKunjungan;
 use App\Models\VisitAbsen;
+use App\Mail\CodeAbsensiMail;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Computed;
 use Livewire\WithFileUploads;
 
@@ -70,8 +72,9 @@ class PengajuanKunjunganFormModal extends BaseModal
         if($this->form->id != 0) return response()->download(storage_path("/app/public".$this->form->surat_permohonan));
     }
 
+
     public function sendCodeAbsensi(){
-        // $pengajuan = PengajuanKunjungan::find($this->form->id);
+        $pengajuan = PengajuanKunjungan::find($this->form->id);
 
 
         if($this->form->progress == "selesai"){
@@ -90,6 +93,12 @@ class PengajuanKunjunganFormModal extends BaseModal
                     'code_absen' => $code_absen
                 ]);
             }
+
+            Mail::to($pengajuan->user->email)->send(new CodeAbsensiMail($code_absen, "Kode Absen Anda"));
+            $this->toast(
+                message: 'Mengirim kode absensi berhasil!!',
+                type: 'success'
+            );
         }
     }
 
