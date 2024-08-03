@@ -8,7 +8,7 @@
 
     <style>
         h1{
-            color: red;
+            color: #5e72e4;
         }
     </style>
 </head>

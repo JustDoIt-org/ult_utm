@@ -74,8 +74,6 @@ class PengajuanKunjunganFormModal extends BaseModal
 
 
     public function sendCodeAbsensi(){
-        $pengajuan = PengajuanKunjungan::find($this->form->id);
-
 
         if($this->form->progress == "selesai"){
             $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($this->form->id);
@@ -93,12 +91,6 @@ class PengajuanKunjunganFormModal extends BaseModal
                     'code_absen' => $code_absen
                 ]);
             }
-
-            Mail::to($pengajuan->user->email)->send(new CodeAbsensiMail($code_absen, "Kode Absen Anda"));
-            $this->toast(
-                message: 'Mengirim kode absensi berhasil!!',
-                type: 'success'
-            );
         }
     }
 
@@ -121,6 +113,7 @@ class PengajuanKunjunganFormModal extends BaseModal
     public function save()
     {
 
+
         if($this->form->tipe_kunjungan != "langsung"){
             $this->deleteCodeAbsensi();
 
@@ -135,6 +128,13 @@ class PengajuanKunjunganFormModal extends BaseModal
 
         if($this->form->kapasitas_peserta <= $this->form->getSisaKouta()){
             parent::save();
+
+            if($this->form->progress == "selesai"){
+                $pengajuan = PengajuanKunjungan::find($this->form->id);
+                $code_absen = $this->form->generateRandomNumber();
+
+                Mail::to($pengajuan->user->email)->send(new CodeAbsensiMail($code_absen, "Kode Absen Anda"));
+            }
 
             if($this->form->post()) {
                 $this->dispatch('close-modal', name: $this->modal_name);
