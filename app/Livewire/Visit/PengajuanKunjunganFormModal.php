@@ -72,7 +72,7 @@ class PengajuanKunjunganFormModal extends BaseModal
         if($this->form->id != 0) return response()->download(storage_path("/app/public".$this->form->surat_permohonan));
     }
 
-
+    // Bug
     public function sendCodeAbsensi(){
 
         if($this->form->progress == "selesai"){
