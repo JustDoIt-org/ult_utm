@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Ppid;
 
+use App\Mail\AspirasiPengaduanMail;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\PpidAspirasiPengaduan;
 use App\Livewire\Module\Trait\Notification;
 use App\Models\StatusPpid;
+use Illuminate\Support\Facades\Mail;
 
 class AspirasiPengaduanForm extends Component
 {
@@ -86,6 +88,7 @@ class AspirasiPengaduanForm extends Component
         $this->resetInput();
         request()->session()->flash('data', $data->slug);
         // return redirect('/ppid/aspirasi_pengaduan')->with(['data' => $data->slug]);
+        Mail::to(Auth::user()->email)->send(new AspirasiPengaduanMail($data->slug, "Kode Pengajuan"));
         return $this->toast(
             message: 'Berhasil ' . $data->slug,
             type: 'success'
