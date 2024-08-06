@@ -20,7 +20,7 @@
     <livewire:styles />
 </head>
 
-<body class="font-sans min-w-[345px] bg-yellow-100 text-gray-900 antialiased">
+<body class="font-sans min-w-[345px] bg-gradient-to-b from-secondary to-gray-100 bg-no-repeat h-full text-gray-900 antialiased">
     <livewire:scripts />
 
     <header>
@@ -46,9 +46,9 @@
         @endif
     </aside>
 
-    <main class="box-border">
+    <main class="box-border h-full">
         @if (Auth::check())
-            <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="md:pl-60 pt-16 md:pointer-events-auto overflow-x-hidden">
+            <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'" class="lg:pl-80 pt-16 lg:pointer-events-auto overflow-x-hidden">
         @else
             <div class="py-10 md:px-7 lg:px-24">
         @endif
