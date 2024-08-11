@@ -1,32 +1,51 @@
 @props(['title' => '', 'view' => 'guest', 'type' => 'layanan'])
 
-<?php
-switch ($type) {
-    case 'ppid':
-        # code...
-        break;
+@php
+  switch ($type) {
+      case 'ppid':
+          # code...
+          break;
 
-    default:
-        if ($view == 'guest') {
-            $data =
-            [
-                ['name' => 'Form Layanan', 'icon' => 'ni ni-single-copy-04 text-primary', 'link' => 'lt.home'],
-                ['name' => 'List Pengajuan', 'icon' => 'ni ni-single-copy-04 text-warning', 'link' => 'lt.list'],
-                ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.riwayat'],
-                ['name' => 'Chat Admin', 'icon' => 'ni ni-chat-round text-success', 'link' => 'lt.chat_layanan']
-            ];
-        } else {
-            $data = [
-                ['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'lt.dashboard'], 
-                ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.admin_riwayat'],
-                ['name' => 'List Chat', 'icon' => 'ni ni-chat-round text-success', 'link' => 'lt.chat_layanan_admin']
-            
-            ];
-        }
-        break;
-}
+      default:
+          if ($view == 'guest') {
+              $data = [
+                  ['name' => 'Form Layanan', 'icon' => 'ni ni-single-copy-04 text-primary', 'link' => 'lt.home'],
+                  ['name' => 'List Pengajuan', 'icon' => 'ni ni-single-copy-04 text-warning', 'link' => 'lt.list'],
+                  ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.riwayat'],
+                  ['name' => 'Chat Admin', 'icon' => 'ni ni-chat-round text-success', 'link' => 'lt.chat_layanan'],
+              ];
+          } elseif ($view == 'admin_layanan') {
+          } else {
+          }
+          break;
+  }
 
-?>
+@endphp
+
+@if (!Route::is('lt.home') && !Route::is('lt.list') && !Route::is('lt.riwayat') && !Route::is('lt.chat_layanan'))
+  @can('admin-layanan-terpadu index')
+    @php
+      $data = [
+          ['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'lt.dashboard'],
+          ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.admin_riwayat'],
+      ];
+    @endphp
+  @endcan
+
+  @can('layanan-terpadu index')
+    @php
+      $data = [
+          ['name' => 'Dashboard', 'icon' => 'ni ni-tv-2 text-primary', 'link' => 'lt.dashboard'],
+          ['name' => 'Riwayat Pengajuan', 'icon' => 'ni ni-book-bookmark text-success', 'link' => 'lt.admin_riwayat'],
+          ['name' => 'List Chat', 'icon' => 'ni ni-chat-round text-success', 'link' => 'lt.chat_layanan_admin'],
+          ['name' => 'List Layanan', 'icon' => 'ni ni-book-bookmark text-primary', 'link' => 'lt.list_layanan'],
+          ['name' => 'Admin ULT', 'icon' => 'ni ni-single-02 text-primary', 'link' => 'lt.atur_admin_layanan'],
+      ];
+    @endphp
+  @endcan
+@endif
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -230,7 +249,8 @@ switch ($type) {
                 </a>
 
 
-                @can('layanan-terpadu index')
+                {{-- @can('layanan-terpadu index') --}}
+                @can('admin-layanan-terpadu index')
                   <a href="{{ route('lt.dashboard') }}" class="link-item">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="icon-profile">

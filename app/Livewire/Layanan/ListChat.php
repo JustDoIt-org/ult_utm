@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class ListChat extends Component
 {
     public $type = '';
-    public $id_pengajuan;
+    public $id_pengajuan; 
     public function render()
     {
         $btn_link = '/terpadu/chat_admin_to_guest';
@@ -28,13 +28,24 @@ class ListChat extends Component
             // ],
             // ['name' => 'title']
         ];
+        $dataTables = [];
         $cols = ['username', 'email'];
         $rows = ['name', 'email'];
+        $data = DiscussionModel::where('tujuan', 'layanan')->get();
+        foreach ($data as $key) {
+            $row['id'] = $key->user->id;
+            $row['name'] = $key->user->name;
+            $row['email'] = $key->user->email;
 
-        $activeUsers = DB::table('discussion')->select('user_id')->where('tujuan', 'layanan');
-        $array = DB::table('users')->select("*")->whereIn('id', $activeUsers)->get();
-        $dataTables = json_decode(json_encode($array), true);
+            $dataTables[] = $row;
+        }
+
+        // $activeUsers = DB::table('discussion')->select('user_id')->where('tujuan', 'layanan');
+        // $array = DB::table('users')->select("*")->whereIn('id', $activeUsers)->get();
+        // $dataTables = json_decode(json_encode($array), true);
         // dd($array[0]['name']);
+
+
         $data = [
             'title' => 'discussion Page',
             'cols' => $cols,

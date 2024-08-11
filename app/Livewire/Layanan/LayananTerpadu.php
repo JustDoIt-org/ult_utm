@@ -5,6 +5,7 @@ namespace App\Livewire\Layanan;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Livewire\Module\Trait\Notification;
+use App\Models\JenisLayananModel;
 use App\Models\LayananTerpadu as ModelsLayananTerpadu;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +30,13 @@ class LayananTerpadu extends Component
 
     public function render()
     {
+        $jenis = [];
+        $jenis_layanan = JenisLayananModel::select('type')->get();
+
+        foreach ($jenis_layanan as $key) {
+            $jenis[] = $key->type;  
+        }
+
         $from_data = [
             ['title' => 'Date', 'model' => 'date', 'type' => 'date'],
             ['title' => 'Name', 'model' => 'name', 'type' => 'text'],
@@ -42,15 +50,7 @@ class LayananTerpadu extends Component
                 'title' => 'Type of service',
                 'model' => 'service',
                 'type' => 'select',
-                'select_item' => [
-                    'Layanan Akademik',
-                    'Layanan Kemahasiswaan',
-                    'Layanan Keuangan',
-                    'Layanan Umum',
-                    'Layanan Kerjasama',
-                    'Layanan Kunjungan Sekolah',
-                    'Lainnya',
-                ],
+                'select_item' => $jenis,
             ],
             ['title' => 'Complaint description', 'model' => 'desc', 'type' => 'textarea'],
             ['title' => 'File', 'model' => 'file', 'type' => 'file'],
@@ -71,20 +71,29 @@ class LayananTerpadu extends Component
             "nohp" => 'required',
             "address" => 'required',
             "institusi" => 'required',
-            "nim" => 'required',
+            "nim" => 'required|numeric',
             "service" => 'required',
             "desc" => 'required',
         ];
+
         if ($this->file) {
             $rules['file'] = 'mimes:jpg,png,pdf|extensions:jpg,png,pdf';
         }
 
         if ($this->service == 'Lainnya') {
             $rules['lainnya'] = 'required';
+            $service = $this->service . " ($this->lainnya)";
+        } else {
+            $service = $this->service;
         }
 
         if (!$this->validate($rules)) {
             $this->file = null;
+        }
+        if ($this->file) {
+            $fileName = '/' . $this->file->store('layanan_terpadu', 'public');
+        } else {
+            $fileName = '';
         }
 
 
@@ -99,10 +108,12 @@ class LayananTerpadu extends Component
             'address' => $this->address,
             'institusi' => $this->institusi,
             'nim' => $this->nim,
-            'service' => $this->service,
+            'service' => $service,
             'desc' => $this->desc,
-            'file' => $this->file,
+            'file' => $fileName,
         ]);
+
+
         $this->resetInput();
 
 

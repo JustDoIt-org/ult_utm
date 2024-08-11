@@ -12,6 +12,7 @@ class Role extends \Spatie\Permission\Models\Role
     const ADMIN = "Administrator";
     const GUEST = "Guest";
     const ADMIN_ULT = "Admin_ULT";
+    const ADMIN_LAYANAN = "Admin_Layanan";
 
     public static function getDefaultRoles()
     {
@@ -19,6 +20,7 @@ class Role extends \Spatie\Permission\Models\Role
             self::ADMIN,
             self::GUEST,
             self::ADMIN_ULT,
+            self::ADMIN_LAYANAN,
         ];
     }
 

@@ -81,25 +81,38 @@
         <?php
             $no = 1;
             foreach ($dataTables  as $data) {
+
             ?>
         <tr>
           <td class=" text-center"><?= $no ?></td>
-          <?php foreach ($rows as $row) {
-            if (isset($row[1]) && $row[1] == 'image') { ?>
-          <div class="d-flex justify-content-center mx-auto">
-            <td class="">
-              <?php if (isset($data[$row[0]]) && strlen($data[$row[0]]) > 1) { ?>
-              <img class="img-thumbnail" width="100" height="100" alt="<?= $data[$row[0]] ?>" src="#"
-                <?php } else
-                { ?> <p>Kosong</p>
-              <?php } ?>
-            </td>
-          </div>
-          <?php } else { ?>
-          <td class="text-wrap text-center"><?= $data[$row] ?></td>
-          <?php }
-           } ?>
-          @if (!empty($modal_title['edit']) && !empty($modal_title['delete']))
+
+          @foreach ($rows as $row)
+            @isset($row[1])
+              @if ($row[1] == 'image')
+                <div class="d-flex justify-content-center mx-auto">
+                  <td class="">
+                    <?php if (isset($data[$row[0]]) && strlen($data[$row[0]]) > 1) { ?>
+                    <img class="img-thumbnail" width="100" height="100" alt="<?= $data[$row[0]] ?>" src="#"
+                      <?php } else
+                    { ?> <p>Kosong</p>
+                    <?php } ?>
+                  </td>
+                </div>
+              @elseif ($row[1] == 'file')
+                <td class="text-wrap text-center">
+                  @if (!empty($data[$row[0]]))
+                    <a href="/storage{{ $data[$row[2]] }}/{{ $data[$row[0]] }}">Download File</a>
+                  @else
+                    <p>Kosong</p>
+                  @endif
+                </td>
+              @else
+                <td class="text-wrap text-center"><?= $data[$row] ?></td>
+              @endif
+            @endisset
+          @endforeach
+
+          @if (!empty($modal_title['edit']) || !empty($modal_title['delete']))
             <td class="">
 
               <?php if ($btn_link) { ?>
@@ -126,9 +139,88 @@
                 Delete
               </button>
               <?php } ?>
+
+              {{-- Third Button --}}
+              @isset($modal_title['forward'])
+                <button type="button" class="btn btn-success btn-simple p-2" data-bs-toggle="modal"
+                  data-bs-target="#modal-forward<?= $data['id'] ?>">
+                  Forward
+                </button>
+              @endisset
             </td>
           @endif
         </tr>
+
+        @isset($third_button)
+          <!-- Modal Forward-->
+          <div class="modal fade" id="modal-forward<?= $data['id'] ?>" tabindex="-1" role="dialog"
+            aria-labelledby="modal-form" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+              <div class="modal-content">
+                <div class="modal-body p-0">
+                  <div class="card card-plain">
+                    <div class="card-header pb-0 text-left">
+                      <h3 class="font-weight-bolder text-info text-gradient">
+                        <?= isset($modal_title['forward']) ? $modal_title['forward'] : '' ?></h3>
+                    </div>
+                    <div class="card-body">
+                      <form role="form text-left"
+                        action="{{ isset($third_button['link']) ? route($third_button['link']) : '' }}" method="POST"
+                        enctype="multipart/form-data">
+                        {{-- <form role="form text-left" wire:submit="update"> --}}
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="id" value="<?= $data['id'] ?>">
+
+
+                        <?php foreach ($modal_third_button as $row) {
+                          $name =  $row['name'];
+                          $label =  ucfirst(str_replace(["_", 'id'], " ", $row['name']));
+                          ?>
+                        <label> <?= $label ?> </label>
+                        <div class="input-group mb-3">
+                          <?php if (!empty($row['type']) && $row['type'] == 'textarea') { ?>
+                          <textarea type="<?= empty($row['type']) ? 'text' : $row['type'] ?>" wire:model="{{ $row['model'] }}" rows="8"
+                            cols="50" class="form-control" name="<?= $name ?>"><?= $data[$name] ?></textarea>
+                          <?php } elseif (!empty($row['type']) && $row['type'] == 'select') {
+                                ?>
+                          <select class="form-control" name="<?= $name ?>" wire:model="{{ $row['model'] }}">
+                            @foreach ($row['options'] as $key)
+                              @isset($key['name'])
+                                <option {{ $key['name'] == $data[$name] ? 'selected' : '' }} value=" {{ $key['id'] }}">
+                                  {{ $key['name'] }} </option>
+                              @else
+                                <option {{ $key == $data[$name] ? 'selected' : '' }} value=" {{ $key }}">
+                                  {{ $key }} </option>
+                              @endisset
+                            @endforeach
+                          </select>
+                          <?php } else {
+                                  if (!empty($row['type']) && $row['type'] == 'file') { ?>
+                          <input type="hidden" name="path" value="<?= $data[$name] ?>">
+                          <?php }
+                                  ?>
+                          <input type="<?= empty($row['type']) ? 'text' : $row['type'] ?>" class="form-control"
+                            name="<?= $name ?>" value="{{ $data[$name] }}" placeholder="{{ $data[$name] }}">
+                          <?php } ?>
+                        </div>
+                        <?php } ?>
+
+
+                        <div class="text-center">
+                          <button type="submit"
+                            class="btn btn-sm bg-success text-white">{{ $third_button['name'] }}</button>
+                          <button type="button" class="btn btn-sm bg-secondary text-white"
+                            data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endisset
 
         <!-- Modal Edit -->
         <div class="modal fade" id="modal-edit<?= $data['id'] ?>" tabindex="-1" role="dialog"
@@ -142,27 +234,35 @@
                       <?= isset($modal_title['edit']) ? $modal_title['edit'] : '' ?></h3>
                   </div>
                   <div class="card-body">
-                    <form role="form text-left" action="" method="POST" enctype="multipart/form-data">
+                    <form role="form text-left"
+                      action="{{ isset($update_link) || isset($base_route) ? (isset($resource) ? route($base_route) . '/' . $data['id'] : route($update_link)) : '' }}"
+                      method="POST" enctype="multipart/form-data">
+                      {{-- <form role="form text-left" wire:submit="update"> --}}
                       <?= csrf_field() ?>
                       <input type="hidden" name="_method" value="PUT">
                       <input type="hidden" name="id" value="<?= $data['id'] ?>">
 
 
                       <?php foreach ($modal_field as $row) {
-                              $name =  $row['name'];
-                              $label =  ucfirst(str_replace(["_", 'id'], " ", $row['name']));
-                            ?>
+                          $name =  $row['name'];
+                          if (isset($row['editSelected'])) {
+                            $selected = $row['editSelected'];
+                          }
+                          $label =  ucfirst(str_replace(["_", 'id'], " ", $row['name']));
+                          ?>
                       <label> <?= $label ?> </label>
                       <div class="input-group mb-3">
                         <?php if (!empty($row['type']) && $row['type'] == 'textarea') { ?>
-                        <textarea type="<?= empty($row['type']) ? 'text' : $row['type'] ?>" rows="8" cols="50" class="form-control"
-                          name="<?= $name ?>"><?= $data[$name] ?></textarea>
+                        <textarea type="<?= empty($row['type']) ? 'text' : $row['type'] ?>" wire:model="{{ $row['model'] }}" rows="8"
+                          cols="50" class="form-control" name="<?= $name ?>"><?= $data[$name] ?></textarea>
                         <?php } elseif (!empty($row['type']) && $row['type'] == 'select') {
-                                ?>
-                        <select class="form-control" name="<?= $name ?>" value="<?= $data[$name] ?>">
+
+                                    ?>
+                        <select class="form-control" name="<?= $name ?>" wire:model="{{ $row['model'] }}">
                           @foreach ($row['options'] as $key)
                             @isset($key['name'])
-                              <option {{ $key['name'] == $data[$name] ? 'selected' : '' }} value=" {{ $key['id'] }}">
+                              <option {{ $key['name'] == $data[$selected] ? 'selected' : '' }}
+                                value=" {{ $key['id'] }}">
                                 {{ $key['name'] }} </option>
                             @else
                               <option {{ $key == $data[$name] ? 'selected' : '' }} value=" {{ $key }}">
@@ -176,7 +276,7 @@
                         <?php }
                                   ?>
                         <input type="<?= empty($row['type']) ? 'text' : $row['type'] ?>" class="form-control"
-                          name="<?= $name ?>" value="<?= $data[$name] ?>">
+                          name="<?= $name ?>" value="{{ $data[$name] }}" placeholder="{{ $data[$name] }}">
                         <?php } ?>
                       </div>
                       <?php } ?>
@@ -212,10 +312,12 @@
                 <p><?= $delete_msg ?></p>
               </div>
               <div class="modal-footer">
-                <form role="form text-left" action="" method="POST">
+                <form role="form text-left"
+                  action="{{ isset($delete_link) || isset($base_route) ? (isset($resource) ? route($base_route) . '/' . $data['id'] : route($delete_link)) : '' }}"
+                  method="POST">
                   @csrf
                   <input type="hidden" name="_method" value="delete" />
-                  <input type="hidden" name="id" wire:model.live="id_pengajuan" value="<?= $data['id'] ?>">
+                  <input type="hidden" name="id" value="<?= $data['id'] ?>">
                   <?php
                         foreach ($rows as $row) {
 
@@ -230,8 +332,9 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <?php
+        <?php
               $no++;
             } ?>
       </tbody>
@@ -272,14 +375,15 @@
                     class="form-control" name="<?= $name ?>"></textarea>
                   <?php } elseif (!empty($row['type']) && $row['type'] == 'select') {
                         ?>
+
                   <select class="form-control" name="<?= $name ?>">
                     @foreach ($row['options'] as $key)
                       @isset($key['name'])
-                        <option {{ $key['name'] == $data[$name] ? 'selected' : '' }} value=" {{ $key['id'] }}">
+                        <option {{ $key['name'] == 3 ? 'selected' : '' }} value=" {{ $key['id'] }}">
                           {{ $key['name'] }} </option>
                       @else
-                        {{-- <option {{ $key == $data[$name] ? 'selected' : '' }} value=" {{ $key }}">
-                          {{ $key }} </option> --}}
+                        <option {{ $key == 3 ? 'selected' : '' }} value=" {{ $key }}">
+                          {{ $key }} </option>
                       @endisset
                     @endforeach
                   </select>

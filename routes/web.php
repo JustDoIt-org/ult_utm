@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PpidAdminController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\LayananTerpaduController;
+use App\Http\Controllers\LT\AdminLTController;
+use App\Http\Controllers\LT\ListLayananController;
 use App\Http\Controllers\Visit\SubmissionController;
 
 /*
@@ -67,17 +69,33 @@ Route::middleware(['auth', 'verified'])->prefix('ppid')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('terpadu')->group(function () {
     Route::get('/', [LayananTerpaduController::class, 'index'])->name('lt.home');
     Route::get('/riwayat', [LayananTerpaduController::class, 'riwayat'])->name('lt.riwayat');
-    Route::get('/dashboard', [LayananTerpaduController::class, 'dashboard'])->name('lt.dashboard');
-    Route::get('/admin_riwayat', [LayananTerpaduController::class, 'riwayat_admin'])->name('lt.admin_riwayat');
+
 
     Route::get('/list', [LayananTerpaduController::class, 'list'])->name('lt.list');
     Route::delete('/list', [LayananTerpaduController::class, 'destroy'])->name('lt.list');
 
-    Route::get('/chat_layanan', [ChatController::class, 'chat_guest'])->name('lt.chat_layanan');
-    Route::get('/chat_layanan_admin', [ChatController::class, 'chat_admin'])->name('lt.chat_layanan_admin');
 
-    Route::get('/chat_admin_to_guest/{id}', [ChatController::class, 'chat_admin_guest'])->name('lt.chat_layanan_admin_guest');
+    Route::get('/chat_layanan', [ChatController::class, 'chat_guest'])->name('lt.chat_layanan');
 });
+
+Route::middleware(['auth', 'verified', 'can:admin-layanan-terpadu index'])->prefix('terpadu')->group(function () {
+    Route::get('/dashboard', [LayananTerpaduController::class, 'dashboard'])->name('lt.dashboard');
+    Route::get('/admin_riwayat', [LayananTerpaduController::class, 'riwayat_admin'])->name('lt.admin_riwayat');
+    Route::delete('/delete_layanan', [LayananTerpaduController::class, 'destroy'])->name('lt.delete_layanan');
+    Route::put('/update_layanan', [LayananTerpaduController::class, 'update'])->name('lt.update_layanan');
+    // Route::get('/atur_admin_layanan', [LayananTerpaduController::class, 'atur_admin'])->name('lt.atur_admin_layanan');
+    // Route::get('/list_layanan', [LayananTerpaduController::class, 'list_layanan'])->name('lt.list_layanan');
+});
+
+Route::middleware(['auth', 'verified', 'can:layanan-terpadu index'])->prefix('terpadu')->group(function () {
+    Route::put('/update_layanan_forward', [LayananTerpaduController::class, 'forward'])->name('lt.forward');
+    Route::get('/chat_layanan_admin', [ChatController::class, 'chat_admin'])->name('lt.chat_layanan_admin');
+    Route::get('/chat_admin_to_guest/{id}', [ChatController::class, 'chat_admin_guest'])->name('lt.chat_layanan_admin_guest');
+    Route::delete('/atur_admin_layanan', [LayananTerpaduController::class, 'delete_admin'])->name('lt.update_admin_layanan');
+    Route::resource('/atur_admin_layanan', AdminLTController::class)->name('index', 'lt.atur_admin_layanan');
+    Route::resource('/list_layanan', ListLayananController::class)->name('index', 'lt.list_layanan');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', \App\Livewire\Profile\ProfilePage::class)->name('profile.edit');

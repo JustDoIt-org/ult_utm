@@ -198,6 +198,21 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN_ULT, Role::ADMIN],
                 ],
             ],
+
+            "admin-layanan-terpadu" => [
+                "index" => [
+                    "description" => "Dapat mengakses data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN_ULT, Role::ADMIN, Role::ADMIN_LAYANAN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN_ULT, Role::ADMIN, Role::ADMIN_LAYANAN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data pengajuan-kunjungan",
+                    "role" => [Role::ADMIN_ULT, Role::ADMIN, Role::ADMIN_LAYANAN],
+                ],
+            ],
         ];
     }
 }

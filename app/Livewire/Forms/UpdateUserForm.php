@@ -52,7 +52,7 @@ class UpdateUserForm extends Form
         $this->validate();
         $user = User::findOrNew($this->id);
 
-        $update['name'] = $this->name;
+        $m['name'] = $this->name;
         $update['email'] = $this->email;
         $user->roles()->sync([$this->roles]);
         $user->fill($update);
