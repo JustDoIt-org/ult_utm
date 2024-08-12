@@ -113,9 +113,8 @@ class PengajuanKunjunganFormModal extends BaseModal
     public function save()
     {
 
-
         if($this->form->tipe_kunjungan != "langsung"){
-            $this->deleteCodeAbsensi();
+            // $this->deleteCodeAbsensi();
 
             if($this->form->surat_permohonan == null){
 
@@ -131,9 +130,9 @@ class PengajuanKunjunganFormModal extends BaseModal
 
             if($this->form->progress == "selesai"){
                 $pengajuan = PengajuanKunjungan::find($this->form->id);
-                $code_absen = $this->form->generateRandomNumber();
+                $absen = VisitAbsen::getIdVisitAbsenWithPengajuanId($pengajuan->id)->code_absen;
 
-                Mail::to($pengajuan->user->email)->send(new CodeAbsensiMail($code_absen, "Kode Absen Anda"));
+                Mail::to($pengajuan->user->email)->send(new CodeAbsensiMail($absen, "Kode Absen Anda"));
             }
 
             if($this->form->post()) {
