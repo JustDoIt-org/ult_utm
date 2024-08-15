@@ -5,7 +5,6 @@
         <h1 class="font-bold text-2xl">ULT Informations</h1>
 
         <div>
-            <livewire:carousel.carousel-table />
             <livewire:forms.about-form />
         </div>
     </section>
