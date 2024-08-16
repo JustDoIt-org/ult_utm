@@ -1,4 +1,4 @@
-<div>
+<div class="mt-3">
   <x-element.sidebar-anchor route="admin.dashboard">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
       <path
@@ -49,8 +49,8 @@
 
 
     <!-- Button -->
-    <butt on x-ref="button" @click="toggle()" type="button"
-      class="flex justify-between items-center w-full p-4 text-slate-400 font-semibold hover:bg-slate-50 hover:text-slate-600">
+    <button x-ref="button" @click="toggle()" type="button"
+      class="flex mx-[9px] justify-between items-center w-full p-4 text-slate-400 font-semibold hover:bg-slate-50 hover:text-slate-600">
       <div class="flex gap-5">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
           <path
@@ -80,7 +80,7 @@
             clip-rule="evenodd" />
         </svg>
       </template>
-    </butt>
+    </button>
 
     {{-- Panel --}}
     <div x-transition x-show="isActive" class="scale-90 transition-all">
@@ -113,26 +113,32 @@
       toggle() {
           this.isActive = !this.isActive
       },
-  
+
       activate() {
           this.isActive = true
       }
   }"
     @switch(Route::currentRouteName())
-  @case('admin.request')
-    x-init="isActive = true"
-  @break
-  @case('admin.aspirasi-pengaduan')
-    x-init="isActive = true"
-  @break
-  @case('admin.survey')
-    x-init="isActive = true"
-  @break
-@endswitch>
+        @case('admin.informasi-kouta')
+            x-init="isActive = true"
+        @break
+        @case('admin.pengajuan-kunjungan')
+            x-init="isActive = true"
+        @break
+        @case('admin.request')
+            x-init="isActive = true"
+        @break
+        @case('admin.aspirasi-pengaduan')
+            x-init="isActive = true"
+        @break
+        @case('admin.survey')
+            x-init="isActive = true"
+        @break
+    @endswitch>
 
     <!-- Button -->
     <button x-ref="button" @click="toggle()" type="button"
-      class="flex justify-between items-center w-full p-4 text-slate-400 font-semibold hover:bg-slate-50 hover:text-slate-600">
+      class="flex mx-[9px] justify-between items-center w-full p-4 text-slate-400 font-semibold hover:bg-slate-50 hover:text-slate-600">
       <div class="flex gap-5">
         <x-heroicon-s-wallet class="size-6" />
         <span>PPID</span>
