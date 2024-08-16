@@ -9,7 +9,7 @@
       </div>
 
       <div class="hidden md:flex md:items-center">
-        <div class="font-semibold text-sm text-black">{{ Auth::user()->name }}</div>
+        <div class="font-semibold text-sm text-white">{{ Auth::user()->name }}</div>
 
         <div class="ml-1 text-slate-400">
           <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

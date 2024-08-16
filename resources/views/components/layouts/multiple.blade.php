@@ -20,8 +20,9 @@
     <livewire:styles />
 </head>
 
-<body class="font-sans min-w-[345px] bg-gradient-to-b from-secondary to-gray-100 bg-no-repeat h-full text-gray-900 antialiased">
+<body class="font-sans min-w-[345px] h-full text-gray-900 bg-slate-100 antialiased">
     <livewire:scripts />
+    <div class="-z-10 bg-secondary w-full h-60 absolute"></div>
 
     <header>
         <x-layouts.partials.navbar.multiple-navbar />
