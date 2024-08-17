@@ -149,6 +149,7 @@ class Permission extends \Spatie\Permission\Models\Permission
                     "role" => [Role::ADMIN],
                 ],
             ],
+
             "request" => [
                 "index" => [
                     "description" => "Dapat mengakses data request",
@@ -164,6 +165,25 @@ class Permission extends \Spatie\Permission\Models\Permission
                 ],
                 "delete" => [
                     "description" => "Dapat menghapus data request",
+                    "role" => [Role::ADMIN],
+                ],
+            ],
+
+            "aspirasi" => [
+                "index" => [
+                    "description" => "Dapat mengakses data aspirasi",
+                    "role" => [Role::ADMIN],
+                ],
+                "create" => [
+                    "description" => "Dapat membuat data aspirasi",
+                    "role" => [Role::ADMIN],
+                ],
+                "edit" => [
+                    "description" => "Dapat mengedit data aspirasi",
+                    "role" => [Role::ADMIN],
+                ],
+                "delete" => [
+                    "description" => "Dapat menghapus data aspirasi",
                     "role" => [Role::ADMIN],
                 ],
             ],

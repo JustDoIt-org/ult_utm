@@ -75,7 +75,7 @@ class BasePpid extends Form
         if ($this->rincian_informasi === 'Permintaan Data') {
             $this->validate([
                 "rincian_informasi_textfield" => 'required',
-                "ktp" => 'required',
+                "ktp" => 'required|mimes:jpg,png,pdf|extensions:jpg,png,pdf',
             ]);
         }
 
@@ -113,10 +113,14 @@ class BasePpid extends Form
         $this->rincian_informasi = $this->rincian_informasi . ' ' . $this->rincian_informasi_textfield;
         $this->cara_salinan = $this->cara_salinan . ' ' . $this->cara_salinan_textfield;
 
+        $count = RequestPpid::count();
+
+        $slug = 'P' . $count .  substr(sha1(time()), 0, 5);
+
         $data = RequestPpid::create(
             [
                 'status_ppid' => $status->id,
-                'slug' => sha1(time()),
+                'slug' => $slug,
                 'alamat' => $this->alamat,
                 'pekerjaan' => $this->pekerjaan,
                 'kategori_pemohon' => $this->kategori_pemohon,

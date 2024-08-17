@@ -5,6 +5,7 @@ namespace App\Livewire\PpidAdmin\Request;
 use App\Livewire\Module\BaseTable;
 use App\Livewire\Module\Trait\Notification;
 use App\Models\RequestPpid;
+use App\Models\StatusPpid;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 
@@ -28,13 +29,14 @@ class RequestTable extends BaseTable
 
     public function render()
     {
+        // dd($this->status);
         return view('pages.admin.ppid.ppid-table', $this->getData());
     }
 
     #[Computed]
     public function rows()
     {
-        // return RequestPpid::where('status_ppid', '1')->search($this->search)
+        // return RequestPpid::where('status_ppid', '2')->search($this->search)
         //     ->orderBy($this->sort_by, $this->sort_direction)
         //     ->paginate($this->perPage);
         return RequestPpid::whereHas('status',  function ($query) {
@@ -77,7 +79,12 @@ class RequestTable extends BaseTable
     public function delete($id)
     {
         parent::delete($id);
+        $search = RequestPpid::find($id)->first()->status_ppid;
+
         RequestPpid::destroy($id);
+        StatusPpid::destroy($search);
+
+
         $this->toast(
             message: "Request Data Removed",
         );

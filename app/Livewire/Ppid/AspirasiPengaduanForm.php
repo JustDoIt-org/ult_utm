@@ -2,20 +2,23 @@
 
 namespace App\Livewire\Ppid;
 
-use App\Mail\PpidMail;
 use App\Models\User;
+use App\Mail\PpidMail;
 use Livewire\Component;
+use App\Models\StatusPpid;
 use Livewire\WithFileUploads;
+use App\Livewire\Ppid\BasePpid;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Models\PpidAspirasiPengaduan;
 use App\Livewire\Module\Trait\Notification;
-use App\Models\StatusPpid;
-use Illuminate\Support\Facades\Mail;
 
 class AspirasiPengaduanForm extends Component
 {
     use Notification, WithFileUploads;
+
+    public BasePpid $base;
 
     public $profile;
     public $aspengaduan_button;
@@ -24,7 +27,6 @@ class AspirasiPengaduanForm extends Component
     public $uraian;
     public $saran;
 
-    #[Validate('max:2048|mimes:png,jpg,jpeg')]
     public $photo;
 
     public function render()
@@ -49,7 +51,7 @@ class AspirasiPengaduanForm extends Component
 
     public function save()
     {
-        $rand = substr(sha1(time()), rand(0, 26), 5);
+        // $rand = substr(sha1(time()), rand(0, 26), 5);
         // $this->validate();
         $this->validate([
             "aspengaduan_button" => 'required',
@@ -57,10 +59,13 @@ class AspirasiPengaduanForm extends Component
             "uraian" => 'required|min:10',
             "saran" => 'required|min:10',
             "nik" => 'required|numeric|digits:16',
-            "photo" => 'mimes:jpg,png,pdf|extensions:jpg,png,pdf'
         ]);
 
         if ($this->photo) {
+            $this->validate([
+                "photo" => 'mimes:jpg,png,pdf|extensions:jpg,png,pdf'
+            ]);
+
             $fileName = '/' . $this->photo->store('aspirasi_pengaduan', 'public');
         } else {
             $fileName = '';
@@ -74,10 +79,14 @@ class AspirasiPengaduanForm extends Component
             'type' => $this->aspengaduan_button,
         ]);
 
+        $count = PpidAspirasiPengaduan::count();
+
+        $slug = 'AP' . $count .  substr(sha1(time()), 0, 5);
+
         $data = PpidAspirasiPengaduan::create(
             [
                 'judul' => $this->judul,
-                'slug' => sha1(time()),
+                'slug' => $slug,
                 'status_ppid' => $status->id,
                 'nik' => $this->nik,
                 'saran' => $this->saran,
@@ -86,11 +95,11 @@ class AspirasiPengaduanForm extends Component
 
 
         $this->resetInput();
-        request()->session()->flash('data', $data->slug);
+        // request()->session()->flash('data', $data->slug);
         // return redirect('/ppid/aspirasi_pengaduan')->with(['data' => $data->slug]);
         Mail::to(Auth::user()->email)->send(new PpidMail($data->slug, "Kode Pengajuan"));
         return $this->toast(
-            message: 'Berhasil ' . $data->slug,
+            message: 'Berhasil, Silahkan Cek Email Anda ',
             type: 'success'
         );
     }

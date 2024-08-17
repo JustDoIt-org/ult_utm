@@ -18,7 +18,7 @@
 
 <div class="fixed inset-0 z-20 flex items-center justify-center" x-data="{ visible: false, name: '{{ $name }}' }"
     x-on:open-modal.window="($event.detail.id && name === $event.detail.name) ? $wire.load($event.detail.id) : visible = (name === $event.detail.name)"
-    x-on:close-modal.window="(name === $event.detail.name) ? $wire.clear() : $event.preventDefault()" x-transition
+    x-on:close-modal.window="(name === $event. detail.name) ? $wire.clear() : $event.preventDefault()" x-transition
     x-show="visible" x-cloak>
     <div wire:loading.class="pointer-events-none" class="fixed inset-0 bg-yellow-100 opacity-80"
         x-on:click="$dispatch('close-modal', {name: name})"></div>

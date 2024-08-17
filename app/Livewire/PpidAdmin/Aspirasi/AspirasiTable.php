@@ -2,20 +2,22 @@
 
 namespace App\Livewire\PpidAdmin\Aspirasi;
 
-use App\Livewire\Module\BaseTable;
-use App\Livewire\Module\Trait\Notification;
-use App\Models\PpidAspirasiPengaduan;
+use App\Models\StatusPpid;
 use App\Models\RequestPpid;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Computed;
+use App\Livewire\Module\BaseTable;
+use App\Models\PpidAspirasiPengaduan;
+use App\Livewire\Module\Trait\Notification;
 
 class AspirasiTable extends BaseTable
 {
     use Notification;
 
     #[Locked]
-    public $title = "Informasi Request Table";
+    public $title = "Aspirasi dan Pengaduan Table";
     public $status;
+    public $c = 'ada';
     protected array $permissions = [
         'create' => '',
         'edit' => 'request edit',
@@ -23,8 +25,8 @@ class AspirasiTable extends BaseTable
     ];
 
     protected array $modals = [
-        'create' => 'request-form-modal',
-        'edit' => 'request-form-modal',
+        'create' => 'aspirasi-form-modal',
+        'edit' => 'aspirasi-form-modal',
     ];
 
     public function render()
@@ -58,29 +60,28 @@ class AspirasiTable extends BaseTable
                 "sort" => true,
             ],
             [
-                "label" => "Pekerjaan",
-                "query" => "pekerjaan",
+                "label" => "Judul",
+                "query" => "judul",
                 "sort" => true,
             ],
             [
-                "label" => "Kategori Pemohon",
-                "query" => "kategori_pemohon",
+                "label" => "Uraian",
+                "query" => "status.uraian",
                 "sort" => true,
             ],
-            [
-                "label" => "Rincian Informasi",
-                "query" => "rincian_informasi",
-                "sort" => true,
-            ],
+
         ];
     }
 
     public function delete($id)
     {
         parent::delete($id);
-        RequestPpid::destroy($id);
+        $search = PpidAspirasiPengaduan::find($id)->first()->status_ppid;
+
+        PpidAspirasiPengaduan::destroy($id);
+        StatusPpid::destroy($search);
         $this->toast(
-            message: "Request Data Removed",
+            message: "Aspirasi Data Removed",
         );
     }
 }

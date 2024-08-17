@@ -10,8 +10,10 @@
     <label for="form.progress">Status Request</label>
     @php
       $progress = ['belum', 'diproses', 'selesai'];
+
     @endphp
     <x-element.select.dropdown wire:model.change="form.progress">
+
       <option>--- Update Progress ---</option>
       @foreach ($progress as $key)
         <option value="{{ $key }}">{{ $key }}</option>

@@ -13,7 +13,7 @@
     model_input_file="base.ktp" />
 
   {{-- Preview Foto --}}
-  <x-section.ppid.image-file-preview :photo="$base->ktp" />
+  {{-- <x-section.ppid.image-file-preview :photo="$base->ktp" /> --}}
 
 
   @foreach ($text_area as $field)
