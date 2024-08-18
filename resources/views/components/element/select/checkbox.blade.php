@@ -3,7 +3,7 @@
     'required' => false,
     'disabled' => false,
     'label' => null,
-    'style' => 'rounded bg-white border-gray-300 text-yellow-700 shadow-sm focus:ring-yellow-500',
+    'style' => 'rounded bg-white border-gray-300 text-secondary shadow-sm focus:ring-secondary',
 ])
 
 @php($name = $name ?? $attributes->wire('model')->value)

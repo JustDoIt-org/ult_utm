@@ -25,7 +25,7 @@
     </div>
 
     <button type="submit" wire:loading.class="opacity-50" wire:target="send"
-      class="text-white font-semibold border border-yellow-700 bg-yellow-600 rounded-full py-2 w-full text-center mt-5">
+      class="text-white font-semibold border border-secondary hover:opacity-80 bg-secondary rounded-full py-2 w-full text-center mt-5">
       <p wire:loading wire:target="send">Loading...</p>
       <span wire:loading.remove wire:target="send"> Sign in</span>
     </button>
@@ -44,6 +44,6 @@
       {{ __('Continue with Google') }}
     </a>
     <span class="text-sm">Don't have an account ? <a wire:navigate href="{{ route('register') }}"
-        class="font-bold text-yellow-700 hover:underline cursor-pointer">Sign up</a></span>
+        class="font-bold text-secondary hover:underline cursor-pointer">Sign up</a></span>
   </div>
 </div>

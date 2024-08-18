@@ -19,6 +19,9 @@
         <option value="{{ $key }}">{{ $key }}</option>
       @endforeach
     </x-element.select.dropdown>
+
+    <x-element.input.input-file label="File Balasan" model="form.file_balasan" target="save" />
+
   </div>
   {{-- <x-element.layout.vertical name="form.tujuan_kunjungan" label="Tujuan Kunjungan">
         <x-element.input.line wire:model="form.tujuan_kunjungan" />

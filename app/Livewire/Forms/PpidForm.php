@@ -35,8 +35,13 @@ class PpidForm extends Form
 
     public $progress;
 
+    public $file_balasan;
+
     public function load(int $id)
     {
+        if ($this->file_balasan) {
+            dd($this->file_balasan);
+        }
         $ik = RequestPpid::find($id);
         $this->progress = $ik->status->progress;
         $this->id = $ik->id;

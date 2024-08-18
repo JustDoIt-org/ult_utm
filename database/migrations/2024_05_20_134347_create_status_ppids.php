@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('progress', ['belum', 'diproses', 'selesai']);
             $table->text('uraian');
             $table->string('file');
+            $table->string('file_balasan');
             $table->string('type');
             $table->timestamps();
         });

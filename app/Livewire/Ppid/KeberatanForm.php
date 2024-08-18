@@ -15,6 +15,7 @@ class KeberatanForm extends Component
 
     public $field_search;
     public $data_found;
+    public $type_data;
 
 
     public function render()
@@ -34,6 +35,7 @@ class KeberatanForm extends Component
         // $data = StatusPpid::where(1);
         if ($data_aspirasi) {
             $this->data_found = $data_aspirasi;
+            $this->type_data = 'Aspirasi Pengaduan';
         } else {
             $data_request = RequestPpid::where('slug', $this->field_search)->first();
             if ($data_request) {

@@ -2,15 +2,16 @@
 
 namespace App\Livewire\PpidAdmin\Request;
 
+use App\Models\RequestPpid;
+use Livewire\WithFileUploads;
 use App\Livewire\Forms\PpidForm;
+use Livewire\Attributes\Computed;
 use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
-use App\Models\RequestPpid;
-use Livewire\Attributes\Computed;
 
 class RequestFormModal extends BaseModal
 {
-    use Notification;
+    use Notification, WithFileUploads;
 
     public PpidForm $form;
 
