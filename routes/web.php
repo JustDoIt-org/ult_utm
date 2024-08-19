@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\PengajuanKunjunganController;
 use App\Http\Controllers\Admin\ULTInformationsController;
 use App\Http\Controllers\Admin\InformasiKoutaController;
+use App\Http\Controllers\Visit\CekAbsensiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ultController;
 use App\Http\Controllers\ProfileController;
@@ -56,6 +57,7 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'can:dashboard index'])-
 // Visit
 Route::get('/visit', [ScheduleController::class, 'index'])->name('visit.schedules');
 Route::middleware(['auth', 'verified'])->get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
+Route::middleware(['auth', 'verified'])->get('/visit/cek-absensi', [CekAbsensiController::class, 'index'])->name('visit.cek-absensi');
 
 //Konfirmasi Absensi
 Route::get('/konfirmasi-absensi', [KonfirmasiAbsensiController::class, 'index'])->name('konfirmasi-absensi');

@@ -4,7 +4,13 @@
 
 <div>
   <!-- Full Calendar -->
+    <style>
+        .fc-day-today {
+            background: #11cdef33 !important;
+            border: none !important;
 
+        }
+    </style>
   <script>
     document.addEventListener('calendarRefresh', function() {
       const calendarEl = document.getElementById('calendar');
