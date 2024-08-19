@@ -19,6 +19,8 @@ use App\Http\Controllers\LayananTerpaduController;
 use App\Http\Controllers\LT\AdminLTController;
 use App\Http\Controllers\LT\ListLayananController;
 use App\Http\Controllers\Visit\SubmissionController;
+use App\Http\Controllers\Visit\KonfirmasiAbsensiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +57,8 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'can:dashboard index'])-
 Route::get('/visit', [ScheduleController::class, 'index'])->name('visit.schedules');
 Route::middleware(['auth', 'verified'])->get('/visit/submissions', [SubmissionController::class, 'index'])->name('visit.submissions');
 
-
+//Konfirmasi Absensi
+Route::get('/konfirmasi-absensi', [KonfirmasiAbsensiController::class, 'index'])->name('konfirmasi-absensi');
 
 // Ppid
 Route::middleware(['auth', 'verified'])->prefix('ppid')->group(function () {

@@ -19,4 +19,8 @@ class VisitAbsen extends Model
     {
         return VisitAbsen::where("pengajuan_kunjungan", "=", $pengajuan_id)->get()->first();
     }
+
+    public static function getCodeAbsensi($code){
+        return VisitAbsen::where("code_absen", "=", $code)->get()->first();
+    }
 }

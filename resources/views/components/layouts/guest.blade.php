@@ -17,13 +17,13 @@
     <livewire:styles />
 </head>
 
-<body class="flex justify-center items-center bg-yellow-50 md:min-w-[835px] py-7 overflow-x-hidden">
+<body class="flex justify-center items-center bg-secondary md:min-w-[835px] py-7 overflow-x-hidden">
     <section class="flex flex-col gap-1 mx-5 justify-center h-screen">
         {{-- Logo Utm --}}
         <a href="{{ route('home') }}" class="flex justify-center md:justify-start">
             <img src="{{ url(asset('assets/img/logo-ult-utm.png')) }}" alt="Logo Ult Utm" class="w-44 pb-3">
         </a>
-        <div class="mx-auto md:px-14 bg-white rounded-lg shadow-lg px-5 py-5 md:py-10">
+        <div class="mx-auto md:px-14 bg-slate-100 rounded-lg shadow-lg px-5 py-5 md:py-10">
             {{ $slot }}
         </div>
     </section>
