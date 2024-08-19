@@ -108,6 +108,7 @@ class PengajuanKunjunganForm extends Form
         if($this->tipe_kunjungan != "langsung"){
             $fileName = ($this->id != 0) ? $this->surat_permohonan : '/' .$this->surat_permohonan->store('surat_permohonan', 'public');
         }
+
         $pengajuan = PengajuanKunjungan::find($this->id);
 
         if($this->id != 0) {
@@ -128,7 +129,6 @@ class PengajuanKunjunganForm extends Form
             }
         }
 
-
         return PengajuanKunjungan::updateOrCreate(['id' => $this->id], [
             'user_id' =>($this->id == 0) ? Auth::id() : $pengajuan->user_id,
             'tipe_kunjungan' => $this->tipe_kunjungan,
@@ -143,7 +143,7 @@ class PengajuanKunjunganForm extends Form
             'nama_pic' => $this->nama_pic,
             'kontak_pic' => $this->kontak_pic,
             'surat_permohonan' => ($this->tipe_kunjungan != "langsung") ? $fileName : '-',
-            'progress' => $this->progress
+            'progress' => ($this->tipe_kunjungan == "langsung") ? "selesai" : $this->progress
         ]);
 
 
