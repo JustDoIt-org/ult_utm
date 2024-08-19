@@ -2,17 +2,24 @@
 
 namespace App\Livewire\Visit;
 
-use App\Livewire\Module\BaseTable;
-use App\Models\PengajuanKunjungan;
 use App\Models\VisitAbsen;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Computed;
+use App\Livewire\Module\BaseTable;
+use App\Models\KodeKunjunganModel;
+use App\Models\PengajuanKunjungan;
 
 class CekAbsensiTable extends BaseTable
 {
 
     #[Locked]
     public $title = "Cek Absensi Table";
+    public $kode_kunjungan;
+
+    public function mount()
+    {
+        $this->kode_kunjungan = KodeKunjunganModel::firstOrCreate(['created_at' => now()->today()], ['code' => KodeKunjunganModel::count() . rand(000000, 999999)])->get();
+    }
 
     public function render()
     {
