@@ -20,7 +20,14 @@
       @endforeach
     </x-element.select.dropdown>
 
+    @if ($this->form->file)
+      <a href={{ '/storage' . $this->form->file }} target="_blank"
+        class=" text-secondary hover:text-primary transition-all">
+        Download File Pengajuan
+      </a>
+    @endif
     <x-element.input.input-file label="File Balasan" model="form.file_balasan" target="save" />
+
 
   </div>
   {{-- <x-element.layout.vertical name="form.tujuan_kunjungan" label="Tujuan Kunjungan">
@@ -35,6 +42,6 @@
 
   <x-slot:button>
     <button wire:loading.attr="disabled" type="submit"
-      class="w-full bg-yellow-500 rounded-lg py-1 text-white font-semibold transition-all hover:bg-yellow-600 hover:scale-95">Save</button>
+      class="w-full bg-secondary rounded-lg py-1 text-white font-semibold transition-all hover:bg-opacity-85 hover:scale-95">Save</button>
   </x-slot:button>
 </x-section.modal>

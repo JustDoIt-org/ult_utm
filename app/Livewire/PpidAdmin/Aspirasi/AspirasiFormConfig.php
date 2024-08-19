@@ -2,12 +2,13 @@
 
 namespace App\Livewire\PpidAdmin\Aspirasi;
 
-use App\Models\PpidAspirasiPengaduan;
+use Livewire\Form;
+use Livewire\Component;
+use App\Models\StatusPpid;
 use App\Models\RequestPpid;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
-use Livewire\Component;
-use Livewire\Form;
+use App\Models\PpidAspirasiPengaduan;
 
 class AspirasiFormConfig extends Form
 {
@@ -17,10 +18,17 @@ class AspirasiFormConfig extends Form
     #[Validate('required')]
     public $progress;
 
+    public $file_balasan;
+
+    public $status_ppid;
+
+    public $file;
+
     public function load(int $id)
     {
         $ik = PpidAspirasiPengaduan::find($id);
         $this->progress = $ik->status->progress;
+        $this->file = $ik->status->file;
         $this->id = $ik->id;
     }
 
@@ -45,9 +53,21 @@ class AspirasiFormConfig extends Form
                 break;
         }
 
-        return PpidAspirasiPengaduan::updateOrCreate(['id' => $this->id], [
-            'id' => $this->id,
-            'status_ppid' => $this->progress
+
+        if ($this->file_balasan) {
+            $fileName = '/' . $this->file_balasan->store('request/file_balasan', 'public');
+        } else {
+            $fileName = '';
+        }
+
+        return StatusPpid::updateOrCreate(['id' => $this->status_ppid], [
+            'progress' => $this->progress,
+            'file_balasan' => $fileName,
         ]);
+
+        // return PpidAspirasiPengaduan::updateOrCreate(['id' => $this->id], [
+        //     'id' => $this->id,
+        //     'status_ppid' => $this->progress
+        // ]);
     }
 }

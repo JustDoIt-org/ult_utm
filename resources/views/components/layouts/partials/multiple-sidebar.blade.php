@@ -150,11 +150,11 @@
     class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
     id="sidenav-main">
     <div class="sidenav-header bg-green-700">
-      {{-- <a class="navbar-brand m-0 d-flex justify-content-center bg-red-500" href="/">
-        <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-        <img src="{{ asset('assets/img/logo-silat-info-square.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 text-2xl font-weight-bold">{{ __('Silat Info') }}</span>
-      </a> --}}
+      <a class=" m-0 d-flex justify-content-center bg-red-500" href="/">
+        {{-- <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo"> --}}
+        <img src="{{ asset('assets/img/logo-silat-info.png') }}" class="w-40 mt-3" alt="main_logo">
+        {{-- <span class="ms-1 text-2xl font-weight-bold">{{ __('Silat Info') }}</span> --}}
+      </a>
     </div>
     <hr class="horizontal dark mt-0">
 

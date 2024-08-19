@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\RequestPpid;
+use App\Models\StatusPpid;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -37,12 +38,20 @@ class PpidForm extends Form
 
     public $file_balasan;
 
+    public $file;
+
+    public $status_ppid;
+
     public function load(int $id)
     {
         if ($this->file_balasan) {
             dd($this->file_balasan);
         }
         $ik = RequestPpid::find($id);
+
+        $this->file_balasan = $ik->status->file_balasan;
+        $this->file = $ik->status->file;
+        $this->status_ppid = $ik->status_ppid;
         $this->progress = $ik->status->progress;
         $this->id = $ik->id;
         $this->alamat = $ik->alamat;
@@ -70,21 +79,32 @@ class PpidForm extends Form
     {
         $this->validate();
 
-        switch ($this->progress) {
-            case 'belum':
-                $this->progress = 1;
-                break;
-            case 'diproses':
-                $this->progress = 2;
-                break;
-            default:
-                $this->progress = 3;
-                break;
+        // switch ($this->progress) {
+        //     case 'belum':
+        //         $this->progress = 1;
+        //         break;
+        //     case 'diproses':
+        //         $this->progress = 2;
+        //         break;
+        //     default:
+        //         $this->progress = 3;
+        //         break;
+        // }
+
+        if ($this->file_balasan) {
+            $fileName = '/' . $this->file_balasan->store('request/file_balasan', 'public');
+        } else {
+            $fileName = '';
         }
 
-        return RequestPpid::updateOrCreate(['id' => $this->id], [
-            'id' => $this->id,
-            'status_ppid' => $this->progress
+        return StatusPpid::updateOrCreate(['id' => $this->status_ppid], [
+            'progress' => $this->progress,
+            'file_balasan' => $fileName,
         ]);
+
+        // return RequestPpid::updateOrCreate(['id' => $this->id], [
+        //     'id' => $this->id,
+        //     'status_ppid' => $this->progress
+        // ]);
     }
 }

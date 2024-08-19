@@ -8,10 +8,11 @@ use App\Livewire\Module\Trait\Notification;
 use App\Livewire\PpidAdmin\Aspirasi\AspirasiFormConfig;
 use App\Models\RequestPpid;
 use Livewire\Attributes\Computed;
+use Livewire\WithFileUploads;
 
 class AspirasiFormModal extends BaseModal
 {
-    use Notification;
+    use Notification, WithFileUploads;
 
     public AspirasiFormConfig $form;
 

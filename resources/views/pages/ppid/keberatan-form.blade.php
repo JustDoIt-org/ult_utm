@@ -37,32 +37,35 @@
               ];
           }
         @endphp
+
+
         <table class="table-auto flex justify-center">
           <tbody class="flex flex-col justify-center mt-5">
             @foreach ($field_data as $item)
               @if ($item[1])
-                <tr class=" hover:scale-105 transition-all flex justify-between p-3 mb-2 rounded-md bg-white shadow-lg">
+                <tr
+                  class=" hover:scale-105 transition-all flex flex-col md:flex-row md:justify-between p-3 mb-2 rounded-md bg-white shadow-lg">
                   <td class="w-1/4  mr-2 capitalize">{{ $item[0] }}</td>
                   <td class="text-wrap w-3/4 capitalize">: {{ $item[1] }}</td>
                 </tr>
               @endif
             @endforeach
-            <tr class=" mt-5 flex justify-between">
+            <tr class=" mt-5 gap-3 md:gap-0 flex justify-between flex-wrap">
               @if ($data_found->status->file)
                 <td>
                   <a href={{ '/storage' . $data_found->status->file }} target="_blank"
-                    class="p-3 bg-secondary text-white rounded-md hover:bg-primary transition-all">
+                    class="p-1 md:p-3 bg-secondary text-white rounded-md hover:bg-primary transition-all">
                     Download File {{ $type == 'request' ? 'KTP' : '' }}
                   </a>
                 </td>
               @endif
               <td>
                 @if ($data_found->status->file_balasan)
-                  <a href={{ '/storage' . $data_found->status->file }} target="_blank"
-                    class="p-3 bg-secondary text-white rounded-md hover:bg-primary transition-all">Download
+                  <a href={{ '/storage' . $data_found->status->file_balasan }} target="_blank"
+                    class="p-1 md:p-3 bg-secondary text-white rounded-md hover:bg-primary transition-all">Download
                     File Balasan</a>
                 @else
-                  <a disabled class="p-3  text-white rounded-md bg-gray-500 transition-all">File
+                  <a disabled class="p-1 md:p-3  text-white rounded-md bg-gray-500 transition-all">File
                     Balasan Belum
                     Ada</a>
                 @endif
