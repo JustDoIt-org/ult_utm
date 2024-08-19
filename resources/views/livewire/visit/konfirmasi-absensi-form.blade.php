@@ -6,12 +6,12 @@
   <form wire:submit="submit">
     @csrf
     <!-- Code Absensi -->
-    <x-element.layout.vertical name="code" label="Code Absensi">
+    <x-element.layout.vertical name="code" label="kode Absensi">
       <x-element.input.line wire:model="code" />
     </x-element.layout.vertical>
 
     <!-- Code Kunjungan -->
-    <x-element.layout.vertical name="code_kunjungan" label="Code Kunjungan">
+    <x-element.layout.vertical name="code_kunjungan" label="Kode Kunjungan">
       <x-element.input.line wire:model="code_kunjungan" />
     </x-element.layout.vertical>
 

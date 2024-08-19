@@ -60,7 +60,7 @@ Route::middleware(['auth', 'verified'])->get('/visit/submissions', [SubmissionCo
 Route::middleware(['auth', 'verified'])->get('/visit/cek-absensi', [CekAbsensiController::class, 'index'])->name('visit.cek-absensi');
 
 //Konfirmasi Absensi
-Route::get('/konfirmasi-absensi', [KonfirmasiAbsensiController::class, 'index'])->name('konfirmasi-absensi');
+Route::get('/konfirmasi-absensi/{kode}', [KonfirmasiAbsensiController::class, 'index'])->name('konfirmasi-absensi');
 
 // Ppid
 Route::middleware(['auth', 'verified'])->prefix('ppid')->group(function () {
