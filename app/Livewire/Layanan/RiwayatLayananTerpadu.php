@@ -72,11 +72,13 @@ class RiwayatLayananTerpadu extends Component
                 $modal_title = [
                     'tambah' => 'link',
                     'edit' => 'Edit Pengajuan',
-                    'delete' => 'Delete Pengajuan',
-                    'forward' => 'Forward Pengajuan',
                 ];
                 if (auth()->user()->can('layanan-terpadu index')) {
                     $dataTables = LayananTerpadu::where('progress', '!=', 'selesai')->get();
+                    array_push($modal_title, [
+                        'delete' => 'Delete Pengajuan',
+                        'forward' => 'Forward Pengajuan',
+                    ]);
                 } else {
                     $user_id = Auth::id();
                     $admin_layanan = AdminLayananModel::where('user_id', $user_id)->get();
@@ -89,11 +91,15 @@ class RiwayatLayananTerpadu extends Component
                 $modal_title = [
                     // 'tambah' => 'link',
                     'edit' => 'Edit Pengajuan',
-                    'delete' => 'Delete Pengajuan',
+                    // 'delete' => 'Delete Pengajuan',
                 ];
                 // $dataTables = LayananTerpadu::where('progress', 'selesai')->get();
 
                 if (auth()->user()->can('layanan-terpadu index')) {
+                    array_push($modal_title, [
+                        'delete' => 'Delete Pengajuan',
+                    ]);
+
                     $dataTables = LayananTerpadu::where('progress', 'selesai')->get();
                 } else {
                     $user_id = Auth::id();
