@@ -142,10 +142,12 @@
 
               {{-- Third Button --}}
               @isset($modal_title['forward'])
-                <button type="button" class="btn btn-success btn-simple p-2" data-bs-toggle="modal"
-                  data-bs-target="#modal-forward<?= $data['id'] ?>">
-                  Forward
-                </button>
+                @can('layanan-terpadu edit')
+                  <button type="button" class="btn btn-success btn-simple p-2" data-bs-toggle="modal"
+                    data-bs-target="#modal-forward<?= $data['id'] ?>">
+                    Forward
+                  </button>
+                @endcan
               @endisset
             </td>
           @endif
