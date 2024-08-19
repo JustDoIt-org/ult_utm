@@ -4,6 +4,8 @@ namespace App\Livewire\Visit;
 
 use App\Livewire\Module\BaseTable;
 use App\Livewire\Module\Trait\Notification;
+use App\Models\Faculty;
+use App\Models\InformasiKouta;
 use App\Models\PengajuanKunjungan;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
@@ -93,6 +95,12 @@ class PengajuanKunjunganTable extends BaseTable
     public function delete($id)
     {
         $doc = PengajuanKunjungan::find($id);
+        $inf_kouta = $doc->informasiKouta;
+
+        if($doc->tipe_kunjungan == "langsung" || $doc->progress == "selesai"){
+            $inf_kouta->update(['sisa_kouta' => $inf_kouta->sisa_kouta + $doc->kapasitas_peserta]);
+        }
+
         if($doc->tipe_kunjungan != "langsung"){
             unlink(public_path('storage' . $doc->surat_permohonan));
         }
