@@ -104,7 +104,7 @@ class RiwayatLayananTerpadu extends Component
                 } else {
                     $user_id = Auth::id();
                     $admin_layanan = AdminLayananModel::where('user_id', $user_id)->get();
-                    $tujuan = $admin_layanan[0]->jenisLayanan->type;
+                    $tujuan = isset($admin_layanan[0]->jenisLayanan->type) ? $admin_layanan[0]->jenisLayanan->type : 'Layanan Akademik';
                     $dataTables = LayananTerpadu::where('progress', 'selesai')->where('tujuan', $tujuan)->get();
                 }
 
