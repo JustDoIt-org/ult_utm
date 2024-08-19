@@ -20,14 +20,14 @@ class RequestPpidSeeder extends Seeder
             'type' => 'request',
         ]);
         \App\Models\StatusPpid::create([
-            'user_id' => 3,
+            'user_id' => 1,
             'progress' => 'diproses',
             'uraian' => 'Ingin mengajukan permohonan permintaan data di UTM',
             'file' => '/request/try.png',
             'type' => 'request',
         ]);
         \App\Models\StatusPpid::create([
-            'user_id' => 4,
+            'user_id' => 1,
             'progress' => 'selesai',
             'uraian' => 'Ingin mengajukan permohonan permintaan data di UTM',
             'file' => '/request/try.png',
@@ -46,7 +46,7 @@ class RequestPpidSeeder extends Seeder
 
         \App\Models\RequestPpid::create([
             'slug' => '1Rjkhaskdsdsa',
-            'status_ppid' => 3,
+            'status_ppid' => 1,
             'alamat' => 'jl anjasmoro no 27',
             'pekerjaan' => 'Eat, Sleep, Repeat',
             'kategori_pemohon' => 'perorangan',
@@ -56,7 +56,7 @@ class RequestPpidSeeder extends Seeder
         ]);
         \App\Models\RequestPpid::create([
             'slug' => '1Rjkhaskdsdsa',
-            'status_ppid' => 2,
+            'status_ppid' => 1,
             'alamat' => 'jl anjasmoro no 27',
             'pekerjaan' => 'Eat, Sleep, Repeat',
             'kategori_pemohon' => 'perorangan',

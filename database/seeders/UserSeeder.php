@@ -20,9 +20,9 @@ class UserSeeder extends Seeder
             'email_verified_at' => now()
         ])->syncRoles(\App\Models\Role::ADMIN);
 
-        $users = \App\Models\User::factory(100)->create();
-        foreach ($users as $user) {
-            $user->syncRoles(\App\Models\Role::GUEST);
-        }
+        // $users = \App\Models\User::factory(100)->create();
+        // foreach ($users as $user) {
+        //     $user->syncRoles(\App\Models\Role::GUEST);
+        // }
     }
 }
