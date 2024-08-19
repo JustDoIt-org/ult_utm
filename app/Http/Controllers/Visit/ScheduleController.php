@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Visit;
 
-use App\Http\Controllers\Controller;
 use App\Models\InformasiKouta;
+use App\Http\Controllers\Controller;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ScheduleController extends Controller
 {
@@ -12,6 +13,9 @@ class ScheduleController extends Controller
     {
         return view('pages.visit.schedules', [
             'information_kouta' => InformasiKouta::with('faculty')->get(),
+            'qrcode' => QrCode::generate(
+                route('konfirmasi-absensi')
+            )
         ]);
     }
 }

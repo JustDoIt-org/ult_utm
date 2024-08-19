@@ -14,8 +14,13 @@
             {{-- Facebook : @Universitas.Brawijaya.Official --}}
           </li>
           <li>Keterlambatan lebih dari 20 menit dianggap BATAL.</li>
-          {{-- <li>Peserta harap membeli konsumsi (makan) di UB Pemesanan melalui WA 0812-5211-2225.</li> --}}
+          <li>
+            Jangan Lupa scan qr code dan masukkan kode absensi yang dikirim ke email
+            <span class="text-center flex justify-center mt-4">{{ $qrcode }}</span>
+          </li>
         </ol>
+
+
       </section>
 
       <livewire:visit.informasi-kouta-table-view />
