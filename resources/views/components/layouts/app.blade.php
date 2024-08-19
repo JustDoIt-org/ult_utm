@@ -11,6 +11,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="{{ asset('assets/img/logo-silat-info.png') }}">
+
 
   <!-- Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -24,7 +26,7 @@
   <header>
     <x-layouts.partials.navbar.multiple-navbar />
   </header>
-  <main class="min-h-screen bg-yellow-100 mt-5 md:mt-10 min-w-[460px]">
+  <main class="min-h-screen bg-secondary mt-5 md:mt-10 min-w-[460px]">
     {{ $slot }}
   </main>
   @stack('scripts')

@@ -10,13 +10,25 @@
     <label for="form.progress">Status Request</label>
     @php
       $progress = ['belum', 'diproses', 'selesai'];
+
     @endphp
     <x-element.select.dropdown wire:model.change="form.progress">
+
       <option>--- Update Progress ---</option>
       @foreach ($progress as $key)
         <option value="{{ $key }}">{{ $key }}</option>
       @endforeach
     </x-element.select.dropdown>
+
+    @if ($this->form->file)
+      <a href={{ '/storage' . $this->form->file }} target="_blank"
+        class=" text-secondary hover:text-primary transition-all">
+        Download File Pengajuan
+      </a>
+    @endif
+    <x-element.input.input-file label="File Balasan" model="form.file_balasan" target="save" />
+
+
   </div>
   {{-- <x-element.layout.vertical name="form.tujuan_kunjungan" label="Tujuan Kunjungan">
         <x-element.input.line wire:model="form.tujuan_kunjungan" />
@@ -30,6 +42,6 @@
 
   <x-slot:button>
     <button wire:loading.attr="disabled" type="submit"
-      class="w-full bg-secondary rounded-lg py-1 text-white font-semibold transition-all hover:scale-95">Save</button>
+      class="w-full bg-secondary rounded-lg py-1 text-white font-semibold transition-all hover:bg-opacity-85 hover:scale-95">Save</button>
   </x-slot:button>
 </x-section.modal>

@@ -54,7 +54,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
-  <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('assets/img/logo-silat-info.png') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.all.min.css') }}" />
   <title>
     {{ $title }}
@@ -149,13 +149,11 @@
   <aside
     class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
     id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-        target="_blank">
-        <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">{{ __('Layanan Terpadu') }}</span>
+    <div class="sidenav-header bg-green-700">
+      <a class=" m-0 d-flex justify-content-center bg-red-500" href="/">
+        {{-- <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo"> --}}
+        <img src="{{ asset('assets/img/logo-silat-info.png') }}" class="w-40 mt-3" alt="main_logo">
+        {{-- <span class="ms-1 text-2xl font-weight-bold">{{ __('Silat Info') }}</span> --}}
       </a>
     </div>
     <hr class="horizontal dark mt-0">

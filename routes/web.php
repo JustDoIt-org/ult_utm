@@ -75,7 +75,7 @@ Route::middleware(['auth', 'verified'])->prefix('terpadu')->group(function () {
 
 
     Route::get('/list', [LayananTerpaduController::class, 'list'])->name('lt.list');
-    Route::delete('/list', [LayananTerpaduController::class, 'destroy'])->name('lt.list');
+    Route::delete('/list', [LayananTerpaduController::class, 'destroy'])->name('lt.list_delete');
 
 
     Route::get('/chat_layanan', [ChatController::class, 'chat_guest'])->name('lt.chat_layanan');

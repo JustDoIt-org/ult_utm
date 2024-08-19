@@ -15,6 +15,6 @@ class AspirasiForm extends Component
 
     public function render()
     {
-        return view('pages.admin.ppid.request-form');
+        return view('pages.admin.ppid.aspirasi-form');
     }
 }

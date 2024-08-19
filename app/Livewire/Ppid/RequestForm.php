@@ -30,7 +30,7 @@ class RequestForm extends Component
         $data = $this->base->post_request();
         $this->base->resetInput();
 
-        request()->session()->flash('data', $data->slug);
+        // request()->session()->flash('data', $data->slug);
         Mail::to(Auth::user()->email)->send(new PpidMail($data->slug, "Kode Pengajuan"));
 
         return $this->toast(

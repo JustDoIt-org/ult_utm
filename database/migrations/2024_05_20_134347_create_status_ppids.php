@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->enum('progress', ['belum', 'diproses', 'selesai']);
             $table->text('uraian');
-            $table->string('file');
+            $table->string('file')->nullable();
+            $table->string('file_balasan')->nullable();
             $table->string('type');
             $table->timestamps();
         });

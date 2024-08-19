@@ -24,15 +24,15 @@
       <section x-show="activeTab === {{ $loop->index }}" role="tabpanel">
         @switch($loop->index)
           @case(0)
-            <livewire:ppid-admin.request.request-table status='belum' />
+            <livewire:ppid-admin.aspirasi.aspirasi-table status='belum' />
           @break
 
           @case(1)
-            <livewire:ppid-admin.request.request-table status='diproses' />
+            <livewire:ppid-admin.aspirasi.aspirasi-table status='diproses' />
           @break
 
           @case(2)
-            <livewire:ppid-admin.request.request-table status='selesai' />
+            <livewire:ppid-admin.aspirasi.aspirasi-table status='selesai' />
           @break
 
           @default

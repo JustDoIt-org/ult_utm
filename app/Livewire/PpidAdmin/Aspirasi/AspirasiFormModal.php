@@ -1,31 +1,33 @@
 <?php
 
-namespace App\Livewire\PpidAdmin\Request;
+namespace App\Livewire\PpidAdmin\Aspirasi;
 
 use App\Livewire\Forms\PpidForm;
 use App\Livewire\Module\BaseModal;
 use App\Livewire\Module\Trait\Notification;
+use App\Livewire\PpidAdmin\Aspirasi\AspirasiFormConfig;
 use App\Models\RequestPpid;
 use Livewire\Attributes\Computed;
+use Livewire\WithFileUploads;
 
-class RequestFormModal extends BaseModal
+class AspirasiFormModal extends BaseModal
 {
-    use Notification;
+    use Notification, WithFileUploads;
 
-    public PpidForm $form;
+    public AspirasiFormConfig $form;
 
     /*
      * normal modal title
      * @var string
      */
-    
-    protected static $title = "Add New Request PPID";
+
+    protected static $title = "Add New aspirasi PPID";
 
     /*
      * load modal title
      * @var string
      */
-    protected static $load_title = "Update Request PPID";
+    protected static $load_title = "Update aspirasi PPID";
 
     /*
      * save or load permission
@@ -63,9 +65,9 @@ class RequestFormModal extends BaseModal
         parent::save();
         if ($this->form->post()) {
             $this->dispatch('close-modal', name: $this->modal_name);
-            $this->dispatch('request-table:reload');
+            $this->dispatch('aspirasi-table:reload');
             $this->toast(
-                message: $this->form->id == 0 ? 'Request PPID Created' : 'Request PPID Updated',
+                message: $this->form->id == 0 ? 'Aspirasi PPID Created' : 'Aspirasi PPID Updated',
                 type: 'success'
             );
         } else {
