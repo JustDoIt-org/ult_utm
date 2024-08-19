@@ -82,6 +82,7 @@ class RiwayatLayananTerpadu extends Component
                         'tambah' => 'link',
                         'edit' => 'Edit Pengajuan',
                     ];
+                    // dd($modal_title);
 
                     $user_id = Auth::id();
                     $admin_layanan = AdminLayananModel::where('user_id', $user_id)->get();

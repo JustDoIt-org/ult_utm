@@ -71,7 +71,7 @@
             <th class="text-uppercase text-primary text-xxs font-weight-bolder text-center">{{ $col }}</th>
           @endforeach
 
-          @if (!empty($modal_title['edit']) && !empty($modal_title['delete']))
+          @if (!empty($modal_title['edit']) || !empty($modal_title['delete']))
             <th class="text-secondary opacity-7">Action</th>
           @endif
         </tr>
