@@ -35,7 +35,7 @@ class PengajuanKunjunganUserTable extends BaseTable
     #[Computed]
     public function rows()
     {
-        return PengajuanKunjungan::where('user_id', 'like', Auth::id())
+        return PengajuanKunjungan::where('user_id', '=', Auth::id())
             // ->search($this->search)
             ->orderBy($this->sort_by, $this->sort_direction)
             ->paginate($this->perPage);
@@ -90,6 +90,12 @@ class PengajuanKunjunganUserTable extends BaseTable
     public function delete($id)
     {
         $doc = PengajuanKunjungan::find($id);
+        $inf_kouta = $doc->informasiKouta;
+
+        if($doc->tipe_kunjungan == "langsung" || $doc->progress == "selesai"){
+            $inf_kouta->update(['sisa_kouta' => $inf_kouta->sisa_kouta + $doc->kapasitas_peserta]);
+
+        }
 
         if($doc->tipe_kunjungan != "langsung"){
             unlink(public_path('storage' . $doc->surat_permohonan));

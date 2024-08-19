@@ -49,16 +49,25 @@
           @default
         @endswitch
       </x-layouts.partials.sidebar.sidebar>
+    @else
+    <x-layouts.partials.sidebar.sidebar>
+        @switch(explode('.', Route::currentRouteName())[0])
+          @case('visit')
+            <x-section.visit.visit-navigation />
+          @break
+          @default
+        @endswitch
+      </x-layouts.partials.sidebar.sidebar>
     @endif
   </aside>
 
   <main class="box-border h-full">
-    @if (Auth::check())
       <div x-data x-bind:class="$store.sidebarState.isActive && 'pointer-events-none'"
         class="lg:pl-80 pt-16 lg:pointer-events-auto overflow-x-hidden">
+    {{-- @if (Auth::check())
       @else
         <div class="py-10 md:px-7 lg:px-24">
-    @endif
+    @endif --}}
     @yield('content')
     </div>
   </main>
