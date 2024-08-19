@@ -69,17 +69,20 @@ class RiwayatLayananTerpadu extends Component
                 $dataTables = LayananTerpadu::where('user_id', Auth::id())->where('progress', '!=', 'selesai')->get();
                 break;
             case 'admin_list':
-                $modal_title = [
-                    'tambah' => 'link',
-                    'edit' => 'Edit Pengajuan',
-                ];
                 if (auth()->user()->can('layanan-terpadu index')) {
-                    $dataTables = LayananTerpadu::where('progress', '!=', 'selesai')->get();
-                    array_push($modal_title, [
+                    $modal_title = [
+                        'tambah' => 'link',
+                        'edit' => 'Edit Pengajuan',
                         'delete' => 'Delete Pengajuan',
                         'forward' => 'Forward Pengajuan',
-                    ]);
+                    ];
+                    $dataTables = LayananTerpadu::where('progress', '!=', 'selesai')->get();
                 } else {
+                    $modal_title = [
+                        'tambah' => 'link',
+                        'edit' => 'Edit Pengajuan',
+                    ];
+
                     $user_id = Auth::id();
                     $admin_layanan = AdminLayananModel::where('user_id', $user_id)->get();
                     $tujuan = $admin_layanan[0]->jenisLayanan->type;
@@ -88,18 +91,14 @@ class RiwayatLayananTerpadu extends Component
 
                 break;
             case 'admin_riwayat':
-                $modal_title = [
-                    // 'tambah' => 'link',
-                    'edit' => 'Edit Pengajuan',
-                    // 'delete' => 'Delete Pengajuan',
-                ];
                 // $dataTables = LayananTerpadu::where('progress', 'selesai')->get();
 
                 if (auth()->user()->can('layanan-terpadu index')) {
-                    array_push($modal_title, [
+                    $modal_title = [
+                        // 'tambah' => 'link',
+                        'edit' => 'Edit Pengajuan',
                         'delete' => 'Delete Pengajuan',
-                    ]);
-
+                    ];
                     $dataTables = LayananTerpadu::where('progress', 'selesai')->get();
                 } else {
                     $user_id = Auth::id();
