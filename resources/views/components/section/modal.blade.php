@@ -16,6 +16,7 @@
       ][$maxWidth] ?? 'sm:max-w-2xl';
 @endphp
 
+
 <div class="fixed inset-0 z-20 flex items-center justify-center" x-data="{ visible: false, name: '{{ $name }}' }"
   x-on:open-modal.window="($event.detail.id && name === $event.detail.name) ? $wire.load($event.detail.id) : visible = (name === $event.detail.name)"
   x-on:close-modal.window="(name === $event. detail.name) ? $wire.clear() : $event.preventDefault()" x-transition
@@ -30,6 +31,7 @@
       <span class="font-semibold text-secondary">
         {{ __($title) }}
       </span>
+
 
       @if (isset($method))
         <button wire:loading.attr="disabled" type="button" x-on:click="$dispatch('close-modal', {name: name})">

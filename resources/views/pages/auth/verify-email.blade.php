@@ -1,7 +1,7 @@
 <x-layouts.guest>
     <div class="flex flex-col gap-10 md:w-[450px]">
         <div class="flex flex-col gap-3">
-            <div class="flex justify-center items-center rounded-full p-3 w-24 h-24 border-4 border-yellow-600 text-yellow-600 m-auto">
+            <div class="flex justify-center items-center rounded-full p-3 w-24 h-24 border-4 border-secondary text-secondary m-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
@@ -23,7 +23,7 @@
             <form method="POST" action="{{ route('verification.send') }}" class="w-full">
                 @csrf
 
-                <button type="submit" class="bg-yellow-600 w-full text-white text-xl font-semibold py-3 rounded-full">
+                <button type="submit" class="bg-secondary w-full text-white text-xl font-semibold py-3 rounded-full">
                     @if (session("status") == "verification-link-sent")
                         {{ __('Resend Verification Email') }}
                     @else

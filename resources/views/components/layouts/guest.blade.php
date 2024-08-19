@@ -18,6 +18,7 @@
 </head>
 
 <body class="flex justify-center items-center bg-secondary md:min-w-[835px] py-7 overflow-x-hidden">
+
   <section class="flex flex-col gap-1 mx-5 justify-center h-screen">
     {{-- Logo Utm --}}
     <a href="{{ route('home') }}" class="flex justify-center md:justify-start">
