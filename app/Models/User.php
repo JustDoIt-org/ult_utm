@@ -8,6 +8,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -75,6 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->roles->first()->name;
     }
 
+
     #################################################################
     #####                      Relations                        #####
     #################################################################
@@ -85,10 +87,15 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withPivot('value');
     }
 
-    // public function faculty()
+    // public function roless()
     // {
-    //     return $this->belongsToMany(Faculty::class, 'faculty_administrators', 'user_id');
+    //     return ['role' => $this->roles[0]];
     // }
+
+    public function faculty()
+    {
+        return $this->belongsToMany(Faculty::class, 'faculty_administrators', 'user_id');
+    }
 
     public function pengajuanKunjungan()
     {

@@ -26,7 +26,7 @@ class KonfirmasiAbsensiForm extends Component
 
         $kode_kunjungan = KodeKunjunganModel::whereDay('created_at', now()->day)->get();
 
-        if ($kode_kunjungan == $this->code_kunjungan) {
+        if (isset($kode_kunjungan) && $kode_kunjungan[0]->code == $this->code_kunjungan) {
             $code = VisitAbsen::getCodeAbsensi($this->code);
             if ($code) {
 
@@ -34,10 +34,11 @@ class KonfirmasiAbsensiForm extends Component
                 $code->fill($update);
 
                 $code->update();
-                return $this->toast(
+                $this->toast(
                     message: 'Berhasil Absen',
                     type: 'success'
                 );
+                return redirect()->route('visit.schedules');
             } else {
                 return $this->toast(
                     message: 'Maaf code absen anda tidak ada, harap pastikan pengajuan anda disetujui!!',

@@ -53,6 +53,10 @@ class UserTable extends BaseTable
 
     public function cols()
     {
+        // dd(User::search($this->search)
+        //     ->orderBy($this->sort_by, $this->sort_direction)
+        //     ->paginate($this->perPage)->onEachSide(1)[0]->cobssa);
+
         return [
             [
                 "label" => "Name",
@@ -66,7 +70,7 @@ class UserTable extends BaseTable
             ],
             [
                 "label" => "Roles",
-                "query" => "role",
+                "query" => "role_name",
                 "sort" => false,
             ],
         ];
