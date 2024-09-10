@@ -2,12 +2,16 @@
 
 namespace App\Livewire\Visit;
 
+use App\Events\SendKodeKunjungan;
 use App\Models\VisitAbsen;
+use Illuminate\Http\Request;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Computed;
 use App\Livewire\Module\BaseTable;
 use App\Models\KodeKunjunganModel;
 use App\Models\PengajuanKunjungan;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class CekAbsensiTable extends BaseTable
 {
@@ -16,9 +20,12 @@ class CekAbsensiTable extends BaseTable
     public $title = "Cek Absensi Table";
     public $kode_kunjungan;
 
+
     public function mount()
     {
-        $this->kode_kunjungan = KodeKunjunganModel::firstOrCreate(['created_at' => now()->today()], ['code' => KodeKunjunganModel::count() . rand(000000, 999999)])->get();
+        $kunjungan = KodeKunjunganModel::where('sudah', 0);
+
+        $this->kode_kunjungan = KodeKunjunganModel::where('sudah', 0)->firstOrCreate(['created_at' => now()->today()], ['code' => KodeKunjunganModel::count() . rand(000000, 999999)])->latest()->get()[0];
     }
 
     public function render()
@@ -59,4 +66,11 @@ class CekAbsensiTable extends BaseTable
             ],
         ];
     }
+
+    public function save()
+    {
+        $this->kode_kunjungan = KodeKunjunganModel::create(['code' => KodeKunjunganModel::count() . rand(000000, 999999)]);
+    }
+
+
 }

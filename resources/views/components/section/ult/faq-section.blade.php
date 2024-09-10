@@ -3,7 +3,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Frequently Asked Questions</h2>
+        <h2>{{ __('Frequently Asked Questions') }}</h2>
         <p></p>
       </div><!-- End Section Title -->
 

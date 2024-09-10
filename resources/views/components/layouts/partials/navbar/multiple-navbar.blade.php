@@ -33,6 +33,6 @@
     </div>
   @else
     <a wire:navigate href="{{ route('login') }}"
-      class="ms-5 bg-amber-200 py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-amber-300 hover:scale-105 transition">Sign-In</a>
+      class="ms-5 bg-primary text-white py-2 px-3 rounded-lg font-semibold shadow-lg hover:bg-blue-300 hover:scale-105 transition">Sign-In</a>
   @endif
 </nav>

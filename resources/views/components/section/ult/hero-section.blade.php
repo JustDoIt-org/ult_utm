@@ -14,7 +14,7 @@
               <li> <span>{{ $item['desc'] }}</span></li>
               {{-- @endforeach --}}
             </ul>
-            <a href="{{ route($item['link']) }}" class="buy-btn">Go</a>
+            <a href="{{ route($item['link']) }}" class="buy-btn">{{ __('Go') }}</a>
           </div>
         </div>
       @endforeach

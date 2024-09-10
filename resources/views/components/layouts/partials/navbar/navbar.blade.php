@@ -14,9 +14,9 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#faq-2">Faq</a></li>
+        <li><a href="#hero" class="active">{{ __('Home') }}</a></li>
+        <li><a href="#about">{{ __('About') }}</a></li>
+        <li><a href="#faq-2">{{ __('Faq') }}</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
@@ -30,7 +30,7 @@
         </div>
       </div>
     @else
-      <a class="btn-getstarted" wire:navigate href="{{ route('login') }}">Login</a>
+      <a class="btn-getstarted" wire:navigate href="{{ route('login') }}">{{ __('Login') }}</a>
     @endauth
 
   </div>

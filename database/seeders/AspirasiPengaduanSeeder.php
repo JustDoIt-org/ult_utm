@@ -15,7 +15,7 @@ class AspirasiPengaduanSeeder extends Seeder
     public function run(): void
     {
         StatusPpid::create([
-            'user_id' => 2,
+            'user_id' => 1,
             'progress' => 'belum',
             'uraian' => 'dsadasdd',
             'file' => 'dsadas',
